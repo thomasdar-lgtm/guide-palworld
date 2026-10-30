@@ -48,9 +48,9 @@ button{font:inherit;color:inherit}
 /* --- Barre du bas --- */
 .bnav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
 .bnav button{flex:1;height:var(--nav);border:none;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;font-weight:650;color:var(--mut);cursor:pointer}
-.bnav button .ic{font-size:20px;line-height:1;filter:grayscale(.6);opacity:.75}
+.bnav button .ic{width:30px;height:30px;object-fit:contain;filter:grayscale(.45);opacity:.7;transition:transform .15s,opacity .15s,filter .15s}
 .bnav button.on{color:var(--acc)}
-.bnav button.on .ic{filter:none;opacity:1}
+.bnav button.on .ic{filter:none;opacity:1;transform:scale(1.12)}
 
 main{max-width:760px;margin:0 auto;padding:14px 16px}
 .tab,.pan{display:none}
@@ -736,15 +736,15 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v12 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v13 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
-  <button data-t="accueil"><span class="ic">🏠</span>Accueil</button>
-  <button data-t="guide"><span class="ic">📖</span>Guide</button>
-  <button data-t="boss"><span class="ic">🗼</span>Boss</button>
-  <button data-t="pals"><span class="ic">🐾</span>Pals</button>
-  <button data-t="carte"><span class="ic">🗺️</span>Carte</button>
-  <button data-t="fin"><span class="ic">🌳</span>Fin</button>
+  <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
+  <button data-t="guide"><img class="ic" src="nav-guide.png" alt="">Guide</button>
+  <button data-t="boss"><img class="ic" src="nav-boss.png" alt="">Boss</button>
+  <button data-t="pals"><img class="ic" src="nav-pals.png" alt="">Pals</button>
+  <button data-t="carte"><img class="ic" src="nav-carte.png" alt="">Carte</button>
+  <button data-t="fin"><img class="ic" src="nav-fin.png" alt="">Fin</button>
 </nav>
 
 <div class="ov" id="ov">
@@ -777,7 +777,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "12";
+  var APP_VERSION = "13";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", guide:"Guide", boss:"Boss", pals:"Pals", carte:"Carte", fin:"Fin"};
 
