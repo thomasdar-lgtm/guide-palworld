@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1720">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Guide Palworld 1.0</title>
+<style>
+:root{
+  --bg:#0f1720; --card:#1b2836; --card2:#223244; --line:#2c3e52;
+  --txt:#e8eef4; --mut:#9fb0c2; --acc:#4fd1a5; --acc2:#ffcf5a; --warn:#ff8a65;
+  --fire:#ff7a45; --water:#4ea8ff; --grass:#6fd06f; --elec:#ffd23f; --ice:#7fe3f0;
+  --ground:#c99a5b; --dark:#a07cff; --dragon:#d56cff; --neutral:#c8ccd2;
+  --hl:rgba(79,209,165,.25); --r:14px; --nav:62px;
+}
+:root[data-theme="light"]{
+  --bg:#f3f6f9; --card:#ffffff; --card2:#eef3f7; --line:#d8e1ea;
+  --txt:#14202c; --mut:#5a6b7d; --acc:#139e72; --acc2:#a57800; --warn:#d1542b;
+  --elec:#e0b400; --ice:#3cc4d6; --neutral:#a3a9b1; --hl:rgba(19,158,114,.18);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]):not([data-theme="light"]){
+    --bg:#f3f6f9; --card:#ffffff; --card2:#eef3f7; --line:#d8e1ea;
+    --txt:#14202c; --mut:#5a6b7d; --acc:#139e72; --acc2:#a57800; --warn:#d1542b;
+    --elec:#e0b400; --ice:#3cc4d6; --neutral:#a3a9b1; --hl:rgba(19,158,114,.18);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:110px}
+body{background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(var(--nav) + env(safe-area-inset-bottom) + 20px)}
+button{font:inherit;color:inherit}
+
+/* --- En-tête --- */
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar1{display:flex;align-items:center;gap:8px;padding:10px 14px 8px;max-width:760px;margin:0 auto}
+.bar1 h1{font-size:18px;flex:1;white-space:nowrap}
+.bar1 h1 span{color:var(--acc)}
+.ib{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:17px;cursor:pointer}
+.sub{display:flex;gap:6px;overflow-x:auto;padding:0 14px 10px;max-width:760px;margin:0 auto;scrollbar-width:none}
+.sub::-webkit-scrollbar{display:none}
+.sub:empty{display:none}
+.sub button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:650;cursor:pointer}
+.sub button.on{background:var(--acc);border-color:var(--acc);color:#05231a}
+
+/* --- Barre du bas --- */
+.bnav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+.bnav button{flex:1;height:var(--nav);border:none;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;font-weight:650;color:var(--mut);cursor:pointer}
+.bnav button .ic{font-size:20px;line-height:1;filter:grayscale(.6);opacity:.75}
+.bnav button.on{color:var(--acc)}
+.bnav button.on .ic{filter:none;opacity:1}
+
+main{max-width:760px;margin:0 auto;padding:14px 16px}
+.tab,.pan{display:none}
+.tab.on,.pan.on{display:block}
+h2{font-size:18px;margin:4px 0 10px}
+h3{font-size:16px;margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px;transition:box-shadow .3s}
+.card.hi{border-color:var(--acc)}
+.card.tip{border-left:4px solid var(--acc2)}
+.card.warn{border-left:4px solid var(--warn)}
+.card.flash{box-shadow:0 0 0 3px var(--acc)}
+.mut{color:var(--mut);font-size:13px}
+.sp{margin-top:8px}
+ul.l{padding-left:18px}
+ul.l li{margin:4px 0}
+b{font-weight:650}
+.k{color:var(--acc);font-weight:650}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--card2);border:1px solid var(--line);margin:2px 3px 2px 0;white-space:nowrap}
+.el{color:#111;border-color:transparent}
+.el.fire{background:var(--fire)}.el.water{background:var(--water)}.el.grass{background:var(--grass)}
+.el.elec{background:var(--elec)}.el.ice{background:var(--ice)}.el.ground{background:var(--ground)}
+.el.dark{background:var(--dark)}.el.dragon{background:var(--dragon)}.el.neutral{background:var(--neutral)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;color:var(--mut);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;padding:6px;border-bottom:1px solid var(--line)}
+.tbl td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.scroll{overflow-x:auto}
+.step{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:none}
+.num{flex:0 0 28px;height:28px;border-radius:50%;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:13px;color:var(--acc)}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk:last-child{border-bottom:none}
+.chk input{width:22px;height:22px;accent-color:var(--acc);flex:0 0 22px;margin-top:1px}
+.chk.done .t{text-decoration:line-through;color:var(--mut)}
+.prog{height:8px;background:var(--card2);border-radius:99px;overflow:hidden;margin:6px 0 4px}
+.prog i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+.stat .v{font-size:24px;font-weight:800}
+.stat .v small{font-size:14px;color:var(--mut);font-weight:600}
+.next{background:linear-gradient(135deg,var(--hl),transparent 70%),var(--card)}
+.next .lv{float:right;font-size:22px;font-weight:800;color:var(--acc2)}
+.boss{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:var(--card)}
+.boss.done{opacity:.55}
+.boss .row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.boss .lv{font-weight:800;color:var(--acc2);font-size:18px;white-space:nowrap}
+.boss label{display:inline-flex;gap:8px;align-items:center;font-size:14px;font-weight:600;margin-top:10px;cursor:pointer;padding:6px 12px;border-radius:999px;background:var(--card2)}
+.boss label input{width:18px;height:18px;accent-color:var(--acc)}
+.picker{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.picker button{border:2px solid transparent;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;cursor:pointer;color:#111}
+.picker button.on{border-color:var(--txt)}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.res>div{background:var(--card2);border-radius:10px;padding:10px}
+.res .h{font-size:12px;color:var(--mut);margin-bottom:4px}
+.copy{display:inline-block;background:var(--card2);border:1px dashed var(--line);border-radius:8px;padding:2px 8px;font-size:13px;font-weight:650;cursor:pointer;white-space:nowrap}
+.inp{width:100%;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--txt);font-size:16px}
+.inp:focus{outline:2px solid var(--acc);outline-offset:-1px}
+.filters{display:flex;gap:6px;overflow-x:auto;padding:10px 0 4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:650;cursor:pointer;color:var(--mut)}
+.filters button.on{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+.pal{padding:12px 14px}
+.pal .nm{font-weight:700;font-size:15px}
+.pal .rl{float:right;font-size:15px;letter-spacing:2px}
+.cnt{font-size:13px;color:var(--mut);margin:6px 0 10px}
+/* Recherche */
+.ov{position:fixed;inset:0;z-index:40;background:var(--bg);display:none;flex-direction:column}
+.ov.on{display:flex}
+.ov .hd{display:flex;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);max-width:760px;width:100%;margin:0 auto}
+.ov .bd{flex:1;overflow-y:auto;padding:10px 14px 30px;max-width:760px;width:100%;margin:0 auto}
+.hit{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.hit .w{font-size:11px;color:var(--acc);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.hit .x{font-size:13px;color:var(--mut);margin-top:2px}
+mark{background:var(--hl);color:inherit;border-radius:3px}
+.toast{position:fixed;left:50%;bottom:calc(var(--nav) + env(safe-area-inset-bottom) + 14px);transform:translateX(-50%) translateY(20px);opacity:0;background:var(--txt);color:var(--bg);padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600;z-index:50;transition:.25s;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.up{position:fixed;right:14px;bottom:calc(var(--nav) + env(safe-area-inset-bottom) + 14px);z-index:15;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-size:18px;cursor:pointer;display:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.up.on{display:block}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
+/* Carte */
+.mapbox{position:relative;height:60vh;min-height:320px;max-height:640px;border-radius:var(--r);border:1px solid var(--line);overflow:hidden;background:var(--mapbg)}
+:root{--mapbg:#0b2233;--grid:rgba(255,255,255,.07);--axis:rgba(255,255,255,.16);--reg:rgba(255,255,255,.28)}
+:root[data-theme="light"]{--mapbg:#d9ecf5;--grid:rgba(0,0,0,.07);--axis:rgba(0,0,0,.16);--reg:rgba(0,0,0,.3)}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]):not([data-theme="light"]){--mapbg:#d9ecf5;--grid:rgba(0,0,0,.07);--axis:rgba(0,0,0,.16);--reg:rgba(0,0,0,.3)}}
+#map{width:100%;height:100%;display:block;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+#map text{pointer-events:none;font-family:system-ui,sans-serif}
+#map .mk{cursor:pointer}
+#map .mk.dim{opacity:.3}
+#map .mk.sel circle{stroke:var(--txt)}
+.mapctl{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+.mapctl button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:18px;font-weight:700;cursor:pointer}
+.coord{position:absolute;left:10px;bottom:10px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:3px 8px;font-size:12px;color:var(--mut)}
+.row2{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row2 .inp{flex:1;min-width:0;padding:9px 12px}
+.btn{border:none;background:var(--acc);color:#05231a;font-weight:700;border-radius:10px;padding:9px 14px;cursor:pointer;font-size:14px}
+.btn.ghost{background:var(--card2);color:var(--txt);border:1px solid var(--line)}
+.lvl{display:flex;align-items:center;gap:10px;margin:10px 0}
+.lvl input{flex:1;accent-color:var(--acc)}
+.lvl b{min-width:28px;text-align:right}
+.calbar{position:absolute;left:10px;right:60px;top:10px;background:var(--card);border:2px solid var(--acc);border-radius:10px;padding:8px 10px;font-size:13px;display:none;z-index:2}
+.calbar.on{display:block}
+.calbar select{width:100%;margin:6px 0;padding:7px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--txt);font-size:14px}
+.sw{display:flex;align-items:center;gap:10px;margin:8px 0}
+.sw input[type=checkbox]{width:20px;height:20px;accent-color:var(--acc)}
+.sw input[type=range]{flex:1;accent-color:var(--acc)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="bar1">
+    <h1>Guide <span>Palworld</span> 1.0</h1>
+    <button class="ib" id="btnSearch" aria-label="Rechercher">🔍</button>
+    <button class="ib" id="btnTheme" aria-label="Thème">🌓</button>
+  </div>
+  <div class="sub" id="sub"></div>
+</div>
+
+<main>
+
+<!-- ================= ACCUEIL ================= -->
+<div class="tab" id="t-accueil">
+  <div class="pan" data-p="Résumé">
+    <div class="stats">
+      <div class="stat"><div class="mut">Boss vaincus</div><div class="v" id="sBoss">0<small>/9</small></div><div class="prog"><i id="pBoss"></i></div></div>
+      <div class="stat"><div class="mut">Étapes</div><div class="v" id="sRoad">0<small>/5</small></div><div class="prog"><i id="pRoad"></i></div></div>
+    </div>
+    <div class="card next" id="nextCard"></div>
+
+    <h2>Feuille de route</h2>
+    <div class="card"><div id="road"></div></div>
+
+    <div class="card hi">
+      <h3>La règle d'or</h3>
+      <p>Les <b>tours de boss</b> rythment la partie. Va de tour en tour par niveau croissant, <b>quelques niveaux au-dessus</b> du boss, avec le <b>bon élément</b>.</p>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Nouveautés 1.0">
+    <div class="card">
+      <h3>Ce qui change avec la 1.0</h3>
+      <ul class="l">
+        <li>Niveau max <b>80</b> (au lieu de 65), arbre technologique prolongé.</li>
+        <li><b>72 nouveaux Pals</b> (47 inédits + 25 variantes), 287 au total.</li>
+        <li>2 régions : <b>Sunreach</b> (îles flottantes) et l'<b>Arbre-Monde</b> (fin du jeu).</li>
+        <li><b>9 boss de tour</b>, combats limités à <b>5 minutes</b>.</li>
+        <li>Bonus de capture complet en <b>5 captures</b> (au lieu de 12).</li>
+        <li>Condensation max : <b>48 copies</b> (au lieu de 116).</li>
+        <li><b>Mutation</b> (élevage) et <b>Éveil</b> (Arbre-Monde).</li>
+        <li>Aptitudes de travail jusqu'au <b>niveau 10</b>.</li>
+        <li>Donjons, bases ennemies et missions donnent de vraies récompenses d'XP.</li>
+        <li><b>13 nouvelles armes</b>, 44 accessoires, raids de base par vagues.</li>
+      </ul>
+    </div>
+    <div class="card tip">
+      <h3>Ancienne sauvegarde ?</h3>
+      <p>Elle fonctionne : niveau conservé, tours déjà battues validées. Les missions ont été réinitialisées pour pouvoir toucher les nouvelles récompenses.</p>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Lexique">
+    <div class="card">
+      <h3>Lexique FR ↔ EN</h3>
+      <p class="mut" style="margin-bottom:8px">Utile pour chercher sur les wikis et vidéos en anglais.</p>
+      <table class="tbl">
+        <tr><td>Artisanat</td><td class="mut">Handiwork</td></tr>
+        <tr><td>Allumage</td><td class="mut">Kindling</td></tr>
+        <tr><td>Arrosage</td><td class="mut">Watering</td></tr>
+        <tr><td>Plantation / Récolte</td><td class="mut">Planting / Gathering</td></tr>
+        <tr><td>Bûcheronnage / Minage</td><td class="mut">Lumbering / Mining</td></tr>
+        <tr><td>Électricité / Refroidissement</td><td class="mut">Generating Electricity / Cooling</td></tr>
+        <tr><td>Transport / Médecine</td><td class="mut">Transporting / Medicine Production</td></tr>
+        <tr><td>Ferme d'élevage</td><td class="mut">Breeding Farm</td></tr>
+        <tr><td>Condenseur d'essence</td><td class="mut">Pal Essence Condenser</td></tr>
+        <tr><td>Statue de pouvoir</td><td class="mut">Statue of Power</td></tr>
+        <tr><td>Poste de surveillance</td><td class="mut">Monitoring Stand</td></tr>
+        <tr><td>Arbre-Monde</td><td class="mut">World Tree</td></tr>
+        <tr><td>Pal Alpha</td><td class="mut">Alpha Pal (boss de zone)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Légende des icônes</h3>
+      <p>⚔️ combat · 🔨 base · 🐎 monture · 🐄 ranch</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= GUIDE ================= -->
+<div class="tab" id="t-guide">
+  <div class="pan" data-p="Débuter">
+    <div class="card">
+      <h3>Les premières heures</h3>
+      <p class="mut">Coche au fur et à mesure.</p>
+      <div id="start"></div>
+    </div>
+    <div class="card tip">
+      <h3>Réflexes utiles</h3>
+      <ul class="l">
+        <li>Active tous les <b>points de voyage rapide</b> croisés.</li>
+        <li>Garde un <b>Pal Feu</b> et un <b>Pal Eau</b> dans l'équipe.</li>
+        <li>Armure <b>anti-chaleur</b> / <b>anti-froid</b> avant volcan, désert, montagne.</li>
+        <li>Ne construis rien sur les gisements de ta base : ils doivent réapparaître.</li>
+        <li>Lance une fabrication longue à la base avant chaque sortie.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Réglages du monde</h3>
+      <p>Le taux d'XP va jusqu'à <b>×20</b> et se change à tout moment. Un <b>×2 ou ×3</b> accélère sans casser la progression. Le bonus de capture n'est pas concerné.</p>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Monter de niveau">
+    <div class="card">
+      <h3>Par tranche de niveau</h3>
+      <table class="tbl">
+        <tr><th>Niveaux</th><th>Activité principale</th></tr>
+        <tr><td><b>1 → 15</b></td><td>Captures en chaîne des Pals de départ</td></tr>
+        <tr><td><b>15 → 30</b></td><td>Donjons et bases ennemies (XP ×3 par sortie)</td></tr>
+        <tr><td><b>30 → 45</b></td><td>Boss de tour et Pals Alpha</td></tr>
+        <tr><td><b>45 → 65</b></td><td>Sakurajima et Feybreak : nouvelles espèces</td></tr>
+        <tr><td><b>65 → 80</b></td><td>Sunreach et Arbre-Monde</td></tr>
+      </table>
+    </div>
+    <div class="card tip">
+      <h3>Donjons rentables</h3>
+      <ul class="l">
+        <li>Explore toutes les branches, ne fonce pas au boss.</li>
+        <li>Capture les Pals à l'intérieur, y compris le boss.</li>
+        <li>Ressors par le couloir et reviens : le boss change.</li>
+        <li>Enchaîne une base ennemie proche avant de repartir.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Monter ses Pals</h3>
+      <ul class="l">
+        <li>Les Pals de l'équipe gagnent de l'XP avec toi (plafonnés à ton niveau).</li>
+        <li>En 1.0, les Pals de bas niveau rattrapent plus vite.</li>
+        <li>Manuels d'entraînement : coffres de donjons, sanctuaires, raids.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Capture">
+    <div class="card">
+      <h3>Bien capturer</h3>
+      <ul class="l">
+        <li><b>Baisse les PV</b> au maximum sans tuer.</li>
+        <li>Applique un <b>état</b> (brûlure, gel…) : meilleures chances.</li>
+        <li><b>Frappe dans le dos</b> juste avant de lancer.</li>
+        <li>Utilise la <b>sphère adaptée</b> au niveau du Pal, et prévois-en beaucoup.</li>
+      </ul>
+    </div>
+    <div class="card hi">
+      <h3>Bonus de capture : 5 par espèce</h3>
+      <p>L'XP dépend de <b>ton</b> niveau, pas de celui du Pal. Capturer des Pals faibles reste rentable longtemps. En visant, le jeu affiche ton compteur ; le Paldeck a un filtre « bonus non terminé ».</p>
+    </div>
+    <div class="card">
+      <h3>Effigies → Statue de pouvoir</h3>
+      <table class="tbl">
+        <tr><td><b>Lifmunk</b></td><td>Puissance de capture</td></tr>
+        <tr><td><b>Relaxaurus</b></td><td>Gain d'XP — à prendre tôt</td></tr>
+        <tr><td><b>Mimog</b></td><td>Vitesse, offerte à la 5ᵉ capture d'une espèce</td></tr>
+        <tr><td><b>Lunaris</b></td><td>Sphères à tête chercheuse</td></tr>
+      </table>
+      <p class="mut sp">13 types d'effigies. Un <b>Nox</b> dans l'équipe les détecte ; elles brillent davantage la nuit.</p>
+    </div>
+    <div class="card tip">
+      <h3>Capturer plutôt que tuer</h3>
+      <p>Un Alpha capturé = XP du combat <b>+</b> bonus de capture. Les Alphas réapparaissent : on peut en faire une boucle.</p>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Base">
+    <div class="card">
+      <h3>Où construire</h3>
+      <p class="mut">Touche une coordonnée pour la copier.</p>
+      <div class="scroll"><table class="tbl sp">
+        <tr><th>Usage</th><th>Coord.</th><th>Pourquoi</th></tr>
+        <tr><td><b>1ʳᵉ base</b></td><td><span class="copy">90, -436</span></td><td>Plaine près de la tour 1</td></tr>
+        <tr><td><b>Minerai tôt</b></td><td><span class="copy">7, -515</span></td><td>Gisements groupés, plat</td></tr>
+        <tr><td><b>Minerai + charbon</b></td><td><span class="copy">187, -37</span></td><td>Avant-poste de minage</td></tr>
+        <tr><td><b>Production</b></td><td><span class="copy">-432, -51</span></td><td>Plateau large et protégé</td></tr>
+        <tr><td><b>Élevage / ferme</b></td><td><span class="copy">-198, -702</span></td><td>Très grand terrain plat</td></tr>
+        <tr><td><b>Pétrole</b></td><td><span class="copy">-646, 270</span></td><td>Sakurajima : 2 puits + charbon + soufre</td></tr>
+        <tr><td><b>Sunreach</b></td><td><span class="copy">-540, -1361</span></td><td>Bassin de cristal, Soralite</td></tr>
+        <tr><td><b>Sur l'eau</b></td><td><span class="copy">137, -597</span></td><td>Construction aquatique (nouveau)</td></tr>
+      </table></div>
+    </div>
+    <div class="card tip">
+      <h3>Une base qui tourne</h3>
+      <ul class="l">
+        <li><b>Plat et aéré</b> : les gros Pals se coincent dans les escaliers.</li>
+        <li><b>Coffre à côté</b> de chaque poste de production.</li>
+        <li><b>Mangeoire pleine</b> + source chaude : sans moral, plus de travail.</li>
+        <li><b>Poste de surveillance</b> : fixe les tâches des Pals polyvalents.</li>
+        <li>Corrige d'abord le <b>poste le plus lent</b>.</li>
+        <li>Plus tard, une base par spécialité : minage, production, élevage.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Meilleurs ouvriers par métier</h3>
+      <div class="scroll"><table class="tbl">
+        <tr><th>Métier</th><th>Début</th><th>Milieu</th><th>Fin</th></tr>
+        <tr><td><b>Artisanat</b></td><td>Lamball, Cattiva</td><td>Anubis</td><td>Solenne</td></tr>
+        <tr><td><b>Minage</b></td><td>Depresso, Tombat</td><td>Digtoise, Anubis</td><td>Knocklem, Aegidron</td></tr>
+        <tr><td><b>Allumage</b></td><td>Foxparks</td><td>Arsox, Incineram</td><td>Jormuntide Ignis, Renjishi</td></tr>
+        <tr><td><b>Arrosage</b></td><td>Pengullet</td><td>Penking, Azurobe</td><td>Jormuntide, Shaolong</td></tr>
+        <tr><td><b>Bûcheronnage</b></td><td>Tanzee</td><td>Eikthyrdeer</td><td>Celesdir Noct</td></tr>
+        <tr><td><b>Plantation</b></td><td>Lifmunk, Tanzee</td><td>Broncherry</td><td>Lyleen, Dandilord</td></tr>
+        <tr><td><b>Récolte</b></td><td>Chikipi</td><td>Lyleen</td><td>Jetragon</td></tr>
+        <tr><td><b>Électricité</b></td><td>Sparkit</td><td>Grizzbolt</td><td>Orserk</td></tr>
+        <tr><td><b>Transport</b></td><td>Lamball</td><td>Anubis, Wumpo</td><td>Knocklem, Helzephyr Lux</td></tr>
+        <tr><td><b>Refroid.</b></td><td>Pengullet</td><td>Chillet</td><td>Bastigor</td></tr>
+        <tr><td><b>Médecine</b></td><td>Lifmunk</td><td>Lyleen</td><td>Silvance</td></tr>
+      </table></div>
+      <p class="mut sp">Le niveau d'aptitude compte plus que les passifs de vitesse. Les livres d'aptitude (fin de partie) ajoutent +1 jusqu'au niveau 10.</p>
+    </div>
+    <div class="card hi">
+      <h3>Anubis, l'objectif du milieu de partie</h3>
+      <p>Artisanat 6, Minage 6, Transport 4, très rapide. Par élevage : <b>Penking + Bushi</b>.</p>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Ressources">
+    <div class="card">
+      <h3>Ranch : qui produit quoi</h3>
+      <table class="tbl">
+        <tr><td><b>Chikipi</b></td><td>Œufs</td></tr>
+        <tr><td><b>Mozzarina</b></td><td>Lait</td></tr>
+        <tr><td><b>Beegarde</b></td><td>Miel</td></tr>
+        <tr><td><b>Lamball</b></td><td>Laine</td></tr>
+        <tr><td><b>Surfent</b></td><td>Cuir</td></tr>
+        <tr><td><b>Vixy</b></td><td>Sphères, flèches, pièces d'or</td></tr>
+      </table>
+      <p class="mut sp">Œufs + lait + miel = les gâteaux d'élevage. À installer tôt.</p>
+    </div>
+    <div class="card">
+      <h3>Où trouver les matériaux</h3>
+      <div class="scroll"><table class="tbl">
+        <tr><th>Matériau</th><th>Où / comment</th></tr>
+        <tr><td><b>Charbon</b></td><td>Grottes. Il faut un Pal Minage niv. 3.</td></tr>
+        <tr><td><b>Soufre</b></td><td>Volcan (gros dépôts), un peu dans les premiers donjons. Puis mine de soufre.</td></tr>
+        <tr><td><b>Quartz pur</b></td><td>Régions enneigées (plus nombreux en 1.0).</td></tr>
+        <tr><td><b>Pétrole brut</b></td><td>Extracteur sur un champ pétrolier (base Sakurajima), plateformes pétrolières.</td></tr>
+        <tr><td><b>Chromite</b></td><td>Grottes et donjons de Feybreak. Détecteur de métaux ou Smokie dans l'équipe.</td></tr>
+        <tr><td><b>Quartz hexolite</b></td><td>Feybreak uniquement.</td></tr>
+        <tr><td><b>Soralite</b></td><td>Sunreach uniquement.</td></tr>
+        <tr><td><b>Paloxite</b></td><td>Arbre-Monde uniquement.</td></tr>
+        <tr><td><b>Pièces de civ. ancienne</b></td><td>Alphas et Pals chanceux, coffres rares, expéditions.</td></tr>
+        <tr><td><b>Noyau de civ. ancienne</b></td><td>Boss de raid, coffre des plateformes pétrolières, expéditions difficiles.</td></tr>
+        <tr><td><b>Cuir</b></td><td>Beaucoup de Pals communs, Surfent au ranch, marchand.</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Élevage">
+    <div class="card">
+      <h3>Élevage en 5 étapes</h3>
+      <div class="step"><div class="num">1</div><div><b>Ferme d'élevage</b> — tech niv. 19<br><span class="mut">10 planches, 20 pierres, 50 fibres. Beaucoup d'espace plat devant.</span></div></div>
+      <div class="step"><div class="num">2</div><div><b>Un mâle + une femelle</b> assignés à la ferme.</div></div>
+      <div class="step"><div class="num">3</div><div><b>Un gâteau</b> dans le coffre de la ferme.</div></div>
+      <div class="step"><div class="num">4</div><div><b>Récupère l'œuf</b> → incubateur.</div></div>
+      <div class="step"><div class="num">5</div><div><b>Vérifie</b> passifs, attaques, stats.</div></div>
+    </div>
+    <div class="card">
+      <h3>Les gâteaux</h3>
+      <div class="scroll"><table class="tbl">
+        <tr><th>Gâteau</th><th>Niv.</th><th>Effet</th></tr>
+        <tr><td><b>Gâteau</b></td><td>—</td><td>1 œuf normal</td></tr>
+        <tr><td><b>Champignons</b></td><td>30</td><td>Meilleures stats</td></tr>
+        <tr><td><b>Légumes</b></td><td>47</td><td>2 œufs (idéal pour condenser)</td></tr>
+        <tr><td><b>Légumes extravagant</b></td><td>60</td><td>Stats + Mutation (3 %)</td></tr>
+        <tr><td><b>Spécial</b></td><td>74</td><td>Meilleur héritage des passifs</td></tr>
+      </table></div>
+      <p class="mut sp">Gâteau de base : 5 farine, 8 baies rouges, 7 lait, 8 œufs, 2 miel.</p>
+    </div>
+    <div class="card hi">
+      <h3>Combinaisons utiles</h3>
+      <table class="tbl">
+        <tr><td><b>Anubis</b></td><td>Penking + Bushi</td></tr>
+        <tr><td><b>Arsox</b></td><td>Penking + Direhowl</td></tr>
+        <tr><td><b>Azurobe</b></td><td>Mossanda + Surfent</td></tr>
+        <tr><td><b>Grizzbolt</b></td><td>Mossanda + Rayhound</td></tr>
+        <tr><td><b>Beegarde</b></td><td>Melpaca + Tanzee</td></tr>
+        <tr><td><b>Jormuntide Ignis</b></td><td>Blazehowl + Jormuntide</td></tr>
+        <tr><td><b>Orserk</b></td><td>Relaxaurus + Grizzbolt</td></tr>
+        <tr><td><b>Astegon</b></td><td>Cryolinx + Grizzbolt</td></tr>
+        <tr><td><b>Shadowbeak</b></td><td>Kitsun + Astegon</td></tr>
+        <tr><td><b>Bastigor</b></td><td>Frostallion + Anubis</td></tr>
+      </table>
+      <p class="mut sp">La 1.0 a changé beaucoup de combinaisons : méfie-toi des anciens tableaux.</p>
+    </div>
+    <div class="card">
+      <h3>Transmettre les bons passifs</h3>
+      <ul class="l">
+        <li>Parents « propres » : seulement les passifs voulus.</li>
+        <li>Attaques héritées = les <b>3 attaques équipées</b> des parents.</li>
+        <li>Garde le <b>gâteau spécial</b> pour l'accouplement final.</li>
+        <li>Les parents ne doivent avoir aucune autre tâche.</li>
+      </ul>
+    </div>
+    <div class="card tip">
+      <h3>Mutation</h3>
+      <p>Petite chance d'œuf muté : meilleures stats + un passif exclusif (Immortalité, Idiosyncrasique, Babysitter, Blindé, Skymarcher).</p>
+    </div>
+    <div class="card">
+      <h3>Condensation & Âmes</h3>
+      <p>Fusionner des doublons au <b>condenseur</b> renforce un Pal (max = 48 copies). Les <b>Âmes de Pal</b> à la Statue de pouvoir augmentent PV, attaque, défense, vitesse de travail.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= BOSS ================= -->
+<div class="tab" id="t-boss">
+  <div class="pan" data-p="Tours">
+    <div class="card warn">
+      <p><b>5 minutes</b> par combat : un test de dégâts. Tours 1 à 7 dans l'ordre que tu veux ; Auri demande Feybreak terminé, le boss final les 8 tours + une quête.</p>
+    </div>
+    <div id="bossList"></div>
+    <p class="mut">Niveaux issus des guides communautaires 1.0 ; « ≈ » = sources divergentes.</p>
+  </div>
+  <div class="pan" data-p="Préparer">
+    <div class="card">
+      <h3>Avant chaque tour</h3>
+      <div class="step"><div class="num">1</div><div>Être <b>quelques niveaux au-dessus</b> du boss.</div></div>
+      <div class="step"><div class="num">2</div><div><b>Équipe complète</b> de l'élément qui contre le boss, + un remplaçant.</div></div>
+      <div class="step"><div class="num">3</div><div>Armure <b>chaleur / froid</b> adaptée à la zone.</div></div>
+      <div class="step"><div class="num">4</div><div>Beaucoup de <b>munitions</b> et de soins.</div></div>
+      <div class="step"><div class="num">5</div><div>Pendant le combat : rester derrière les <b>piliers</b>, frapper dans les temps morts.</div></div>
+    </div>
+    <div class="card tip">
+      <h3>Équipes à préparer</h3>
+      <ul class="l">
+        <li><b>Dragon</b> : Victor + Saya à la suite. Jetragon, Astegon, Jormuntide.</li>
+        <li><b>Feu</b> : Lily, Bjorn. Foxparks au début, puis Arsox, Blazamut…</li>
+        <li><b>Terre / Glace</b> : Zoe, Axel.</li>
+        <li><b>Eau</b> : Marcus. Jormuntide, Azurobe, Penking.</li>
+        <li><b>Électrique / Glace</b> : Auri.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pan" data-p="Récompenses">
+    <div class="card">
+      <h3>Ce que rapporte une tour</h3>
+      <ul class="l">
+        <li>1ʳᵉ victoire : <b>5 points de technologie ancienne</b>.</li>
+        <li>Point de voyage rapide au sommet (idéal pour planer).</li>
+        <li>XP rejouable à chaque victoire.</li>
+        <li>Battre Auri débloque le <b>mode Difficile</b> (chapeaux cosmétiques).</li>
+        <li>Boss non capturables. Zoe se recrute (mission à l'Église désolée).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Les autres boss</h3>
+      <ul class="l">
+        <li><b>Pals Alpha</b> : boss de zone fixes qui réapparaissent.</li>
+        <li><b>Boss de raid</b> : une tablette posée sur un autel d'invocation (ex. Hartalis, Bellanoir).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PALS ================= -->
+<div class="tab" id="t-pals">
+  <div class="pan" data-p="Paldeck">
+    <input class="inp" id="palQ" type="search" placeholder="Nom, métier, élément…" autocomplete="off">
+    <div class="filters" id="palF"></div>
+    <div class="cnt" id="palN"></div>
+    <div id="palList"></div>
+    <p class="mut">Sélection des Pals les plus utiles. Niveaux d'aptitude indiqués quand ils sont confirmés en 1.0 ; vérifie le détail dans le Paldeck du jeu.</p>
+  </div>
+
+  <div class="pan" data-p="Types">
+    <div class="card">
+      <h3>Contre quel élément ?</h3>
+      <p class="mut">Touche l'élément de l'ennemi :</p>
+      <div class="picker" id="picker"></div>
+      <div class="res">
+        <div><div class="h">Prends des Pals…</div><div id="rWeak"></div></div>
+        <div><div class="h">Il est fort contre…</div><div id="rStrong"></div></div>
+      </div>
+      <div class="sp mut" id="rPals"></div>
+    </div>
+    <div class="card">
+      <h3>Le cycle complet</h3>
+      <table class="tbl">
+        <tr><th>Attaquant</th><th>Fort contre</th></tr>
+        <tr><td><span class="tag el fire">Feu</span></td><td><span class="tag el grass">Plante</span><span class="tag el ice">Glace</span></td></tr>
+        <tr><td><span class="tag el water">Eau</span></td><td><span class="tag el fire">Feu</span></td></tr>
+        <tr><td><span class="tag el elec">Électrique</span></td><td><span class="tag el water">Eau</span></td></tr>
+        <tr><td><span class="tag el ground">Terre</span></td><td><span class="tag el elec">Électrique</span></td></tr>
+        <tr><td><span class="tag el grass">Plante</span></td><td><span class="tag el ground">Terre</span></td></tr>
+        <tr><td><span class="tag el ice">Glace</span></td><td><span class="tag el dragon">Dragon</span></td></tr>
+        <tr><td><span class="tag el dragon">Dragon</span></td><td><span class="tag el dark">Ténèbres</span></td></tr>
+        <tr><td><span class="tag el dark">Ténèbres</span></td><td><span class="tag el neutral">Neutre</span></td></tr>
+        <tr><td><span class="tag el neutral">Neutre</span></td><td class="mut">Aucun</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Montures">
+    <p class="mut" style="margin-bottom:10px">Capturer le Pal débloque sa selle dans l'arbre technologique ; elle se fabrique à l'établi d'équipement Pal.</p>
+    <div class="card">
+      <h3>✈️ Volantes</h3>
+      <table class="tbl">
+        <tr><th>Pal</th><th>Selle</th><th>Note</th></tr>
+        <tr><td><b>Nitewing</b></td><td>15</td><td>Premier vol</td></tr>
+        <tr><td><b>Vanwyrm</b></td><td>21</td><td>Plus rapide</td></tr>
+        <tr><td><b>Helzephyr</b></td><td>26</td><td>—</td></tr>
+        <tr><td><b>Beakon</b></td><td>34</td><td>—</td></tr>
+        <tr><td><b>Faleris</b></td><td>38</td><td>Meilleure avant la fin</td></tr>
+        <tr><td><b>Shadowbeak</b></td><td>47</td><td>—</td></tr>
+        <tr><td><b>Frostallion</b></td><td>48</td><td>Légendaire</td></tr>
+        <tr><td><b>Jetragon</b></td><td>50</td><td>La plus rapide (Alpha de Sunreach)</td></tr>
+        <tr><td><b>Xenolord</b></td><td>60</td><td>Endurance ×3 (raid)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>🐾 Terrestres</h3>
+      <table class="tbl">
+        <tr><td><b>Direhowl</b></td><td>9</td><td>Première selle du jeu</td></tr>
+        <tr><td><b>Fenglope</b></td><td>—</td><td>Gros saut, idéal falaises</td></tr>
+        <tr><td><b>Necromus / Paladius</b></td><td>≈ 49</td><td>Rapides, combat monté</td></tr>
+        <tr><td><b>Hartalis</b></td><td>65</td><td>La plus rapide au sol (raid)</td></tr>
+        <tr><td><b>Starryon Primo</b></td><td>77</td><td>Plus rapide avec des Pals Neutres</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>🌊 Aquatiques</h3>
+      <table class="tbl">
+        <tr><td><b>Surfent</b></td><td>10</td><td>Première traversée</td></tr>
+        <tr><td><b>Azurobe</b></td><td>24</td><td>Ajoute des dégâts Eau</td></tr>
+        <tr><td><b>Jormuntide</b></td><td>39</td><td>Fiable jusqu'à la fin</td></tr>
+        <tr><td><b>Neptilius</b></td><td>—</td><td>La plus rapide sur l'eau</td></tr>
+      </table>
+    </div>
+    <div class="card tip">
+      <h3>Planeurs & Wing Pack</h3>
+      <p><b>Galeclaw</b> : plané le plus rapide, tir en vol. <b>Hangyu</b> : propulse vers le haut. <b>Wing Pack</b> (tech 80) : vol sans monture.</p>
+    </div>
+  </div>
+
+  <div class="pan" data-p="Passifs">
+    <div class="card">
+      <h3>⚔️ Combat</h3>
+      <table class="tbl">
+        <tr><td><b>Immortalité</b></td><td>Att. +15 %, régén. +100 %, vol de vie 5 % (mutation)</td></tr>
+        <tr><td><b>Légende</b></td><td>Att. +20 %, Déf. +20 %, vitesse +20 %</td></tr>
+        <tr><td><b>Idiosyncrasique</b></td><td>Déf. +50 %, régén., immunité poison/brûlure</td></tr>
+        <tr><td><b>Corps de diamant</b></td><td>Déf. +30 %, pas de recul</td></tr>
+        <tr><td><b>Dieu de la destruction</b> 🌳</td><td>Att. +40 %, Déf. +20 %, PV −50 %</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>🔨 Base</h3>
+      <table class="tbl">
+        <tr><td><b>Main du démon</b> 🌳</td><td>Vitesse de travail +90 %, moral −15 % plus vite</td></tr>
+        <tr><td><b>Maître du ranch</b></td><td>Ranch +2</td></tr>
+        <tr><td><b>Babysitter</b></td><td>Œufs et incubation +30 % (mutation)</td></tr>
+        <tr><td><b>Ermite sage</b> 🌳</td><td>Perte de moral −50 %, travail −20 %</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>🐎 Montures</h3>
+      <table class="tbl">
+        <tr><td><b>Swift / Runner / Nimble</b></td><td>Vitesse +30 / +20 / +10 % (cumulables)</td></tr>
+        <tr><td><b>Moteur éternel</b></td><td>Endurance max +75 %</td></tr>
+        <tr><td><b>Skymarcher</b></td><td>+2 sauts en monture (mutation)</td></tr>
+        <tr><td><b>Pied léger</b></td><td>+1 saut en monture</td></tr>
+      </table>
+      <p class="mut sp">🌳 = passif de l'Arbre-Monde (Pals éveillés de la région). Noms traduits : les noms anglais (Swift, Legend…) sont ceux des wikis.</p>
+    </div>
+    <div class="card tip">
+      <h3>Obtenir un passif</h3>
+      <p>Pals sauvages des régions 1.0, <b>élevage</b> (héritage), condenseur, certains marchands, œufs mutés.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CARTE ================= -->
+<div class="tab" id="t-carte">
+  <div class="pan" data-p="Carte">
+    <div class="filters" id="mapF" style="padding-top:0"></div>
+    <div class="mapbox" id="mapbox">
+      <svg id="map" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="gImg"></g><g id="gGrid"></g><g id="gReg"></g><g id="gMk"></g>
+      </svg>
+      <div class="mapctl">
+        <button id="zIn" aria-label="Zoomer">+</button>
+        <button id="zOut" aria-label="Dézoomer">−</button>
+        <button id="zFit" aria-label="Tout voir">⤢</button>
+      </div>
+      <div class="coord" id="mapCoord">Glisse pour déplacer · pince pour zoomer</div>
+      <div class="calbar" id="calbar"></div>
+    </div>
+    <div class="lvl"><span class="mut">Mon niveau</span><input type="range" id="lvl" min="1" max="80"><b id="lvlV">1</b></div>
+    <div class="card" id="mapInfo"><p class="mut">Touche un repère pour voir le détail. Les Alphas et tours trop forts pour ton niveau (+5) sont grisés.</p></div>
+    <div class="card" id="bgCard">
+      <h3>🖼️ Fond de carte</h3>
+      <div id="bgBody"></div>
+      <input type="file" id="bgFile" accept="image/*" hidden>
+    </div>
+    <div class="card">
+      <h3>📌 Mes points</h3>
+      <p class="mut">Note un Alpha, une grotte, un coffre… avec les coordonnées affichées en jeu.</p>
+      <div class="row2 sp"><input class="inp" id="pinN" placeholder="Nom" maxlength="40"></div>
+      <div class="row2 sp"><input class="inp" id="pinX" placeholder="X" inputmode="numeric"><input class="inp" id="pinY" placeholder="Y" inputmode="numeric"><button class="btn" id="pinAdd">Ajouter</button></div>
+      <div id="pinList" class="sp"></div>
+    </div>
+    <div class="card tip">
+      <h3>À propos de cette carte</h3>
+      <p>Sans image importée, la carte est <b>schématique</b> : repères placés d'après les coordonnées du jeu (X vers l'est, Y vers le nord). Positions des Alphas approximatives.</p>
+      <p class="sp"><a class="btn ghost" style="display:inline-block;text-decoration:none" href="https://palworld.th.gl/" target="_blank" rel="noopener">Ouvrir une carte complète du jeu ↗</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FIN ================= -->
+<div class="tab" id="t-fin">
+  <div class="pan" data-p="Sunreach">
+    <div class="card">
+      <h3>Sunreach</h3>
+      <ul class="l">
+        <li>Îles flottantes à l'est de Feybreak, ouvertes après <b>Bjorn & Bastigor</b>.</li>
+        <li>Minerai exclusif : <b>Soralite</b>.</li>
+        <li>Tour d'Auri : désactiver les <b>6 modules de défense</b> de la région.</li>
+        <li>Jetragon s'y trouve (Alpha légendaire).</li>
+        <li>Base conseillée : <span class="copy">-540, -1361</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="pan" data-p="Arbre-Monde">
+    <div class="card">
+      <h3>Y accéder</h3>
+      <div class="step"><div class="num">1</div><div>Battre <b>les 8 boss de tour</b>.</div></div>
+      <div class="step"><div class="num">2</div><div>Quête <b>Panthalus</b> à l'îlot désert : réunir les <b>4 Echobones</b>.</div></div>
+      <div class="step"><div class="num">3</div><div>Fabriquer la <b>flûte</b>, invoquer Panthalus et le <b>capturer</b> (pas le tuer).</div></div>
+      <div class="step"><div class="num">4</div><div>Retourner au terminal avec Panthalus dans l'équipe.</div></div>
+    </div>
+    <div class="card warn">
+      <p>Pals de niveau <b>75+</b>. Prévois le <b>masque anti-brume corrosive</b> ; les sources Teafant soignent et donnent de l'eau bénite.</p>
+    </div>
+    <div class="card hi">
+      <h3>Boss final</h3>
+      <p><b>Zenara & Astralym</b>, niv. 80, sans élément. Accès : 8 tours + quête « The Sealed Calamity ». Arrive niveau 80, meilleur équipement, Pals éveillés. Astralym ne se capture pas.</p>
+    </div>
+  </div>
+  <div class="pan" data-p="Éveil">
+    <div class="card">
+      <h3>Éveiller un Pal</h3>
+      <ul class="l">
+        <li><b>Établi ancien</b> : tech niv. 67, électricité, un Pal Artisanat + Médecine dessus.</li>
+        <li>1 cristal = <b>50 gemmes radieuses</b> d'un même élément + <b>10 eaux bénites</b>.</li>
+        <li>Gemmes : uniquement dans l'Arbre-Monde, de l'élément du Pal vaincu ou capturé.</li>
+        <li>Le Pal doit être dans l'équipe ; on utilise le cristal depuis l'inventaire.</li>
+        <li>Éveil <b>unique et définitif</b> : stats en hausse, aura dorée. Passifs et attaques inchangés.</li>
+      </ul>
+    </div>
+    <div class="card tip">
+      <h3>Conseil</h3>
+      <p>Choisis le Pal <b>avant</b> de farmer (les gemmes sont liées à son élément) et éveille un Pal de combat déjà terminé : élevage, condensation, âmes.</p>
+    </div>
+  </div>
+  <div class="pan" data-p="Après la fin">
+    <div class="card">
+      <ul class="l">
+        <li>Expédition de l'Arbre-Monde : ressources passives, dont des gemmes.</li>
+        <li>Recycleur de reliques anciennes (tech niv. 74).</li>
+        <li>Boss de tour en mode Difficile, boss de raid, plateformes pétrolières.</li>
+        <li><b>Wing Pack</b> (tech niv. 80, 9 points anciens).</li>
+        <li>Compléter le Paldeck : 287 Pals.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>Guide Palworld 1.0 · v7 · données version 1.0.2</footer>
+
+<nav class="bnav" id="bnav">
+  <button data-t="accueil"><span class="ic">🏠</span>Accueil</button>
+  <button data-t="guide"><span class="ic">📖</span>Guide</button>
+  <button data-t="boss"><span class="ic">🗼</span>Boss</button>
+  <button data-t="pals"><span class="ic">🐾</span>Pals</button>
+  <button data-t="carte"><span class="ic">🗺️</span>Carte</button>
+  <button data-t="fin"><span class="ic">🌳</span>Fin</button>
+</nav>
+
+<div class="ov" id="ov">
+  <div class="hd">
+    <input class="inp" id="q" type="search" placeholder="Rechercher dans le guide…" autocomplete="off">
+    <button class="ib" id="qClose" aria-label="Fermer">✕</button>
+  </div>
+  <div class="bd" id="qRes"></div>
+</div>
+
+<button class="up" id="up" aria-label="Haut de page">↑</button>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var APP_VERSION = "7";
+  var KEY = "pwguide_v1";
+  var TABS = {accueil:"Accueil", guide:"Guide", boss:"Boss", pals:"Pals", carte:"Carte", fin:"Fin"};
+
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+  var state = load();
+  ["road","boss","start","sub","pins"].forEach(function(k){ if(!state[k] || typeof state[k] !== "object") state[k] = {}; });
+  function $(id){ return document.getElementById(id); }
+  function norm(s){ return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  /* ---------- Thème ---------- */
+  var THEMES = ["auto","light","dark"];
+  function applyTheme(){
+    var t = state.theme || "auto";
+    if(t === "auto") document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme", t);
+  }
+  $("btnTheme").addEventListener("click", function(){
+    var i = THEMES.indexOf(state.theme || "auto");
+    state.theme = THEMES[(i + 1) % 3]; save(); applyTheme();
+    toast({auto:"Thème : automatique", light:"Thème : clair", dark:"Thème : sombre"}[state.theme]);
+  });
+  applyTheme();
+
+  /* ---------- Toast ---------- */
+  var tt;
+  function toast(msg){ var t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(function(){ t.classList.remove("on"); }, 1600); }
+
+  /* ---------- Navigation ---------- */
+  var cur = "accueil";
+  function panels(tab){ return Array.prototype.slice.call(document.querySelectorAll("#t-" + tab + " .pan")); }
+  function go(tab, sub, keepScroll){
+    if(!TABS[tab]) tab = "accueil";
+    cur = tab;
+    document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("on", t.id === "t-" + tab); });
+    document.querySelectorAll("#bnav button").forEach(function(b){ b.classList.toggle("on", b.dataset.t === tab); });
+    var ps = panels(tab);
+    var names = ps.map(function(p){ return p.dataset.p; });
+    if(sub === undefined || names.indexOf(sub) === -1) sub = state.sub[tab];
+    if(names.indexOf(sub) === -1) sub = names[0];
+    ps.forEach(function(p){ p.classList.toggle("on", p.dataset.p === sub); });
+    var bar = $("sub"); bar.innerHTML = "";
+    if(ps.length > 1){
+      names.forEach(function(n){
+        var b = document.createElement("button");
+        b.textContent = n; b.className = n === sub ? "on" : "";
+        b.addEventListener("click", function(){ go(tab, n); });
+        bar.appendChild(b);
+        if(n === sub) setTimeout(function(){ b.scrollIntoView({inline:"center", block:"nearest"}); }, 0);
+      });
+    }
+    state.tab = tab; state.sub[tab] = sub; save();
+    if(!keepScroll) window.scrollTo(0, 0);
+    if(tab === "carte" && window.__mapShow) window.__mapShow();
+  }
+  document.querySelectorAll("#bnav button").forEach(function(b){
+    b.addEventListener("click", function(){ go(b.dataset.t); });
+  });
+
+  /* ---------- Données ---------- */
+  var EL = {fire:"Feu", water:"Eau", grass:"Plante", elec:"Électrique", ice:"Glace", ground:"Terre", dark:"Ténèbres", dragon:"Dragon", neutral:"Neutre"};
+  function tag(k){ return '<span class="tag el ' + k + '">' + EL[k] + '</span>'; }
+
+  var BOSS = [
+    {id:"b1", n:"Zoe & Grizzbolt", lv:"10", where:"Tour du Syndicat Rayne · Collines venteuses", el:["elec"], weak:["ground"], pals:"Gumoss, Rushoar, Fuddler", tip:"Abrite-toi derrière les piliers pendant les rafales."},
+    {id:"b2", n:"Lily & Lyleen", lv:"20", where:"Tour de l'Alliance des Pals libres", el:["grass"], weak:["fire"], pals:"Foxparks, Arsox", tip:"Lyleen se soigne : frappe fort et vite."},
+    {id:"b3", n:"Axel & Orserk", lv:"30", where:"Mont Obsidienne (volcan)", el:["elec","dragon"], weak:["ice","ground"], pals:"Pals Glace + Terre", tip:"Armure anti-chaleur obligatoire pour la montée."},
+    {id:"b4", n:"Marcus & Faleris", lv:"40", where:"Tour du PIDF · Désert desséché", el:["fire"], weak:["water"], pals:"Jormuntide, Azurobe, Penking", tip:"Chaleur le jour, froid la nuit : prévois les deux armures."},
+    {id:"b5", n:"Victor & Shadowbeak", lv:"50", where:"Monts astraux (neige)", el:["dark"], weak:["dragon"], pals:"Jetragon, Astegon, Jormuntide", tip:"Armure anti-froid. Slalome entre les piliers contre les lasers."},
+    {id:"b6", n:"Saya & Selyne", lv:"≈ 55", where:"Tour Moonflower · Sakurajima", el:["dark"], weak:["dragon"], pals:"Même équipe Dragon que Victor", tip:"À enchaîner juste après Victor."},
+    {id:"b7", n:"Bjorn & Bastigor", lv:"≈ 60", where:"Tour de Feybreak", el:["ice"], weak:["fire"], pals:"Tes meilleurs Pals Feu", tip:"La difficulté grimpe. Ouvre la route vers Sunreach."},
+    {id:"b8", n:"Auri & Shaolong", lv:"68", where:"Tour du Pacte Azur · Sunreach", el:["water","dragon"], weak:["elec","ice"], pals:"Pals Électrique + Glace", tip:"Désactive d'abord les 6 modules de défense de Sunreach."},
+    {id:"b9", n:"Zenara & Astralym", lv:"80", where:"Sanctuaire scellé · Arbre-Monde", el:[], weak:[], pals:"Pals éveillés, meilleur équipement", tip:"Sans élément : pur test de niveau et de dégâts."}
+  ];
+
+  var ROAD = [
+    ["n1-15", "Niv. 1 → 15", "Base de départ, captures en chaîne, première monture. Tour 1 : Zoe."],
+    ["n15-30", "Niv. 15 → 30", "Donjons, fourneau, ferme d'élevage (19). Tours 2-3 : Lily, Axel."],
+    ["n30-45", "Niv. 30 → 45", "Alphas, Anubis par élevage, monture volante rapide. Tour 4 : Marcus."],
+    ["n45-65", "Niv. 45 → 65", "Sakurajima et Feybreak, base pétrole. Tours 5-7 : Victor, Saya, Bjorn."],
+    ["n65-80", "Niv. 65 → 80", "Sunreach puis Arbre-Monde, éveil. Tour 8 : Auri, puis le boss final."]
+  ];
+
+  var START = [
+    ["s1", "Établi + Sphères Pal", "Bâton, pioche, hache. Fabrique beaucoup de sphères."],
+    ["s2", "Boîte à Pals (Palbox)", "Plaine près de la tour Rayne (≈ 90, -436) : bois, pierre, minerai."],
+    ["s3", "Lits + Mangeoire + coffres", "Sans nourriture, les Pals arrêtent de travailler."],
+    ["s4", "Capturer 5 de chaque espèce", "La meilleure source d'XP du jeu."],
+    ["s5", "Scierie + Carrière + Ranch", "Bois et pierre automatiques. Chikipi au ranch (œufs)."],
+    ["s6", "Première monture", "Direhowl (selle 9), Surfent (10), Nitewing (15)."],
+    ["s7", "Fourneau → lingots", "Un Pal Feu (Foxparks) dessus. Les lingots débloquent les vraies armes."],
+    ["s8", "Effigies Relaxaurus + Lifmunk", "À offrir à la Statue de pouvoir : XP et capture."],
+    ["s9", "Tour 1 : Zoe & Grizzbolt", "Pals Terre (Gumoss, Rushoar). Fin du tutoriel."]
+  ];
+
+  /* r: c=combat b=base m=monture r=ranch · s: 1 début 2 milieu 3 fin */
+  var PALS = [
+    ["Lamball",["neutral"],"br",1,"Artisanat, transport ; laine au ranch","Partout au départ"],
+    ["Cattiva",["neutral"],"b",1,"Artisanat, minage, transport, récolte","Zone de départ"],
+    ["Chikipi",["neutral"],"br",1,"Récolte ; œufs au ranch","Zone de départ"],
+    ["Foxparks",["fire"],"cb",1,"Allumage ; lance-flammes tenu en main","Zone de départ"],
+    ["Pengullet",["water","ice"],"b",1,"Arrosage, refroidissement, artisanat, transport","Zone de départ"],
+    ["Tanzee",["grass"],"b",1,"Plantation, bûcheronnage, artisanat, récolte","Zone de départ"],
+    ["Lifmunk",["grass"],"b",1,"Plantation, médecine, artisanat, bûcheronnage","Zone de départ"],
+    ["Sparkit",["elec"],"b",1,"Électricité, artisanat, transport","Zone de départ"],
+    ["Depresso",["dark"],"b",1,"Minage, artisanat, transport","Grottes, nuit"],
+    ["Tombat",["dark"],"b",1,"Minage","Grottes, nuit"],
+    ["Gumoss",["grass","ground"],"cb",1,"Plantation ; bon contre Zoe","Zone de départ"],
+    ["Rushoar",["ground"],"cb",1,"Minage ; bon contre Zoe","Zone de départ"],
+    ["Fuddler",["ground"],"cb",1,"Minage, artisanat ; bon contre Zoe","Zone de départ"],
+    ["Vixy",["neutral"],"r",1,"Ranch : sphères, flèches, pièces","Zone de départ"],
+    ["Direhowl",["neutral"],"cm",1,"Monture au sol (selle 9)","Zone de départ ; parent d'Arsox"],
+    ["Surfent",["water"],"mr",1,"Monture aquatique (selle 10) ; cuir au ranch","Rivières, côtes"],
+    ["Nitewing",["neutral"],"m",1,"Première monture volante (selle 15)","Collines, début de partie"],
+    ["Nox",["dark"],"c",1,"Détecte les effigies proches","Nuit"],
+    ["Mozzarina",["neutral"],"r",2,"Lait au ranch","Plaines"],
+    ["Beegarde",["grass"],"br",2,"Plantation ; miel au ranch","Élevage : Melpaca + Tanzee"],
+    ["Penking",["water","ice"],"cb",2,"Arrosage, refroidissement, minage, artisanat","Parent d'Anubis et d'Arsox"],
+    ["Bushi",["fire"],"cb",2,"Allumage, bûcheronnage","Parent d'Anubis"],
+    ["Anubis",["ground"],"cb",2,"Artisanat 6, minage 6, transport 4","Élevage : Penking + Bushi"],
+    ["Arsox",["fire"],"cb",2,"Allumage ; bon contre Lily","Élevage : Penking + Direhowl"],
+    ["Incineram",["fire","dark"],"cb",2,"Allumage, minage","Monde ouvert"],
+    ["Digtoise",["ground"],"b",2,"Minage","Monde ouvert"],
+    ["Eikthyrdeer",["neutral"],"bm",2,"Bûcheronnage ; monture","Forêts"],
+    ["Broncherry",["grass"],"b",2,"Plantation (spécialiste)","Élevage : Gumoss + Cinnamoth"],
+    ["Mossanda",["grass"],"cb",2,"Plantation, artisanat, transport","Parent de nombreuses combinaisons"],
+    ["Grizzbolt",["elec"],"cb",2,"Électricité, artisanat, transport","Élevage : Mossanda + Rayhound"],
+    ["Chillet",["ice","dragon"],"b",2,"Refroidissement, récolte","Élevage : Penking + Gobfin"],
+    ["Vanwyrm",["fire","dark"],"cm",2,"Monture volante (selle 21)","Monde ouvert"],
+    ["Azurobe",["water","dragon"],"cbm",2,"Arrosage ; monture eau (selle 24)","Élevage : Mossanda + Surfent"],
+    ["Wumpo",["ice"],"b",2,"Transport 6 + bonus transport à toute la base","Monde ouvert"],
+    ["Verdash",["grass"],"b",2,"Ferme polyvalente","Monde ouvert"],
+    ["Fenglope",["neutral"],"m",2,"Monture au sol, gros saut","Monde ouvert"],
+    ["Faleris",["fire"],"cbm",2,"Allumage ; monture volante (selle 38)","Désert"],
+    ["Jormuntide",["water","dragon"],"cbm",2,"Arrosage 7 ; monture eau (selle 39)","Monde ouvert"],
+    ["Jormuntide Ignis",["fire","dragon"],"cb",2,"Allumage 7","Élevage : Blazehowl + Jormuntide"],
+    ["Astegon",["dragon","dark"],"cbm",3,"Minage ; contre Victor et Saya","Élevage : Cryolinx + Grizzbolt"],
+    ["Shadowbeak",["dark"],"cm",3,"Combat ; monture volante (selle 47)","Élevage : Kitsun + Astegon"],
+    ["Frostallion",["ice"],"cm",3,"Légendaire ; monture volante (selle 48)","Légendaire"],
+    ["Frostallion Noct",["dark"],"cbm",3,"Récolte 7, travaille la nuit","Élevage : Frostallion + Helzephyr"],
+    ["Jetragon",["dragon"],"cbm",3,"Récolte 8 ; la monture la plus rapide","Alpha légendaire de Sunreach"],
+    ["Orserk",["elec","dragon"],"cb",3,"Électricité 8","Élevage : Relaxaurus + Grizzbolt"],
+    ["Blazamut",["fire"],"cb",3,"Minage 7, allumage 6","Légendaire"],
+    ["Lyleen",["grass"],"cb",3,"Plantation 7, récolte 6, artisanat 5, médecine 5","Monde ouvert"],
+    ["Necromus",["dark"],"cm",3,"Monture au sol + combat","Légendaire"],
+    ["Paladius",["neutral"],"cm",3,"Monture au sol + combat, aucune faiblesse","Légendaire"],
+    ["Neptilius",["water"],"cm",3,"Monture aquatique la plus rapide","Mer"],
+    ["Knocklem Ignis",["fire"],"b",3,"Minage 7, transport 7","Fin de partie"],
+    ["Solenne",["dark","neutral"],"b",3,"Artisanat 8, travaille la nuit","Arbre-Monde (niv. 76-78)"],
+    ["Renjishi",["fire"],"cb",3,"Allumage 8, artisanat 6","Alpha de l'Arbre-Monde"],
+    ["Shaolong",["water","dragon"],"b",3,"Arrosage 8","Arbre-Monde (niv. 76-78)"],
+    ["Dandilord",["grass","dark"],"b",3,"Plantation 8, artisanat 6, médecine 6","Fin de partie"],
+    ["Aegidron",["dragon","ground"],"cb",3,"Minage 8","Alpha de l'Arbre-Monde (niv. 79)"],
+    ["Silvance",["grass"],"b",3,"Médecine 8, plantation 6","Fin de partie"],
+    ["Celesdir Noct",["dark"],"b",3,"Bûcheronnage 8, travaille la nuit","Fin de partie"],
+    ["Bastigor",["ice"],"b",3,"Refroidissement 8","Élevage : Frostallion + Anubis"],
+    ["Selyne",["dark"],"cb",3,"Artisanat 7, médecine 6 (établi ancien)","Sakurajima"],
+    ["Panthalus",["water"],"cbm",3,"Clé de l'Arbre-Monde","Quête de l'îlot désert"]
+  ];
+  var ROLE_IC = {c:"⚔️", b:"🔨", m:"🐎", r:"🐄"};
+  var STAGE = {1:"Début", 2:"Milieu", 3:"Fin"};
+
+  /* ---------- Feuille de route + objectif ---------- */
+  function renderChecks(container, list, store){
+    var box = $(container); box.innerHTML = "";
+    list.forEach(function(r){
+      var ok = !!state[store][r[0]];
+      var el = document.createElement("label");
+      el.className = "chk" + (ok ? " done" : "");
+      el.innerHTML = '<input type="checkbox"' + (ok ? " checked" : "") + '><div><div class="t"><b>' + r[1] + '</b></div><div class="mut">' + r[2] + '</div></div>';
+      el.querySelector("input").addEventListener("change", function(e){ state[store][r[0]] = e.target.checked; save(); renderAll(); });
+      box.appendChild(el);
+    });
+  }
+  function count(list, store){ return list.filter(function(r){ return state[store][r.id || r[0]]; }).length; }
+
+  function renderNext(){
+    var nb = count(BOSS, "boss");
+    $("sBoss").innerHTML = nb + "<small>/" + BOSS.length + "</small>";
+    $("pBoss").style.width = (nb / BOSS.length * 100) + "%";
+    var nr = count(ROAD, "road");
+    $("sRoad").innerHTML = nr + "<small>/" + ROAD.length + "</small>";
+    $("pRoad").style.width = (nr / ROAD.length * 100) + "%";
+    var nx = BOSS.filter(function(b){ return !state.boss[b.id]; })[0];
+    var c = $("nextCard");
+    if(!nx){ c.innerHTML = '<h3>🏆 Tous les boss sont vaincus</h3><p>Place au mode Difficile, aux raids et au Paldeck complet.</p>'; return; }
+    var wk = nx.weak.length ? nx.weak.map(tag).join("") : '<span class="tag">Aucune faiblesse</span>';
+    c.innerHTML = '<div class="lv">' + nx.lv + '</div><div class="mut">Prochain objectif</div><h3>' + nx.n + '</h3>' +
+      '<div class="mut">' + nx.where + '</div><div class="sp">Contre : ' + wk + '</div>' +
+      '<div class="sp"><span class="k">Équipe :</span> ' + nx.pals + '</div>';
+    c.style.cursor = "pointer";
+    c.onclick = function(){ go("boss", "Tours"); var e = $("boss-" + nx.id); if(e){ e.scrollIntoView({block:"center"}); } };
+  }
+
+  /* ---------- Boss ---------- */
+  function renderBoss(){
+    var box = $("bossList"); box.innerHTML = "";
+    BOSS.forEach(function(b, i){
+      var ok = !!state.boss[b.id];
+      var d = document.createElement("div");
+      d.className = "boss" + (ok ? " done" : ""); d.id = "boss-" + b.id;
+      var typ = b.el.length ? b.el.map(tag).join("") : '<span class="tag">Sans élément</span>';
+      var wk = b.weak.length ? b.weak.map(tag).join("") : '<span class="mut">aucune</span>';
+      d.innerHTML =
+        '<div class="row"><div><b>' + (i+1) + '. ' + b.n + '</b><div class="mut">' + b.where + '</div></div><div class="lv">' + b.lv + '</div></div>' +
+        '<div class="sp">Type : ' + typ + '</div>' +
+        '<div>Faiblesse : ' + wk + '</div>' +
+        '<div style="margin-top:4px"><span class="k">Équipe :</span> ' + b.pals + '</div>' +
+        '<div class="mut" style="margin-top:4px">💡 ' + b.tip + '</div>' +
+        '<label><input type="checkbox"' + (ok ? " checked" : "") + '> Vaincu</label> ' +
+        '<button class="btn ghost" style="margin-top:10px;padding:6px 12px;font-size:13px">🗺️ Carte</button>';
+      d.querySelector("button.btn").addEventListener("click", function(){ focusPoint("t-" + b.id); });
+      d.querySelector("input").addEventListener("change", function(e){
+        state.boss[b.id] = e.target.checked; save(); renderAll();
+        if(e.target.checked) toast("✅ " + b.n + " vaincu");
+      });
+      box.appendChild(d);
+    });
+  }
+
+  /* ---------- Paldeck ---------- */
+  var palFilter = "all";
+  var FILTERS = [["all","Tous"],["c","⚔️ Combat"],["b","🔨 Base"],["m","🐎 Monture"],["r","🐄 Ranch"],["1","Début"],["2","Milieu"],["3","Fin"]]
+    .concat(Object.keys(EL).map(function(k){ return ["el:" + k, EL[k]]; }));
+  function palText(p){ return norm(p[0] + " " + p[1].map(function(k){ return EL[k]; }).join(" ") + " " + p[4] + " " + p[5] + " " + STAGE[p[3]]); }
+  function renderPals(){
+    var q = norm($("palQ").value.trim());
+    var list = PALS.filter(function(p){
+      if(palFilter.indexOf("el:") === 0){ if(p[1].indexOf(palFilter.slice(3)) === -1) return false; }
+      else if(/^[123]$/.test(palFilter)){ if(String(p[3]) !== palFilter) return false; }
+      else if(palFilter !== "all"){ if(p[2].indexOf(palFilter) === -1) return false; }
+      return !q || palText(p).indexOf(q) !== -1;
+    });
+    $("palN").textContent = list.length + " Pal" + (list.length > 1 ? "s" : "");
+    var box = $("palList"); box.innerHTML = "";
+    if(!list.length){ box.innerHTML = '<div class="card mut">Aucun résultat.</div>'; return; }
+    list.forEach(function(p){
+      var d = document.createElement("div");
+      d.className = "card pal";
+      d.innerHTML = '<span class="rl">' + p[2].split("").map(function(r){ return ROLE_IC[r]; }).join("") + '</span>' +
+        '<div class="nm">' + esc(p[0]) + ' <span class="mut">· ' + STAGE[p[3]] + '</span></div>' +
+        '<div>' + p[1].map(tag).join("") + '</div>' +
+        '<div class="sp">' + esc(p[4]) + '</div>' +
+        '<div class="mut">📍 ' + esc(p[5]) + '</div>';
+      box.appendChild(d);
+    });
+  }
+  FILTERS.forEach(function(f){
+    var b = document.createElement("button");
+    b.textContent = f[1]; b.dataset.f = f[0];
+    if(f[0] === "all") b.className = "on";
+    b.addEventListener("click", function(){
+      palFilter = f[0];
+      $("palF").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.f === palFilter); });
+      renderPals();
+    });
+    $("palF").appendChild(b);
+  });
+  $("palQ").addEventListener("input", renderPals);
+
+  /* ---------- Types ---------- */
+  var STRONG = {fire:["grass","ice"], water:["fire"], elec:["water"], ground:["elec"], grass:["ground"], ice:["dragon"], dragon:["dark"], dark:["neutral"], neutral:[]};
+  function weakTo(k){ return Object.keys(STRONG).filter(function(a){ return STRONG[a].indexOf(k) !== -1; }); }
+  Object.keys(EL).forEach(function(k){
+    var b = document.createElement("button");
+    b.className = "el " + k; b.textContent = EL[k]; b.dataset.k = k;
+    b.addEventListener("click", function(){ pick(k); });
+    $("picker").appendChild(b);
+  });
+  function pick(k){
+    $("picker").querySelectorAll("button").forEach(function(b){ b.classList.toggle("on", b.dataset.k === k); });
+    var w = weakTo(k), s = STRONG[k];
+    $("rWeak").innerHTML = w.length ? w.map(tag).join("") : '<span class="mut">—</span>';
+    $("rStrong").innerHTML = s.length ? s.map(tag).join("") : '<span class="mut">rien</span>';
+    var sug = PALS.filter(function(p){ return p[2].indexOf("c") !== -1 && p[1].some(function(e){ return w.indexOf(e) !== -1; }); })
+      .map(function(p){ return p[0]; });
+    $("rPals").innerHTML = sug.length ? '<b>Pals de combat conseillés :</b> ' + esc(sug.join(", ")) : "";
+    state.type = k; save();
+  }
+
+  /* ---------- Copie des coordonnées ---------- */
+  document.addEventListener("click", function(e){
+    var c = e.target.closest ? e.target.closest(".copy") : null;
+    if(!c) return;
+    var txt = c.textContent.trim();
+    function ok(){ toast("📋 " + txt + " copié"); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok, function(){ fallback(txt); ok(); });
+    } else { fallback(txt); ok(); }
+  });
+  function fallback(t){
+    try { var a = document.createElement("textarea"); a.value = t; a.style.position = "fixed"; a.style.opacity = "0"; document.body.appendChild(a); a.select(); document.execCommand("copy"); a.remove(); } catch(e){}
+  }
+
+  /* ---------- Recherche globale ---------- */
+  function openSearch(){ $("ov").classList.add("on"); $("q").value = ""; $("qRes").innerHTML = '<p class="mut">Ex. : Anubis, charbon, gâteau, Feybreak, selle…</p>'; setTimeout(function(){ $("q").focus(); }, 50); }
+  function closeSearch(){ $("ov").classList.remove("on"); }
+  $("btnSearch").addEventListener("click", openSearch);
+  $("qClose").addEventListener("click", closeSearch);
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeSearch(); });
+
+  function snippet(text, q){
+    var n = norm(text), i = n.indexOf(q);
+    if(i < 0) return esc(text.slice(0, 90));
+    var a = Math.max(0, i - 40), b = Math.min(text.length, i + q.length + 50);
+    return (a > 0 ? "…" : "") + esc(text.slice(a, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length, b)) + (b < text.length ? "…" : "");
+  }
+  $("q").addEventListener("input", function(){
+    var q = norm(this.value.trim());
+    var out = $("qRes"); out.innerHTML = "";
+    if(q.length < 2){ out.innerHTML = '<p class="mut">Tape au moins 2 lettres.</p>'; return; }
+    var hits = [];
+    document.querySelectorAll(".tab .pan").forEach(function(pan){
+      var tab = pan.closest(".tab").id.slice(2);
+      if(tab === "pals" && pan.dataset.p === "Paldeck") return;
+      pan.querySelectorAll(".card, .boss").forEach(function(card){
+        var t = card.textContent.replace(/\s+/g, " ").trim();
+        if(norm(t).indexOf(q) !== -1){
+          var h = card.querySelector("h3, b");
+          hits.push({tab:tab, sub:pan.dataset.p, el:card, title:h ? h.textContent : pan.dataset.p, text:t});
+        }
+      });
+    });
+    PALS.forEach(function(p){
+      if(palText(p).indexOf(q) !== -1) hits.push({tab:"pals", sub:"Paldeck", pal:p[0], title:p[0], text:p[4] + " · " + p[5]});
+    });
+    mapPoints().forEach(function(p){
+      if(norm(p.n + " " + p.d).indexOf(q) !== -1) hits.push({tab:"carte", sub:"Carte", mp:p.id, title:"🗺️ " + p.n, text:p.d + " · " + p.x + ", " + p.y});
+    });
+    if(!hits.length){ out.innerHTML = '<p class="mut">Aucun résultat.</p>'; return; }
+    hits.slice(0, 40).forEach(function(h){
+      var b = document.createElement("button");
+      b.className = "hit";
+      b.innerHTML = '<div class="w">' + TABS[h.tab] + ' › ' + esc(h.sub) + '</div><div><b>' + esc(h.title) + '</b></div><div class="x">' + snippet(h.text, q) + '</div>';
+      b.addEventListener("click", function(){
+        closeSearch();
+        if(h.pal){ go("pals", "Paldeck"); $("palQ").value = h.pal; renderPals(); return; }
+        if(h.mp){ focusPoint(h.mp); return; }
+        go(h.tab, h.sub, true);
+        setTimeout(function(){
+          h.el.scrollIntoView({block:"center"});
+          h.el.classList.add("flash");
+          setTimeout(function(){ h.el.classList.remove("flash"); }, 1500);
+        }, 30);
+      });
+      out.appendChild(b);
+    });
+  });
+
+  /* ---------- Carte ---------- */
+  var CAT = {
+    tower:{n:"🗼 Tours", c:"#ffcf5a", ic:"🗼"},
+    base:{n:"🏠 Bases", c:"#4fd1a5", ic:"🏠"},
+    alpha:{n:"👑 Alphas", c:"#ff8a65", ic:"👑"},
+    legend:{n:"⭐ Légendaires", c:"#d56cff", ic:"⭐"},
+    tree:{n:"🌳 Arbre-Monde", c:"#6fd06f", ic:"🌳"},
+    pin:{n:"📌 Mes points", c:"#4ea8ff", ic:"📌"}
+  };
+  var TOWERS = [
+    ["b1",113,-431,"Tour du Syndicat Rayne"],["b2",36,-311,"Tour de l'Alliance des Pals libres"],
+    ["b3",-587,-517,"Tour des Frères du Bûcher éternel"],["b4",556,335,"Tour du PIDF"],
+    ["b5",-148,447,"Tour de l'unité de recherche génétique"],["b6",-597,206,"Tour Moonflower"],
+    ["b7",-1294,-1669,"Tour de Feybreak"],["b8",-423,-1425,"Tour du Pacte Azur"]
+  ];
+  var BASES = [
+    ["1ʳᵉ base",90,-436,"Plaine près de la tour 1"],["Minerai tôt",7,-515,"Gisements groupés, plat"],
+    ["Minerai + charbon",187,-37,"Avant-poste de minage"],["Base de production",-432,-51,"Plateau large et protégé"],
+    ["Élevage / ferme",-198,-702,"Très grand terrain plat"],["Base pétrole",-646,270,"2 puits + charbon + soufre"],
+    ["Base Sunreach",-540,-1361,"Bassin de cristal, Soralite"],["Base sur l'eau",137,-597,"Construction aquatique"]
+  ];
+  var ALPHAS = [
+    ["Gumoss",11,-113,-628],["Chillet",11,172,-419],["Penking",15,113,-353],["Nitewing",18,-275,-70],
+    ["Kingpaca",23,49,-460],["Broncherry",23,-222,-669],["Bushi",25,-203,-346],["Fenglope",25,-257,-458],
+    ["Blazehowl",30,-256,-131],["Elphidran",30,44,-282],["Mossanda Lux",31,450,-180],["Verdash",35,258,10],
+    ["Lunaris",35,130,-50],["Mammorest",38,190,-478],["Elizabee",39,164,-84],["Azurobe",40,-176,-266],
+    ["Suzaku",45,326,483],["Blazamut",52,-737,-332],["Jormuntide",55,350,-85],["Anubis",55,-134,-94],
+    ["Whalaska",55,-179,842],["Celesdir",65,-965,-1172],["Splatterina",65,-1079,-1455],["Starryon",63,-893,-1293]
+  ];
+  var LEGENDS = [
+    ["Paladius & Necromus",60,440,679],["Frostallion",60,-357,509],["Neptilius",60,139,651],
+    ["Frostallion Noct",65,689,648],["Jetragon",70,-553,-1332]
+  ];
+  var TREE = [
+    ["Ravin poussiéreux",-1560,1510,"Zone de farm des gemmes radieuses (Arbre-Monde)"],
+    ["Source Teafant d'Alluvion",-1638,1340,"Soins + eau bénite de l'Arbre-Monde"]
+  ];
+  var REGIONS = [
+    ["Collines venteuses",110,-500],["Mont Obsidienne",-587,-460],["Désert",556,390],
+    ["Monts astraux",-148,505],["Sakurajima",-597,265],["Feybreak",-1130,-1200],
+    ["Sunreach",-480,-1500],["Arbre-Monde",-1600,1600]
+  ];
+  function lvNum(s){ var m = String(s).match(/\d+/); return m ? +m[0] : 0; }
+  function mapPoints(){
+    var out = [];
+    TOWERS.forEach(function(t){
+      var b = BOSS.filter(function(x){ return x.id === t[0]; })[0];
+      out.push({id:"t-"+t[0], cat:"tower", n:b.n, lv:lvNum(b.lv), x:t[1], y:t[2], d:t[3], boss:b});
+    });
+    var fb = BOSS[8];
+    out.push({id:"t-b9", cat:"tower", n:fb.n, lv:80, x:-1600, y:1420, d:"Sanctuaire scellé, au cœur de l'Arbre-Monde (position approximative)", boss:fb});
+    BASES.forEach(function(b, i){ out.push({id:"b-"+i, cat:"base", n:b[0], x:b[1], y:b[2], d:b[3]}); });
+    ALPHAS.forEach(function(a, i){ out.push({id:"a-"+i, cat:"alpha", n:a[0], lv:a[1], x:a[2], y:a[3], d:"Pal Alpha (boss de zone), réapparaît"}); });
+    LEGENDS.forEach(function(a, i){ out.push({id:"l-"+i, cat:"legend", n:a[0], lv:a[1], x:a[2], y:a[3], d:"Pal légendaire Alpha"}); });
+    TREE.forEach(function(a, i){ out.push({id:"w-"+i, cat:"tree", n:a[0], x:a[1], y:a[2], d:a[3]}); });
+    Object.keys(state.pins).forEach(function(k){ var p = state.pins[k]; out.push({id:"p-"+k, pk:k, cat:"pin", n:p.n, x:p.x, y:p.y, d:"Point personnel"}); });
+    return out;
+  }
+  if(!state.mapF || typeof state.mapF !== "object") state.mapF = {tower:1, base:1, alpha:1, legend:1, tree:1, pin:1};
+  if(!state.lvl) state.lvl = 1;
+
+  var svg = $("map"), NS = "http://www.w3.org/2000/svg";
+  var WORLD = {x0:-1800, x1:950, y0:-1800, y1:1650};
+  var vb = null, lastK = 0, selId = null, mapReady = false, calib = null, imgURL = null;
+  function rect(){ return svg.getBoundingClientRect(); }
+  function fitBox(B){
+    var r = rect(); if(!r.width) return;
+    var ww = B.x1 - B.x0, wh = B.y1 - B.y0, asp = r.height / r.width;
+    var w = Math.max(ww, wh / asp) * 1.04, h = w * asp;
+    vb = {x:(B.x0 + B.x1)/2 - w/2, y:-(B.y0 + B.y1)/2 - h/2, w:w, h:h};
+    applyVB(true);
+  }
+  function fit(){
+    var cb = curBg();
+    if(calib && cb) return fitBox({x0:0, x1:cb.B.W, y0:-cb.B.H, y1:0});
+    if(bgShown()){
+      var c = cb.B.cal, xa = -c.bx/c.ax, xb = (cb.B.W - c.bx)/c.ax, ya = -c.by/c.ay, yb = (cb.B.H - c.by)/c.ay;
+      return fitBox({x0:Math.min(xa, xb), x1:Math.max(xa, xb), y0:Math.min(ya, yb), y1:Math.max(ya, yb)});
+    }
+    fitBox(WORLD);
+  }
+  function applyVB(force){
+    var r = rect(); if(!r.width || !vb) return;
+    vb.h = vb.w * r.height / r.width;
+    svg.setAttribute("viewBox", vb.x + " " + vb.y + " " + vb.w + " " + vb.h);
+    var k = vb.w / r.width;
+    if(force || Math.abs(k - lastK) / (lastK || 1) > 0.001){ lastK = k; drawMarkers(); }
+  }
+  function toWorld(cx, cy){ var r = rect(); return {x:vb.x + (cx - r.left) / r.width * vb.w, y:-(vb.y + (cy - r.top) / r.height * vb.h)}; }
+  function zoomAt(f, cx, cy){
+    if(!vb) return;
+    var r = rect(); var p = toWorld(cx, cy);
+    var nw = Math.min(5000, Math.max(160, vb.w * f));
+    vb.w = nw; vb.h = nw * r.height / r.width;
+    vb.x = p.x - (cx - r.left) / r.width * vb.w;
+    vb.y = -p.y - (cy - r.top) / r.height * vb.h;
+    applyVB();
+  }
+  function centerOn(x, y, w){
+    var r = rect(); if(!vb) fit();
+    if(!vb || !r.width) return;
+    if(w) vb.w = w;
+    vb.h = vb.w * r.height / r.width;
+    vb.x = x - vb.w/2; vb.y = -y - vb.h/2; applyVB(true);
+  }
+  function el(name, attrs, txt){ var e = document.createElementNS(NS, name); for(var a in attrs) e.setAttribute(a, attrs[a]); if(txt != null) e.textContent = txt; return e; }
+  function drawGrid(){
+    var g = $("gGrid"); g.innerHTML = "";
+    g.appendChild(el("rect", {x:-5000, y:-5000, width:10000, height:10000, fill:"transparent"}));
+    for(var v = -2000; v <= 2000; v += 250){
+      var ax = v === 0;
+      g.appendChild(el("line", {x1:v, y1:-2000, x2:v, y2:2000, stroke:ax ? "var(--axis)" : "var(--grid)", "stroke-width":1, "vector-effect":"non-scaling-stroke"}));
+      g.appendChild(el("line", {x1:-2000, y1:v, x2:2000, y2:v, stroke:ax ? "var(--axis)" : "var(--grid)", "stroke-width":1, "vector-effect":"non-scaling-stroke"}));
+    }
+  }
+  var EMB = null;
+  var PRESET = {W:2106, H:2160, cal:{ax:0.74, bx:1348, ay:-0.74, by:642}};
+  if(!state.emb || typeof state.emb !== "object") state.emb = {on:1, op:1};
+  function curBg(){
+    if(state.bg) return imgURL ? {B:state.bg, url:imgURL, user:true} : null;
+    if(!EMB) return null;
+    return {B:{W:EMB.W, H:EMB.H, cal:state.emb.cal || EMB.cal, op:state.emb.op, on:state.emb.on}, url:EMB.src, user:false};
+  }
+  function setBg(k, v){ if(state.bg) state.bg[k] = v; else state.emb[k] = v; save(); }
+  function bgShown(){ var c = curBg(); return !!(c && c.B.cal && c.B.on && !calib); }
+  var bgEl = null, bgElUrl = null;
+  function drawBg(){
+    var g = $("gImg"), cb = curBg();
+    var show = !!cb && (calib || bgShown());
+    $("mapbox").style.background = show ? "#0b161d" : "";
+    if(!show){ g.innerHTML = ""; bgEl = null; bgElUrl = null; return; }
+    var B = cb.B;
+    if(!bgEl || bgElUrl !== cb.url){
+      g.innerHTML = "";
+      bgEl = el("image", {preserveAspectRatio:"none"});
+      bgEl.setAttribute("href", cb.url);
+      bgEl.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", cb.url);
+      g.appendChild(bgEl); bgElUrl = cb.url;
+    }
+    bgEl.setAttribute("width", B.W); bgEl.setAttribute("height", B.H);
+    if(calib){ bgEl.setAttribute("opacity", 1); bgEl.removeAttribute("transform"); }
+    else {
+      var c = B.cal;
+      bgEl.setAttribute("opacity", B.op);
+      bgEl.setAttribute("transform", "matrix(" + (1/c.ax) + ",0,0," + (-1/c.ay) + "," + (-c.bx/c.ax) + "," + (c.by/c.ay) + ")");
+    }
+  }
+  function drawMarkers(){
+    var k = lastK, gr = $("gReg"), gm = $("gMk"), bs = bgShown();
+    gr.innerHTML = ""; gm.innerHTML = "";
+    $("gGrid").style.display = (bs || calib) ? "none" : "";
+    if(calib) return;
+    if(!bs) REGIONS.forEach(function(r){
+      gr.appendChild(el("text", {x:r[1], y:-r[2], "text-anchor":"middle", "font-size":13*k, "font-weight":700, fill:"var(--reg)", "letter-spacing":1*k}, r[0].toUpperCase()));
+    });
+    var showLabel = vb.w < 1100;
+    mapPoints().forEach(function(p){
+      if(!state.mapF[p.cat]) return;
+      var dim = p.lv && p.lv > state.lvl + 5;
+      var done = p.boss && state.boss[p.boss.id];
+      var g = el("g", {"class":"mk" + (dim ? " dim" : "") + (selId === p.id ? " sel" : ""), "data-id":p.id, transform:"translate(" + p.x + "," + (-p.y) + ")"});
+      g.appendChild(el("circle", {r:13*k, fill:"transparent"}));
+      g.appendChild(el("circle", {r:9*k, fill:CAT[p.cat].c, stroke:selId === p.id ? "var(--txt)" : "rgba(0,0,0,.45)", "stroke-width":(selId === p.id ? 2.5 : 1.2)*k, opacity:done ? .45 : 1}));
+      g.appendChild(el("text", {y:4*k, "text-anchor":"middle", "font-size":10*k}, done ? "✓" : CAT[p.cat].ic));
+      if(showLabel || selId === p.id){
+        g.appendChild(el("text", {y:-13*k, "text-anchor":"middle", "font-size":11*k, "font-weight":700, fill:"var(--txt)", stroke:"var(--mapbg)", "stroke-width":3*k, "paint-order":"stroke"}, p.n + (p.lv ? " · " + p.lv : "")));
+      }
+      gm.appendChild(g);
+    });
+  }
+  function showInfo(id){
+    var p = mapPoints().filter(function(x){ return x.id === id; })[0];
+    if(!p) return;
+    selId = id; drawMarkers();
+    var h = '<div class="mut">' + CAT[p.cat].n + '</div><h3>' + esc(p.n) + (p.lv ? ' <span class="mut">· niv. ' + p.lv + '</span>' : '') + '</h3>' +
+      '<div class="mut">' + esc(p.d) + '</div><div class="sp">📍 <span class="copy">' + p.x + ', ' + p.y + '</span></div>';
+    if(p.boss){
+      var b = p.boss, wk = b.weak.length ? b.weak.map(tag).join("") : '<span class="tag">Aucune faiblesse</span>';
+      h += '<div class="sp">Contre : ' + wk + '</div><div><span class="k">Équipe :</span> ' + b.pals + '</div>' +
+        '<label class="chk" style="border:none;padding-bottom:0"><input type="checkbox" id="mBoss"' + (state.boss[b.id] ? " checked" : "") + '><div><b>Vaincu</b></div></label>';
+    }
+    var palName = p.cat === "legend" ? p.n.split(" & ")[0] : p.n;
+    var inDex = PALS.some(function(x){ return x[0] === palName; });
+    var acts = '';
+    if((p.cat === "alpha" || p.cat === "legend") && inDex) acts += '<button class="btn ghost" id="mDex">Voir dans le Paldeck</button> ';
+    if(p.cat === "pin") acts += '<button class="btn ghost" id="mDel">Supprimer</button>';
+    if(acts) h += '<div class="sp row2">' + acts + '</div>';
+    $("mapInfo").innerHTML = h;
+    var mb = $("mBoss");
+    if(mb) mb.addEventListener("change", function(e){ state.boss[p.boss.id] = e.target.checked; save(); renderAll(); drawMarkers(); });
+    var md = $("mDex");
+    if(md) md.addEventListener("click", function(){ go("pals", "Paldeck"); $("palQ").value = palName; renderPals(); });
+    var mx = $("mDel");
+    if(mx) mx.addEventListener("click", function(){ delete state.pins[p.pk]; save(); selId = null; drawMarkers(); renderPins(); resetInfo(); toast("Point supprimé"); });
+  }
+  function resetInfo(){ $("mapInfo").innerHTML = '<p class="mut">Touche un repère pour voir le détail. Les Alphas et tours trop forts pour ton niveau (+5) sont grisés.</p>'; }
+  function showSpot(w){
+    selId = null; drawMarkers();
+    var x = Math.round(w.x), y = Math.round(w.y);
+    $("mapInfo").innerHTML = '<div class="mut">Position touchée</div><h3>≈ ' + x + ', ' + y + '</h3><div class="sp row2"><button class="btn ghost" id="mHere">📌 Ajouter un point ici</button></div>';
+    $("mHere").addEventListener("click", function(){ $("pinX").value = x; $("pinY").value = y; $("pinN").focus(); $("pinN").scrollIntoView({block:"center"}); });
+  }
+
+  /* Gestes */
+  var ptr = {}, drag = null, pinch = null;
+  function nPtr(){ return Object.keys(ptr).length; }
+  svg.addEventListener("pointerdown", function(e){
+    if(!vb) return;
+    try { svg.setPointerCapture(e.pointerId); } catch(_){}
+    ptr[e.pointerId] = {x:e.clientX, y:e.clientY};
+    if(nPtr() === 1){ drag = {sx:e.clientX, sy:e.clientY, vx:vb.x, vy:vb.y, moved:false}; pinch = null; }
+    else if(nPtr() === 2){
+      var a = ptr[Object.keys(ptr)[0]], b = ptr[Object.keys(ptr)[1]];
+      pinch = {d:Math.hypot(a.x - b.x, a.y - b.y) || 1, w:vb.w}; if(drag) drag.moved = true;
+    }
+  });
+  svg.addEventListener("pointermove", function(e){
+    if(!vb) return;
+    if(!ptr[e.pointerId]) { var w = toWorld(e.clientX, e.clientY); $("mapCoord").textContent = Math.round(w.x) + ", " + Math.round(w.y); return; }
+    ptr[e.pointerId] = {x:e.clientX, y:e.clientY};
+    var r = rect();
+    if(nPtr() === 1 && drag){
+      var dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+      if(Math.abs(dx) + Math.abs(dy) > 6) drag.moved = true;
+      vb.x = drag.vx - dx * vb.w / r.width; vb.y = drag.vy - dy * vb.h / r.height; applyVB();
+    } else if(nPtr() === 2 && pinch){
+      var ks = Object.keys(ptr), a = ptr[ks[0]], b = ptr[ks[1]];
+      var d = Math.hypot(a.x - b.x, a.y - b.y) || 1, mx = (a.x + b.x)/2, my = (a.y + b.y)/2;
+      zoomAt((pinch.w * pinch.d / d) / vb.w, mx, my);
+    }
+    var c = toWorld(r.left + r.width/2, r.top + r.height/2);
+    $("mapCoord").textContent = "Centre ≈ " + Math.round(c.x) + ", " + Math.round(c.y);
+  });
+  function up(e){
+    var wasTap = drag && !drag.moved && nPtr() === 1;
+    delete ptr[e.pointerId];
+    if(wasTap && calib){ calTap(toWorld(e.clientX, e.clientY)); }
+    else if(wasTap){
+      var t = document.elementFromPoint(e.clientX, e.clientY);
+      var g = t && t.closest ? t.closest("[data-id]") : null;
+      if(g) showInfo(g.getAttribute("data-id")); else showSpot(toWorld(e.clientX, e.clientY));
+    }
+    if(nPtr() === 0){ drag = null; pinch = null; }
+    else if(nPtr() === 1){ var k = Object.keys(ptr)[0]; drag = {sx:ptr[k].x, sy:ptr[k].y, vx:vb.x, vy:vb.y, moved:true}; pinch = null; }
+  }
+  svg.addEventListener("pointerup", up);
+  svg.addEventListener("pointercancel", up);
+  svg.addEventListener("wheel", function(e){ e.preventDefault(); zoomAt(e.deltaY > 0 ? 1.18 : 1/1.18, e.clientX, e.clientY); }, {passive:false});
+  function zBtn(f){ var r = rect(); zoomAt(f, r.left + r.width/2, r.top + r.height/2); }
+  $("zIn").addEventListener("click", function(){ zBtn(1/1.5); });
+  $("zOut").addEventListener("click", function(){ zBtn(1.5); });
+  $("zFit").addEventListener("click", fit);
+  window.addEventListener("resize", function(){ if(cur === "carte" && vb) applyVB(true); });
+
+  /* Filtres + niveau */
+  Object.keys(CAT).forEach(function(c){
+    var b = document.createElement("button");
+    b.textContent = CAT[c].n; b.className = state.mapF[c] ? "on" : "";
+    b.addEventListener("click", function(){ state.mapF[c] = state.mapF[c] ? 0 : 1; b.className = state.mapF[c] ? "on" : ""; save(); drawMarkers(); });
+    $("mapF").appendChild(b);
+  });
+  $("lvl").value = state.lvl; $("lvlV").textContent = state.lvl;
+  $("lvl").addEventListener("input", function(){ state.lvl = +this.value; $("lvlV").textContent = state.lvl; save(); if(vb) drawMarkers(); });
+
+  /* Mes points */
+  function renderPins(){
+    var box = $("pinList"), ks = Object.keys(state.pins);
+    if(!ks.length){ box.innerHTML = '<p class="mut">Aucun point pour l\'instant.</p>'; return; }
+    box.innerHTML = "";
+    ks.forEach(function(k){
+      var p = state.pins[k];
+      var b = document.createElement("button");
+      b.className = "hit";
+      b.innerHTML = '<b>📌 ' + esc(p.n) + '</b><div class="x">' + p.x + ', ' + p.y + '</div>';
+      b.addEventListener("click", function(){ focusPoint("p-" + k); });
+      box.appendChild(b);
+    });
+  }
+  $("pinAdd").addEventListener("click", function(){
+    var n = $("pinN").value.trim(), x = parseInt($("pinX").value, 10), y = parseInt($("pinY").value, 10);
+    if(!n || isNaN(x) || isNaN(y)){ toast("Nom, X et Y requis"); return; }
+    var k = String(Date.now());
+    state.pins[k] = {n:n, x:x, y:y}; state.mapF.pin = 1; save();
+    $("pinN").value = ""; $("pinX").value = ""; $("pinY").value = "";
+    $("mapF").querySelectorAll("button")[5].className = "on";
+    renderPins(); focusPoint("p-" + k); toast("📌 Point ajouté");
+  });
+  function focusPoint(id){
+    var p = mapPoints().filter(function(x){ return x.id === id; })[0];
+    if(!p) return;
+    if(!state.mapF[p.cat]){ state.mapF[p.cat] = 1; save(); var i = Object.keys(CAT).indexOf(p.cat); $("mapF").querySelectorAll("button")[i].className = "on"; }
+    if(cur !== "carte") go("carte");
+    centerOn(p.x, p.y, Math.min(vb ? vb.w : 900, 900));
+    showInfo(id);
+    $("mapbox").scrollIntoView({block:"start"});
+  }
+  /* Fond de carte : capture importée par l'utilisateur, gardée sur l'appareil */
+  function idbOpen(){
+    return new Promise(function(res, rej){
+      try {
+        var r = indexedDB.open("pwguide", 1);
+        r.onupgradeneeded = function(){ r.result.createObjectStore("files"); };
+        r.onsuccess = function(){ res(r.result); };
+        r.onerror = function(){ rej(r.error); };
+      } catch(e){ rej(e); }
+    });
+  }
+  function idbDo(mode, fn){
+    return idbOpen().then(function(db){
+      return new Promise(function(res, rej){
+        var t = db.transaction("files", mode), out = fn(t.objectStore("files"));
+        t.oncomplete = function(){ res(out && out.result); };
+        t.onerror = function(){ rej(t.error); };
+      });
+    });
+  }
+  function useBlob(blob){
+    if(imgURL) URL.revokeObjectURL(imgURL);
+    imgURL = URL.createObjectURL(blob);
+  }
+  function loadStoredBg(){
+    if(!state.bg) return;
+    idbDo("readonly", function(st){ return st.get("mapimg"); }).then(function(blob){
+      if(blob){ useBlob(blob); drawBg(); drawMarkers(); renderBgCard(); fit(); }
+      else { state.bg = null; save(); renderBgCard(); }
+    }).catch(function(){ toast("Fond de carte indisponible"); });
+  }
+  $("bgFile").addEventListener("change", function(){
+    var f = this.files && this.files[0]; this.value = "";
+    if(!f) return;
+    var u = URL.createObjectURL(f), im = new Image();
+    im.onload = function(){
+      var s = Math.min(1, 4096 / Math.max(im.naturalWidth, im.naturalHeight));
+      var c = document.createElement("canvas");
+      c.width = Math.round(im.naturalWidth * s); c.height = Math.round(im.naturalHeight * s);
+      c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(u);
+      c.toBlob(function(blob){
+        if(!blob){ toast("Image illisible"); return; }
+        state.bg = {W:c.width, H:c.height, op:1, on:1};
+        var known = c.width === PRESET.W && c.height === PRESET.H;
+        if(known) state.bg.cal = PRESET.cal;
+        save();
+        useBlob(blob);
+        idbDo("readwrite", function(st){ return st.put(blob, "mapimg"); }).catch(function(){ toast("Image non mémorisée sur cet appareil"); });
+        renderBgCard();
+        if(known){ drawBg(); drawMarkers(); fit(); toast("✅ Carte reconnue : calage automatique"); }
+        else startCal();
+      }, "image/jpeg", 0.88);
+    };
+    im.onerror = function(){ URL.revokeObjectURL(u); toast("Format d'image non pris en charge"); };
+    im.src = u;
+  });
+  function towerOpts(sel){
+    return TOWERS.map(function(t, i){
+      return '<option value="' + i + '"' + (i === sel ? " selected" : "") + '>Tour ' + (i+1) + ' · ' + esc(BOSS[i].n) + ' (' + t[1] + ', ' + t[2] + ')</option>';
+    }).join("");
+  }
+  function startCal(){
+    if(!curBg()) return;
+    calib = {step:0, a:2, b:3, pa:null};
+    if(cur !== "carte") go("carte");
+    renderCalbar(); fit(); drawBg(); drawMarkers();
+    $("mapInfo").innerHTML = '<p class="mut">Calage : zoome sur la tour indiquée, puis touche le centre de son icône sur ta capture.</p>';
+    $("mapbox").scrollIntoView({block:"start"});
+  }
+  function renderCalbar(){
+    var cb = $("calbar");
+    if(!calib){ cb.classList.remove("on"); cb.innerHTML = ""; return; }
+    var idx = calib.step === 0 ? calib.a : calib.b;
+    cb.innerHTML = '<b>Calage ' + (calib.step + 1) + '/2</b> — touche sur l\'image :' +
+      '<select id="calSel">' + towerOpts(idx) + '</select>' +
+      '<button class="btn ghost" id="calCancel" style="padding:5px 10px;font-size:13px">Annuler</button>';
+    cb.classList.add("on");
+    $("calSel").addEventListener("change", function(){ var v = +this.value; if(calib.step === 0) calib.a = v; else calib.b = v; });
+    $("calCancel").addEventListener("click", function(){ calib = null; renderCalbar(); fit(); drawBg(); drawMarkers(); resetInfo(); });
+  }
+  function calTap(w){
+    var px = w.x, py = -w.y, B = curBg().B;
+    if(px < 0 || py < 0 || px > B.W || py > B.H){ toast("Touche à l'intérieur de l'image"); return; }
+    if(calib.step === 0){
+      calib.pa = {px:px, py:py}; calib.step = 1;
+      if(calib.b === calib.a) calib.b = (calib.a + 1) % TOWERS.length;
+      renderCalbar(); toast("Point 1 enregistré"); return;
+    }
+    var A = TOWERS[calib.a], T = TOWERS[calib.b];
+    if(A[1] === T[1] || A[2] === T[2]){ toast("Choisis deux tours différentes"); return; }
+    var ax = (px - calib.pa.px) / (T[1] - A[1]), ay = (py - calib.pa.py) / (T[2] - A[2]);
+    var bx = calib.pa.px - ax * A[1], by = calib.pa.py - ay * A[2];
+    if(!isFinite(ax) || !isFinite(ay) || !ax || !ay){ toast("Calage impossible, recommence"); return; }
+    var ratio = Math.abs(ax / ay);
+    setBg("cal", {ax:ax, bx:bx, ay:ay, by:by}); setBg("on", 1);
+    calib = null; renderCalbar(); fit(); drawBg(); drawMarkers(); renderBgCard(); resetInfo();
+    toast(ratio < 0.7 || ratio > 1.4 ? "⚠️ Calage douteux : vérifie les tours, sinon recale" : "✅ Carte calée");
+  }
+  function renderBgCard(){
+    var b = $("bgBody"), cb = curBg();
+    if(!cb && state.bg){ b.innerHTML = '<p class="mut">Chargement de ta capture…</p>'; return; }
+    if(!cb){
+      b.innerHTML = '<p>Pour avoir la vraie carte en dessous, importe une image de la carte. Elle reste uniquement sur ton téléphone.</p>' +
+        '<div class="step"><div class="num">1</div><div>Fichier <b>carte-palworld.jpg</b> fourni avec le guide : calage automatique.</div></div>' +
+        '<div class="step"><div class="num">2</div><div>Ou ta propre capture de la carte du jeu : touche ensuite <b>2 tours</b> pour la caler.</div></div>' +
+        '<div class="sp"><button class="btn" id="bgImp">Importer une image</button></div>';
+      $("bgImp").addEventListener("click", function(){ $("bgFile").click(); });
+      return;
+    }
+    var B = cb.B;
+    b.innerHTML = '<p>' + (cb.user ? '🖼️ <b>Ta capture</b>' : '🗺️ <b>Carte intégrée</b> <span class="mut">· capture palworld.th.gl</span>') + (B.cal ? '' : ' · ⚠️ non calée') + '</p>' +
+      '<label class="sw"><input type="checkbox" id="bgOn"' + (B.on ? " checked" : "") + '> Afficher la carte</label>' +
+      '<div class="sw"><span class="mut">Opacité</span><input type="range" id="bgOp" min="20" max="100" value="' + Math.round(B.op * 100) + '"></div>' +
+      '<div class="row2 sp"><button class="btn ghost" id="bgCal">Recaler</button>' +
+      ((!cb.user && state.emb.cal) ? '<button class="btn ghost" id="bgReset">Calage d\'origine</button>' : '') +
+      '<button class="btn ghost" id="bgImp">' + (cb.user ? 'Remplacer' : 'Importer ma capture') + '</button>' +
+      (cb.user ? '<button class="btn ghost" id="bgDel">' + (EMB ? 'Revenir à la carte intégrée' : 'Supprimer l\'image') + '</button>' : '') + '</div>' +
+      (cb.user ? '' : '<p class="mut sp">Image en définition moyenne : floue en zoom très fort. L\'Arbre-Monde n\'y figure pas (ses repères restent en dehors, en haut à gauche).</p>');
+    $("bgOn").addEventListener("change", function(){ setBg("on", this.checked ? 1 : 0); drawBg(); drawMarkers(); });
+    $("bgOp").addEventListener("input", function(){ setBg("op", this.value / 100); drawBg(); });
+    $("bgCal").addEventListener("click", startCal);
+    $("bgImp").addEventListener("click", function(){ $("bgFile").click(); });
+    var rs = $("bgReset");
+    if(rs) rs.addEventListener("click", function(){ state.emb.cal = null; save(); drawBg(); drawMarkers(); renderBgCard(); toast("Calage d'origine rétabli"); });
+    var del = $("bgDel");
+    if(del) del.addEventListener("click", function(){
+      idbDo("readwrite", function(st){ return st.delete("mapimg"); }).catch(function(){});
+      if(imgURL){ URL.revokeObjectURL(imgURL); imgURL = null; }
+      state.bg = null; calib = null; save(); renderCalbar(); renderBgCard(); drawBg(); drawMarkers(); fit(); toast(EMB ? "Carte intégrée rétablie" : "Image supprimée");
+    });
+  }
+  window.__mapShow = function(){
+    if(!mapReady){ drawGrid(); renderPins(); renderBgCard(); loadStoredBg(); mapReady = true; }
+    if(!vb) fit(); else applyVB(true);
+    drawBg();
+  };
+
+  /* ---------- Bouton haut de page ---------- */
+  window.addEventListener("scroll", function(){ $("up").classList.toggle("on", window.scrollY > 600); }, {passive:true});
+  $("up").addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+
+  /* ---------- Démarrage ---------- */
+  function renderAll(){
+    renderChecks("road", ROAD, "road");
+    renderChecks("start", START, "start");
+    renderBoss();
+    renderNext();
+  }
+  renderAll();
+  renderPals();
+  pick(state.type && EL[state.type] ? state.type : "fire");
+  if(state.tab && !TABS[state.tab]) state.tab = "accueil";
+  go(state.tab || "accueil");
+  document.documentElement.setAttribute("data-version", APP_VERSION);
+  /* Mise à jour automatique */
+  if(state.ver && state.ver !== APP_VERSION) setTimeout(function(){ toast("✅ Mis à jour en v" + APP_VERSION); }, 400);
+  state.ver = APP_VERSION; save();
+  if("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")){
+    var hadCtrl = !!navigator.serviceWorker.controller, reloading = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function(){
+      if(!hadCtrl || reloading) return;
+      reloading = true; location.reload();
+    });
+    navigator.serviceWorker.register("sw.js", {updateViaCache:"none"}).then(function(reg){
+      function check(){ reg.update().catch(function(){}); }
+      document.addEventListener("visibilitychange", function(){ if(document.visibilityState === "visible") check(); });
+      setInterval(check, 30 * 60 * 1000);
+    }).catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>
