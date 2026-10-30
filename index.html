@@ -130,6 +130,39 @@ mark{background:var(--hl);color:inherit;border-radius:3px}
 .up{position:fixed;right:14px;bottom:calc(var(--nav) + env(safe-area-inset-bottom) + 14px);z-index:15;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-size:18px;cursor:pointer;display:none;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .up.on{display:block}
 footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
+/* Paldex */
+.dx{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin-bottom:8px;cursor:pointer;width:100%;text-align:left}
+.dx .im,.big .im{flex:0 0 48px;width:48px;height:48px;border-radius:12px;background:var(--card2);display:grid;place-items:center;overflow:hidden;font-weight:800;color:var(--mut)}
+.dx .im img,.big .im img{width:100%;height:100%;object-fit:contain}
+.dx .tx{flex:1;min-width:0}
+.dx .nm{font-weight:700}
+.dx .no{color:var(--mut);font-size:12px;font-weight:600;margin-right:4px}
+.dx .wk{font-size:12px;color:var(--mut);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dx .lvb{font-size:20px;font-weight:800;color:var(--acc2);min-width:28px;text-align:right}
+.big{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.big .im{flex:0 0 96px;width:96px;height:96px;border-radius:18px;font-size:32px}
+.big h2{margin:0}
+.wl{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.wl div{background:var(--card2);border-radius:8px;padding:6px 8px;font-size:13px;display:flex;justify-content:space-between}
+.wl b{color:var(--acc2)}
+.pair{display:flex;align-items:center;gap:6px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px;flex-wrap:wrap}
+.pair:last-child{border-bottom:none}
+.pair a,.lk{color:var(--acc);font-weight:650;cursor:pointer;text-decoration:none}
+.pair .mut{margin-left:auto}
+.seg{display:flex;background:var(--card2);border-radius:12px;padding:4px;gap:4px;margin-bottom:12px}
+.seg button{flex:1;border:none;background:none;padding:8px 6px;border-radius:9px;font-weight:700;font-size:13px;color:var(--mut);cursor:pointer}
+.seg button.on{background:var(--card);color:var(--txt);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.pkb{display:flex;align-items:center;gap:10px;width:100%;background:var(--card2);border:1px dashed var(--line);border-radius:12px;padding:8px 10px;cursor:pointer;text-align:left;margin-bottom:8px;min-height:52px}
+.pkb .im{flex:0 0 36px;width:36px;height:36px;border-radius:9px;background:var(--card);display:grid;place-items:center;overflow:hidden;font-weight:800;color:var(--mut)}
+.pkb .im img{width:100%;height:100%;object-fit:contain}
+.rk{display:inline-block;min-width:44px;text-align:center;font-size:12px;font-weight:800;border-radius:999px;padding:1px 8px;margin-right:6px}
+.rk.p{background:rgba(255,207,90,.2);color:var(--acc2)}
+.rk.n{background:rgba(239,95,107,.18);color:#ef5f6b}
+.habbar{display:none;align-items:center;gap:8px;background:var(--card);border:1px solid var(--acc);border-radius:10px;padding:6px 10px;margin-bottom:8px;font-size:13px}
+.habbar.on{display:flex}
+.habbar .x{margin-left:auto;cursor:pointer;font-weight:700;padding:0 6px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:middle;margin:0 3px 0 6px}
+#pk{z-index:45}
 /* Carte */
 .mapbox{position:relative;height:60vh;min-height:320px;max-height:640px;border-radius:var(--r);border:1px solid var(--line);overflow:hidden;background:var(--mapbg)}
 :root{--mapbg:#0b2233;--grid:rgba(255,255,255,.07);--axis:rgba(255,255,255,.16);--reg:rgba(255,255,255,.28)}
@@ -370,7 +403,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     </div>
     <div class="card hi">
       <h3>Anubis, l'objectif du milieu de partie</h3>
-      <p>Artisanat 6, Minage 6, Transport 4, très rapide. Par élevage : <b>Penking + Bushi</b>.</p>
+      <p>Artisanat 6, Minage 6, Transport 4, très rapide. <span class="lk" data-pal="Anubis">Voir sa fiche et ses combinaisons 1.0 →</span></p>
     </div>
   </div>
 
@@ -428,20 +461,10 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       <p class="mut sp">Gâteau de base : 5 farine, 8 baies rouges, 7 lait, 8 œufs, 2 miel.</p>
     </div>
     <div class="card hi">
-      <h3>Combinaisons utiles</h3>
-      <table class="tbl">
-        <tr><td><b>Anubis</b></td><td>Penking + Bushi</td></tr>
-        <tr><td><b>Arsox</b></td><td>Penking + Direhowl</td></tr>
-        <tr><td><b>Azurobe</b></td><td>Mossanda + Surfent</td></tr>
-        <tr><td><b>Grizzbolt</b></td><td>Mossanda + Rayhound</td></tr>
-        <tr><td><b>Beegarde</b></td><td>Melpaca + Tanzee</td></tr>
-        <tr><td><b>Jormuntide Ignis</b></td><td>Blazehowl + Jormuntide</td></tr>
-        <tr><td><b>Orserk</b></td><td>Relaxaurus + Grizzbolt</td></tr>
-        <tr><td><b>Astegon</b></td><td>Cryolinx + Grizzbolt</td></tr>
-        <tr><td><b>Shadowbeak</b></td><td>Kitsun + Astegon</td></tr>
-        <tr><td><b>Bastigor</b></td><td>Frostallion + Anubis</td></tr>
-      </table>
-      <p class="mut sp">La 1.0 a changé beaucoup de combinaisons : méfie-toi des anciens tableaux.</p>
+      <h3>Combinaisons utiles (1.0)</h3>
+      <p class="mut">Parents les plus faciles à capturer, calculés sur la table du jeu. Touche un Pal pour toutes ses combinaisons.</p>
+      <div id="usefulBr" class="sp"><p class="mut">Chargement…</p></div>
+      <p class="mut sp">La 1.0 a changé beaucoup de combinaisons : les anciens tableaux (ex. Penking + Bushi → Anubis) sont faux.</p>
     </div>
     <div class="card">
       <h3>Transmettre les bons passifs</h3>
@@ -454,7 +477,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     </div>
     <div class="card tip">
       <h3>Mutation</h3>
-      <p>Petite chance d'œuf muté : meilleures stats + un passif exclusif (Immortalité, Idiosyncrasique, Babysitter, Blindé, Skymarcher).</p>
+      <p>Petite chance d'œuf muté : meilleures stats + un passif exclusif (Immortel, Anomalie, Baby-sitter, Blindage…). <span class="lk" data-goto="pals|Passifs|mut">Voir les passifs de mutation →</span></p>
     </div>
     <div class="card">
       <h3>Condensation & Âmes</h3>
@@ -515,12 +538,27 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
 <!-- ================= PALS ================= -->
 <div class="tab" id="t-pals">
-  <div class="pan" data-p="Paldeck">
-    <input class="inp" id="palQ" type="search" placeholder="Nom, métier, élément…" autocomplete="off">
-    <div class="filters" id="palF"></div>
-    <div class="cnt" id="palN"></div>
-    <div id="palList"></div>
-    <p class="mut">Sélection des Pals les plus utiles. Niveaux d'aptitude indiqués quand ils sont confirmés en 1.0 ; vérifie le détail dans le Paldeck du jeu.</p>
+  <div class="pan" data-p="Paldex">
+    <input class="inp" id="dexQ" type="search" placeholder="Nom, n°, élément, zone…" autocomplete="off">
+    <div class="filters" id="dexF"></div>
+    <div class="filters" id="dexW" style="padding-top:0"></div>
+    <div class="cnt" id="dexN"></div>
+    <div id="dexList"><p class="mut">Chargement du Paldex…</p></div>
+    <p class="mut sp">Données du jeu 1.0.5 : PalCalc (licence MIT), PalSphere (palsphere.app). Images : palworld.wiki.gg. Palworld et ses visuels © Pocketpair.</p>
+  </div>
+
+  <div class="pan" data-p="Reproduction">
+    <div class="seg" id="brSeg"><button data-m="ab">A + B</button><button data-m="get">Obtenir un Pal</button><button data-m="with">Avec un Pal</button></div>
+    <div id="brBody"><p class="mut">Chargement…</p></div>
+    <p class="mut sp">Table complète de la 1.0 : 44 850 combinaisons, calcul exact du jeu (puissance de reproduction + combinaisons spéciales).</p>
+  </div>
+
+  <div class="pan" data-p="Passifs">
+    <input class="inp" id="pasQ" type="search" placeholder="Nom ou effet (ex. vitesse, travail)…" autocomplete="off">
+    <div class="filters" id="pasF"></div>
+    <div class="cnt" id="pasN"></div>
+    <div id="pasList"><p class="mut">Chargement…</p></div>
+    <p class="mut sp">Noms et descriptions officiels du jeu en français. Rang : de −3 (malus) à 5 (meilleur).</p>
   </div>
 
   <div class="pan" data-p="Types">
@@ -593,47 +631,13 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     </div>
   </div>
 
-  <div class="pan" data-p="Passifs">
-    <div class="card">
-      <h3>⚔️ Combat</h3>
-      <table class="tbl">
-        <tr><td><b>Immortalité</b></td><td>Att. +15 %, régén. +100 %, vol de vie 5 % (mutation)</td></tr>
-        <tr><td><b>Légende</b></td><td>Att. +20 %, Déf. +20 %, vitesse +20 %</td></tr>
-        <tr><td><b>Idiosyncrasique</b></td><td>Déf. +50 %, régén., immunité poison/brûlure</td></tr>
-        <tr><td><b>Corps de diamant</b></td><td>Déf. +30 %, pas de recul</td></tr>
-        <tr><td><b>Dieu de la destruction</b> 🌳</td><td>Att. +40 %, Déf. +20 %, PV −50 %</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>🔨 Base</h3>
-      <table class="tbl">
-        <tr><td><b>Main du démon</b> 🌳</td><td>Vitesse de travail +90 %, moral −15 % plus vite</td></tr>
-        <tr><td><b>Maître du ranch</b></td><td>Ranch +2</td></tr>
-        <tr><td><b>Babysitter</b></td><td>Œufs et incubation +30 % (mutation)</td></tr>
-        <tr><td><b>Ermite sage</b> 🌳</td><td>Perte de moral −50 %, travail −20 %</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>🐎 Montures</h3>
-      <table class="tbl">
-        <tr><td><b>Swift / Runner / Nimble</b></td><td>Vitesse +30 / +20 / +10 % (cumulables)</td></tr>
-        <tr><td><b>Moteur éternel</b></td><td>Endurance max +75 %</td></tr>
-        <tr><td><b>Skymarcher</b></td><td>+2 sauts en monture (mutation)</td></tr>
-        <tr><td><b>Pied léger</b></td><td>+1 saut en monture</td></tr>
-      </table>
-      <p class="mut sp">🌳 = passif de l'Arbre-Monde (Pals éveillés de la région). Noms traduits : les noms anglais (Swift, Legend…) sont ceux des wikis.</p>
-    </div>
-    <div class="card tip">
-      <h3>Obtenir un passif</h3>
-      <p>Pals sauvages des régions 1.0, <b>élevage</b> (héritage), condenseur, certains marchands, œufs mutés.</p>
-    </div>
-  </div>
 </div>
 
 <!-- ================= CARTE ================= -->
 <div class="tab" id="t-carte">
   <div class="pan" data-p="Carte">
     <div class="filters" id="mapF" style="padding-top:0"></div>
+    <div class="habbar" id="habBar"></div>
     <div class="mapbox" id="mapbox">
       <svg id="map" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <g id="gImg"></g><g id="gGrid"></g><g id="gReg"></g><g id="gMk"></g>
@@ -729,7 +733,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v8 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v9 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><span class="ic">🏠</span>Accueil</button>
@@ -748,13 +752,29 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   <div class="bd" id="qRes"></div>
 </div>
 
+<div class="ov" id="sheet">
+  <div class="hd">
+    <button class="ib" id="shBack" aria-label="Retour">←</button>
+    <div id="shTitle" style="flex:1;font-weight:700;align-self:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+  </div>
+  <div class="bd" id="shBody"></div>
+</div>
+
+<div class="ov" id="pk">
+  <div class="hd">
+    <input class="inp" id="pkQ" type="search" placeholder="Chercher un Pal…" autocomplete="off">
+    <button class="ib" id="pkClose" aria-label="Fermer">✕</button>
+  </div>
+  <div class="bd" id="pkList"></div>
+</div>
+
 <button class="up" id="up" aria-label="Haut de page">↑</button>
 <div class="toast" id="toast"></div>
 
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "8";
+  var APP_VERSION = "9";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", guide:"Guide", boss:"Boss", pals:"Pals", carte:"Carte", fin:"Fin"};
 
@@ -810,6 +830,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     state.tab = tab; state.sub[tab] = sub; save();
     if(!keepScroll) window.scrollTo(0, 0);
     if(tab === "carte" && window.__mapShow) window.__mapShow();
+    if(tab === "pals") renderPalsTab();
+    if(tab === "guide" && sub === "Élevage") renderUseful();
   }
   document.querySelectorAll("#bnav button").forEach(function(b){
     b.addEventListener("click", function(){ go(b.dataset.t); });
@@ -976,45 +998,292 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     });
   }
 
-  /* ---------- Paldeck ---------- */
-  var palFilter = "all";
-  var FILTERS = [["all","Tous"],["c","⚔️ Combat"],["b","🔨 Base"],["m","🐎 Monture"],["r","🐄 Ranch"],["1","Début"],["2","Milieu"],["3","Fin"]]
-    .concat(Object.keys(EL).map(function(k){ return ["el:" + k, EL[k]]; }));
-  function palText(p){ return norm(p[0] + " " + p[1].map(function(k){ return EL[k]; }).join(" ") + " " + p[4] + " " + p[5] + " " + STAGE[p[3]]); }
-  function renderPals(){
-    var q = norm($("palQ").value.trim());
-    var list = PALS.filter(function(p){
-      if(palFilter.indexOf("el:") === 0){ if(p[1].indexOf(palFilter.slice(3)) === -1) return false; }
-      else if(/^[123]$/.test(palFilter)){ if(String(p[3]) !== palFilter) return false; }
-      else if(palFilter !== "all"){ if(p[2].indexOf(palFilter) === -1) return false; }
-      return !q || palText(p).indexOf(q) !== -1;
-    });
-    $("palN").textContent = list.length + " Pal" + (list.length > 1 ? "s" : "");
-    var box = $("palList"); box.innerHTML = "";
-    if(!list.length){ box.innerHTML = '<div class="card mut">Aucun résultat.</div>'; return; }
-    list.forEach(function(p){
-      var d = document.createElement("div");
-      d.className = "card pal";
-      d.innerHTML = '<span class="rl">' + p[2].split("").map(function(r){ return ROLE_IC[r]; }).join("") + '</span>' +
-        '<div class="nm">' + esc(p[0]) + ' <span class="mut">· ' + STAGE[p[3]] + '</span></div>' +
-        '<div>' + p[1].map(tag).join("") + '</div>' +
-        '<div class="sp">' + esc(p[4]) + '</div>' +
-        '<div class="mut">📍 ' + esc(p[5]) + '</div>';
-      box.appendChild(d);
+  /* ---------- Données complètes (Paldex, reproduction, passifs) ---------- */
+  var D = null, NP = 0, REV = null, BYN = {}, loadingD = null;
+  var WORK = [["Kindling","🔥","Allumage"],["Watering","💧","Arrosage"],["Planting","🌱","Plantation"],["GenerateElectricity","⚡","Électricité"],
+    ["Handiwork","🔨","Artisanat"],["Gathering","🧺","Récolte"],["Lumbering","🪓","Bûcheronnage"],["Mining","⛏️","Minage"],
+    ["MedicineProduction","💊","Médecine"],["Cooling","❄️","Refroidissement"],["Transporting","📦","Transport"],["Farming","🐄","Ranch"]];
+  var WK = {}; WORK.forEach(function(w){ WK[w[0]] = w; });
+  var TIPS = {}; PALS.forEach(function(p){ TIPS[p[0]] = p[4]; });
+  function loadData(){
+    if(D) return Promise.resolve(D);
+    if(loadingD) return loadingD;
+    loadingD = fetch("data.json").then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(d){
+      D = d; NP = d.pals.length;
+      d.pals.forEach(function(p, i){ p.i = i; BYN[norm(p.n)] = i; BYN[norm(p.f)] = i; });
+      return d;
+    }).catch(function(e){ loadingD = null; throw e; });
+    return loadingD;
+  }
+  function dig(c){ return c < 58 ? c - 48 : c - 87; }
+  function child(i, j){
+    if(i > j){ var t = i; i = j; j = t; }
+    var k = i * NP - i * (i - 1) / 2 + (j - i), a = D.br.charCodeAt(2 * k), b = D.br.charCodeAt(2 * k + 1);
+    if(a === 122 && b === 122) return -1;
+    return dig(a) * 36 + dig(b);
+  }
+  function specials(i, j){ return D.brs.filter(function(s){ return (s[0] === i && s[2] === j) || (s[0] === j && s[2] === i); }); }
+  function rev(){
+    if(REV) return REV;
+    REV = []; for(var c = 0; c < NP; c++) REV.push([]);
+    for(var i = 0; i < NP; i++) for(var j = i; j < NP; j++){ var c2 = child(i, j); if(c2 >= 0) REV[c2].push([i, j]); }
+    D.brs.forEach(function(s){ REV[s[4]].push([s[0], s[2], s[1], s[3]]); });
+    return REV;
+  }
+  function cost(i){ var p = D.pals[i]; return p.slv ? p.slv[0] : (p.note ? 60 : 90); }
+  function easy(pairs){ return pairs.slice().sort(function(a, b){ return (Math.max(cost(a[0]), cost(a[1])) - Math.max(cost(b[0]), cost(b[1]))) || (cost(a[0]) + cost(a[1]) - cost(b[0]) - cost(b[1])); }); }
+  function pimg(p, cls){
+    var src = "https://palworld.wiki.gg/images/" + encodeURIComponent(p.n.replace(/ /g, "_")) + "_icon.png";
+    return '<div class="' + (cls || "im") + '"><img loading="lazy" referrerpolicy="no-referrer" alt="" src="' + src + '" onerror="this.parentNode.textContent=\'' + esc(p.f.charAt(0)) + '\'"></div>';
+  }
+  function wkLine(p){ return WORK.filter(function(w){ return p.w[w[0]]; }).map(function(w){ return w[1] + p.w[w[0]]; }).join(" "); }
+  function obtain(p){
+    if(p.z && p.z.length) return p.z.join(", ") + (p.slv ? " · niv. " + p.slv[0] + (p.slv[1] !== p.slv[0] ? "–" + p.slv[1] : "") : "");
+    if(p.note) return p.note;
+    return "Élevage ou lieu non documenté ici";
+  }
+  function palLink(i){ var p = D.pals[i]; return '<a data-pi="' + i + '">' + esc(p.f) + '</a>'; }
+
+  /* Fiche d'un Pal */
+  var sheetStack = [];
+  function openPal(i, noPush){
+    if(typeof i === "string"){ var k = BYN[norm(i)]; if(k === undefined) return; i = k; }
+    loadData().then(function(){
+      if(!noPush){ sheetStack.push(i); try { history.pushState({sheet:sheetStack.length}, ""); } catch(e){} }
+      renderSheet(i); $("sheet").classList.add("on"); $("shBody").scrollTop = 0;
     });
   }
-  FILTERS.forEach(function(f){
-    var b = document.createElement("button");
-    b.textContent = f[1]; b.dataset.f = f[0];
-    if(f[0] === "all") b.className = "on";
-    b.addEventListener("click", function(){
-      palFilter = f[0];
-      $("palF").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.f === palFilter); });
-      renderPals();
-    });
-    $("palF").appendChild(b);
+  function closeSheetUI(){ $("sheet").classList.remove("on"); sheetStack = []; }
+  window.addEventListener("popstate", function(){
+    if(!$("sheet").classList.contains("on")) return;
+    sheetStack.pop();
+    if(sheetStack.length) renderSheet(sheetStack[sheetStack.length - 1]); else closeSheetUI();
   });
-  $("palQ").addEventListener("input", renderPals);
+  $("shBack").addEventListener("click", function(){ if(sheetStack.length) history.back(); else closeSheetUI(); });
+  var pairShow = 30;
+  function renderSheet(i){
+    var p = D.pals[i]; pairShow = 30;
+    $("shTitle").textContent = "#" + p.no + " " + p.f;
+    var h = '<div class="big">' + pimg(p) + '<div><h2>' + esc(p.f) + '</h2>' +
+      (p.f !== p.n ? '<div class="mut">' + esc(p.n) + '</div>' : '') +
+      '<div class="sp">' + p.e.map(tag).join("") + (p.noc ? '<span class="tag">🌙 Nocturne</span>' : '') + (p.sad ? '<span class="tag">🐎 Monture</span>' : '') + '</div></div></div>';
+    if(TIPS[p.n]) h += '<div class="card tip"><b>💡 Conseil</b><div>' + esc(TIPS[p.n]) + '</div></div>';
+    h += '<div class="card"><h3>📍 Où le trouver</h3>';
+    if(p.z && p.z.length){
+      h += '<p>' + esc(p.z.join(", ")) + '</p>';
+      if(p.slv) h += '<p class="mut">Niveau sauvage : ' + p.slv[0] + (p.slv[1] !== p.slv[0] ? ' à ' + p.slv[1] : '') + '</p>';
+      var dn = (p.sp.d.length ? "jour" : "") + (p.sp.d.length && p.sp.n.length ? " et " : "") + (p.sp.n.length ? "nuit" : "");
+      h += '<p class="mut">Apparaît : ' + dn + '</p><div class="sp"><button class="btn" id="shMap">🗺️ Voir son habitat sur la carte</button></div>';
+    }
+    if(p.note) h += '<p' + (p.z ? ' class="sp"' : '') + '>' + esc(p.note) + '</p>';
+    if(!p.z && !p.note) h += '<p class="mut">Pas d\'apparition sauvage documentée : à obtenir par élevage (voir plus bas) ou dans un lieu spécial.</p>';
+    h += '</div>';
+    var ws = WORK.filter(function(w){ return p.w[w[0]]; });
+    h += '<div class="card"><h3>🔨 Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div>' + w[1] + ' ' + w[2] + ' <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude de travail.</p>') +
+      '<p class="mut sp">PV ' + p.s[0] + ' · Attaque ' + p.s[1] + ' · Défense ' + p.s[2] + ' · Appétit ' + p.food + '/10 · Rareté ' + p.r + '</p></div>';
+    if(p.pt) h += '<div class="card"><h3>🤝 Compétence de partenaire</h3><p><b>' + esc(p.pt) + '</b></p><p class="mut">' + esc(p.pd) + '</p><p class="mut sp">Texte en anglais (non traduit dans les données).</p></div>';
+    if(p.ip && p.ip.length){
+      var ips = p.ip.map(function(id){ var x = D.pas.filter(function(q){ return q.id === id; })[0]; return x ? '<b>' + esc(x.f) + '</b> <span class="mut">' + esc(x.d.replace(/\n/g, " · ")) + '</span>' : esc(id); });
+      h += '<div class="card"><h3>✨ Passifs innés</h3><p>' + ips.join("<br>") + '</p></div>';
+    }
+    if(p.sk.length) h += '<div class="card"><h3>⚔️ Attaques</h3><table class="tbl">' + p.sk.map(function(s){ return '<tr><td>' + tag(s[1]) + '</td><td><b>' + esc(s[0]) + '</b></td><td class="mut">niv. ' + s[2] + '</td><td class="mut">' + (s[3] ? 'puiss. ' + s[3] : '') + '</td></tr>'; }).join("") + '</table></div>';
+    var pairs = easy(rev()[i]);
+    h += '<div class="card"><h3>🥚 Pour l\'obtenir par élevage</h3><p class="mut">' + pairs.length + ' combinaison' + (pairs.length > 1 ? 's' : '') + ', les plus faciles d\'abord.</p>' +
+      (pairs.length > 8 ? '<input class="inp sp" id="shPq" type="search" placeholder="Filtrer par parent…" autocomplete="off">' : '') +
+      '<div id="shPairs" class="sp"></div></div>';
+    h += '<div class="row2"><button class="btn ghost" id="shWith">Ses enfants avec chaque Pal</button>' +
+      '<a class="btn ghost" style="text-decoration:none" target="_blank" rel="noopener" href="https://palworld.wiki.gg/wiki/' + encodeURIComponent(p.n.replace(/ /g, "_")) + '">Wiki ↗</a></div>';
+    $("shBody").innerHTML = h;
+    renderPairs(i, pairs);
+    var pq = $("shPq"); if(pq) pq.addEventListener("input", function(){ pairShow = 30; renderPairs(i, pairs); });
+    var sm = $("shMap"); if(sm) sm.addEventListener("click", function(){ showHabitat(i); });
+    $("shWith").addEventListener("click", function(){ state.br = state.br || {}; state.br.m = "with"; state.br.w = i; save(); history.go(-sheetStack.length); closeSheetUI(); go("pals", "Reproduction"); renderBr(); });
+  }
+  function pairHTML(pr){
+    var a = D.pals[pr[0]], b = D.pals[pr[1]];
+    var g = pr[2] ? ' <span class="tag">' + (pr[2] === "F" ? "♀" : "♂") + ' / ' + (pr[3] === "F" ? "♀" : "♂") + '</span>' : '';
+    var lv = Math.max(cost(pr[0]), cost(pr[1]));
+    return '<div class="pair">' + palLink(pr[0]) + (pr[2] ? (pr[2] === "F" ? "♀" : "♂") : "") + ' + ' + palLink(pr[1]) + (pr[3] ? (pr[3] === "F" ? "♀" : "♂") : "") + g + '<span class="mut">' + (lv < 60 ? 'niv. ' + lv + '+' : lv === 60 ? 'spécial' : 'élevage') + '</span></div>';
+  }
+  function renderPairs(i, pairs){
+    var q = $("shPq") ? norm($("shPq").value.trim()) : "";
+    var list = q ? pairs.filter(function(pr){ return (norm(D.pals[pr[0]].f + " " + D.pals[pr[1]].f + " " + D.pals[pr[0]].n + " " + D.pals[pr[1]].n)).indexOf(q) !== -1; }) : pairs;
+    var box = $("shPairs");
+    box.innerHTML = list.length ? list.slice(0, pairShow).map(pairHTML).join("") : '<p class="mut">Aucune combinaison.</p>';
+    if(list.length > pairShow){
+      var b = document.createElement("button"); b.className = "btn ghost sp"; b.textContent = "Afficher plus (" + (list.length - pairShow) + ")";
+      b.addEventListener("click", function(){ pairShow += 60; renderPairs(i, pairs); }); box.appendChild(b);
+    }
+  }
+  document.addEventListener("click", function(e){
+    var t = e.target.closest ? e.target.closest("[data-pi],[data-pal],[data-goto]") : null;
+    if(!t) return;
+    if(t.hasAttribute("data-pi")){ e.preventDefault(); openPal(+t.getAttribute("data-pi")); }
+    else if(t.hasAttribute("data-pal")){ e.preventDefault(); openPal(t.getAttribute("data-pal")); }
+    else { var g = t.getAttribute("data-goto").split("|"); go(g[0], g[1]); if(g[2] === "mut"){ pasFilter = "mut"; renderPas(); } }
+  });
+
+  /* Liste du Paldex */
+  var dexFilter = "all", dexWork = null;
+  var DEXF = [["all","Tous"],["tip","⭐ Conseillés"],["sad","🐎 Montures"],["noc","🌙 Nocturnes"],["tree","🌳 Arbre-Monde"],["breed","🥚 Élevage seul"]]
+    .concat(Object.keys(EL).map(function(k){ return ["el:" + k, EL[k]]; }));
+  function dexText(p){ return norm("#" + p.no + " " + p.f + " " + p.n + " " + p.e.map(function(k){ return EL[k]; }).join(" ") + " " + (p.z || []).join(" ") + " " + (p.note || "")); }
+  function renderDex(){
+    if(!D){ loadData().then(renderDex).catch(function(){ $("dexList").innerHTML = '<div class="card warn">Impossible de charger les données. Vérifie ta connexion puis rouvre l\'onglet.</div>'; }); return; }
+    var q = norm($("dexQ").value.trim());
+    var list = D.pals.filter(function(p){
+      if(dexFilter === "tip" && !TIPS[p.n]) return false;
+      if(dexFilter === "sad" && !p.sad) return false;
+      if(dexFilter === "noc" && !p.noc) return false;
+      if(dexFilter === "tree" && !(p.note && p.note.indexOf("Arbre-Monde") !== -1)) return false;
+      if(dexFilter === "breed" && (p.z || p.note)) return false;
+      if(dexFilter.indexOf("el:") === 0 && p.e.indexOf(dexFilter.slice(3)) === -1) return false;
+      if(dexWork && !p.w[dexWork]) return false;
+      return !q || dexText(p).indexOf(q) !== -1;
+    });
+    if(dexWork) list.sort(function(a, b){ return (b.w[dexWork] - a.w[dexWork]) || (cost(a.i) - cost(b.i)); });
+    $("dexN").textContent = list.length + " Pal" + (list.length > 1 ? "s" : "") + (dexWork ? " · triés par " + WK[dexWork][2].toLowerCase() : "");
+    var box = $("dexList"), html = [];
+    list.forEach(function(p){
+      html.push('<button class="dx" data-pi="' + p.i + '">' + pimg(p) + '<div class="tx"><div class="nm"><span class="no">#' + p.no + '</span>' + esc(p.f) +
+        (p.noc ? ' 🌙' : '') + (p.sad ? ' 🐎' : '') + '</div><div>' + p.e.map(tag).join("") + '</div><div class="wk">' + (wkLine(p) || '—') + ' · ' + esc(obtain(p)) + '</div></div>' +
+        (dexWork ? '<div class="lvb">' + p.w[dexWork] + '</div>' : '') + '</button>');
+    });
+    box.innerHTML = html.length ? html.join("") : '<div class="card mut">Aucun résultat.</div>';
+  }
+  DEXF.forEach(function(f){
+    var b = document.createElement("button"); b.textContent = f[1]; b.dataset.f = f[0]; if(f[0] === "all") b.className = "on";
+    b.addEventListener("click", function(){ dexFilter = f[0]; $("dexF").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.f === dexFilter); }); renderDex(); });
+    $("dexF").appendChild(b);
+  });
+  WORK.forEach(function(w){
+    var b = document.createElement("button"); b.textContent = w[1] + " " + w[2]; b.dataset.w = w[0];
+    b.addEventListener("click", function(){ dexWork = dexWork === w[0] ? null : w[0]; $("dexW").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.w === dexWork); }); renderDex(); });
+    $("dexW").appendChild(b);
+  });
+  $("dexQ").addEventListener("input", renderDex);
+
+  /* Sélecteur de Pal */
+  var pkCb = null;
+  function pickPal(cb){
+    loadData().then(function(){ pkCb = cb; $("pk").classList.add("on"); $("pkQ").value = ""; renderPk(); setTimeout(function(){ $("pkQ").focus(); }, 50); });
+  }
+  function renderPk(){
+    var q = norm($("pkQ").value.trim());
+    var list = D.pals.filter(function(p){ return !q || dexText(p).indexOf(q) !== -1; });
+    $("pkList").innerHTML = list.map(function(p){ return '<button class="dx" data-pk="' + p.i + '">' + pimg(p) + '<div class="tx"><div class="nm"><span class="no">#' + p.no + '</span>' + esc(p.f) + '</div><div>' + p.e.map(tag).join("") + '</div></div></button>'; }).join("") || '<p class="mut">Aucun résultat.</p>';
+  }
+  $("pkQ").addEventListener("input", renderPk);
+  $("pkClose").addEventListener("click", function(){ $("pk").classList.remove("on"); });
+  $("pkList").addEventListener("click", function(e){
+    var b = e.target.closest("[data-pk]"); if(!b) return;
+    $("pk").classList.remove("on"); if(pkCb) pkCb(+b.getAttribute("data-pk"));
+  });
+
+  /* Reproduction */
+  function pkBtn(id, label, i){
+    var p = i != null && D.pals[i];
+    return '<button class="pkb" id="' + id + '">' + (p ? pimg(p) : '<div class="im">?</div>') + '<div><div class="mut" style="font-size:12px">' + label + '</div><b>' + (p ? esc(p.f) : 'Choisir…') + '</b></div></button>';
+  }
+  var brShow = 40;
+  function renderBr(){
+    if(!D){ loadData().then(renderBr).catch(function(){ $("brBody").innerHTML = '<div class="card warn">Données indisponibles.</div>'; }); return; }
+    var b = state.br || (state.br = {m:"ab"}); if(!b.m) b.m = "ab";
+    $("brSeg").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.m === b.m); });
+    var h = '';
+    if(b.m === "ab"){
+      h = '<div class="card">' + pkBtn("brA", "Parent A", b.a) + '<div style="text-align:center;font-weight:800;margin:-2px 0 6px">+</div>' + pkBtn("brB", "Parent B", b.b) + '<div id="brRes" class="sp"></div></div>';
+    } else if(b.m === "get"){
+      h = '<div class="card">' + pkBtn("brG", "Pal à obtenir", b.g) + '<div id="brRes"></div></div>';
+    } else {
+      h = '<div class="card">' + pkBtn("brW", "Avec ce Pal", b.w) + '<div id="brRes"></div></div>';
+    }
+    $("brBody").innerHTML = h;
+    function set(k){ return function(){ pickPal(function(i){ b[k] = i; save(); brShow = 40; renderBr(); }); }; }
+    if($("brA")){ $("brA").addEventListener("click", set("a")); $("brB").addEventListener("click", set("b")); }
+    if($("brG")) $("brG").addEventListener("click", set("g"));
+    if($("brW")) $("brW").addEventListener("click", set("w"));
+    var r = $("brRes");
+    if(b.m === "ab" && b.a != null && b.b != null){
+      var c = child(b.a, b.b), sp = specials(b.a, b.b);
+      if(c >= 0) r.innerHTML = '<div class="mut">Résultat</div><button class="dx" data-pi="' + c + '">' + pimg(D.pals[c]) + '<div class="tx"><div class="nm"><span class="no">#' + D.pals[c].no + '</span>' + esc(D.pals[c].f) + '</div><div>' + D.pals[c].e.map(tag).join("") + '</div><div class="wk">' + esc(obtain(D.pals[c])) + '</div></div></button>';
+      else if(sp.length) r.innerHTML = '<div class="mut">Le résultat dépend du sexe des parents :</div>' + sp.map(function(s){ return '<div class="pair">' + esc(D.pals[s[0]].f) + (s[1] === "F" ? " ♀" : " ♂") + ' + ' + esc(D.pals[s[2]].f) + (s[3] === "F" ? " ♀" : " ♂") + ' → ' + palLink(s[4]) + '</div>'; }).join("");
+    } else if(b.m === "get" && b.g != null){
+      var pairs = easy(rev()[b.g]);
+      r.innerHTML = '<p class="mut sp">' + pairs.length + ' combinaison' + (pairs.length > 1 ? 's' : '') + ', les plus faciles d\'abord (niveau sauvage des parents).</p><input class="inp sp" id="brQ" type="search" placeholder="Filtrer par parent que tu as…" autocomplete="off"><div id="brL" class="sp"></div>';
+      var draw = function(){
+        var q = norm($("brQ").value.trim());
+        var list = q ? pairs.filter(function(pr){ return norm(D.pals[pr[0]].f + " " + D.pals[pr[1]].f + " " + D.pals[pr[0]].n + " " + D.pals[pr[1]].n).indexOf(q) !== -1; }) : pairs;
+        $("brL").innerHTML = list.slice(0, brShow).map(pairHTML).join("") || '<p class="mut">Aucune combinaison.</p>';
+        if(list.length > brShow){ var m = document.createElement("button"); m.className = "btn ghost sp"; m.textContent = "Afficher plus (" + (list.length - brShow) + ")"; m.addEventListener("click", function(){ brShow += 80; draw(); }); $("brL").appendChild(m); }
+      };
+      $("brQ").addEventListener("input", function(){ brShow = 40; draw(); }); draw();
+    } else if(b.m === "with" && b.w != null){
+      r.innerHTML = '<input class="inp sp" id="brQ" type="search" placeholder="Filtrer (partenaire ou enfant)…" autocomplete="off"><div id="brL" class="sp"></div>';
+      var rows = [];
+      for(var j = 0; j < NP; j++){
+        var cc = child(b.w, j);
+        if(cc >= 0) rows.push([j, cc]);
+        else specials(b.w, j).forEach(function(s){ rows.push([j, s[4], s]); });
+      }
+      rows.sort(function(x, y){ return D.pals[x[1]].f.localeCompare(D.pals[y[1]].f, "fr") || D.pals[x[0]].f.localeCompare(D.pals[y[0]].f, "fr"); });
+      var draw2 = function(){
+        var q = norm($("brQ").value.trim());
+        var list = q ? rows.filter(function(x){ return norm(D.pals[x[0]].f + " " + D.pals[x[1]].f + " " + D.pals[x[0]].n + " " + D.pals[x[1]].n).indexOf(q) !== -1; }) : rows;
+        $("brL").innerHTML = list.slice(0, brShow).map(function(x){ return '<div class="pair">+ ' + palLink(x[0]) + (x[2] ? ' <span class="tag">selon sexe</span>' : '') + ' → <b>' + palLink(x[1]) + '</b></div>'; }).join("") || '<p class="mut">Aucun résultat.</p>';
+        if(list.length > brShow){ var m = document.createElement("button"); m.className = "btn ghost sp"; m.textContent = "Afficher plus (" + (list.length - brShow) + ")"; m.addEventListener("click", function(){ brShow += 100; draw2(); }); $("brL").appendChild(m); }
+      };
+      $("brQ").addEventListener("input", function(){ brShow = 40; draw2(); }); draw2();
+    }
+  }
+  $("brSeg").querySelectorAll("button").forEach(function(x){
+    x.addEventListener("click", function(){ state.br = state.br || {}; state.br.m = x.dataset.m; save(); brShow = 40; renderBr(); });
+  });
+  var USEFUL = ["Anubis","Arsox","Azurobe","Beegarde","Broncherry","Jormuntide Ignis","Astegon","Knocklem Ignis","Frostallion Noct","Celesdir Noct","Selyne","Solenne"];
+  function renderUseful(){
+    if(!D){ loadData().then(renderUseful).catch(function(){}); return; }
+    $("usefulBr").innerHTML = USEFUL.map(function(n){
+      var i = BYN[norm(n)]; if(i === undefined) return "";
+      var pr = easy(rev()[i]).filter(function(x){ return !(x[0] === i && x[1] === i); })[0];
+      return '<div class="pair"><b>' + palLink(i) + '</b> ← ' + (pr ? esc(D.pals[pr[0]].f) + ' + ' + esc(D.pals[pr[1]].f) : '<span class="mut">uniquement entre eux</span>') + '</div>';
+    }).join("");
+  }
+
+  /* Passifs */
+  var pasFilter = "all";
+  var PASF = [["all","Tous"],["pos","▲ Bonus"],["neg","▼ Malus"],["combat","⚔️ Combat"],["work","🔨 Travail"],["res","🛡️ Résistances"],["mut","🧬 Mutation"],["tree","🌳 Arbre-Monde"],["surg","🩺 Chirurgie"]];
+  function renderPas(){
+    if(!D){ loadData().then(renderPas).catch(function(){ $("pasList").innerHTML = '<div class="card warn">Données indisponibles.</div>'; }); return; }
+    $("pasF").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.f === pasFilter); });
+    var q = norm($("pasQ").value.trim());
+    var list = D.pas.filter(function(p){
+      var f = pasFilter;
+      if(f === "pos" && p.r <= 0) return false;
+      if(f === "neg" && p.r >= 0) return false;
+      if(f === "combat" && p.k.indexOf("combat") === -1 && p.k.indexOf("legendary") === -1) return false;
+      if(f === "work" && p.k.indexOf("work") === -1) return false;
+      if(f === "res" && p.k.indexOf("resistance") === -1) return false;
+      if(f === "mut" && p.a.indexOf("mutation") === -1) return false;
+      if(f === "tree" && p.a.indexOf("worldTree") === -1) return false;
+      if(f === "surg" && !p.su) return false;
+      return !q || norm(p.f + " " + p.n + " " + p.d).indexOf(q) !== -1;
+    });
+    $("pasN").textContent = list.length + " passif" + (list.length > 1 ? "s" : "");
+    $("pasList").innerHTML = list.map(function(p){
+      var rk = p.r > 0 ? '<span class="rk p">' + "▲".repeat(Math.min(p.r, 5)) + '</span>' : '<span class="rk n">' + "▼".repeat(Math.min(-p.r, 3)) + '</span>';
+      var tags = (p.a.indexOf("mutation") !== -1 ? '<span class="tag">🧬 Mutation</span>' : '') + (p.a.indexOf("worldTree") !== -1 ? '<span class="tag">🌳 Arbre-Monde</span>' : '') + (p.su ? '<span class="tag">🩺 Chirurgie</span>' : '');
+      return '<div class="card" style="padding:12px 14px"><div>' + rk + '<b>' + esc(p.f) + '</b>' + (p.f !== p.n ? ' <span class="mut">· ' + esc(p.n) + '</span>' : '') + '</div>' +
+        '<div class="sp">' + esc(p.d).replace(/\n/g, "<br>") + '</div>' + (tags ? '<div class="sp">' + tags + '</div>' : '') +
+        (p.p.length ? '<div class="mut sp">Inné chez : ' + p.p.map(function(n){ var i = BYN[norm(n)]; return i === undefined ? esc(n) : palLink(i); }).join(", ") + '</div>' : '') + '</div>';
+    }).join("") || '<div class="card mut">Aucun résultat.</div>';
+  }
+  PASF.forEach(function(f){
+    var b = document.createElement("button"); b.textContent = f[1]; b.dataset.f = f[0];
+    b.addEventListener("click", function(){ pasFilter = f[0]; renderPas(); });
+    $("pasF").appendChild(b);
+  });
+  $("pasQ").addEventListener("input", renderPas);
+  function renderPalsTab(){ renderDex(); renderBr(); renderPas(); }
 
   /* ---------- Types ---------- */
   var STRONG = {fire:["grass","ice"], water:["fire"], elec:["water"], ground:["elec"], grass:["ground"], ice:["dragon"], dragon:["dark"], dark:["neutral"], neutral:[]};
@@ -1030,9 +1299,12 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     var w = weakTo(k), s = STRONG[k];
     $("rWeak").innerHTML = w.length ? w.map(tag).join("") : '<span class="mut">—</span>';
     $("rStrong").innerHTML = s.length ? s.map(tag).join("") : '<span class="mut">rien</span>';
-    var sug = PALS.filter(function(p){ return p[2].indexOf("c") !== -1 && p[1].some(function(e){ return w.indexOf(e) !== -1; }); })
-      .map(function(p){ return p[0]; });
-    $("rPals").innerHTML = sug.length ? '<b>Pals de combat conseillés :</b> ' + esc(sug.join(", ")) : "";
+    var sug = PALS.filter(function(p){
+      var els = p[1];
+      if(D){ var i = BYN[norm(p[0])]; if(i !== undefined) els = D.pals[i].e; }
+      return p[2].indexOf("c") !== -1 && els.some(function(e){ return w.indexOf(e) !== -1; });
+    }).map(function(p){ var i = D ? BYN[norm(p[0])] : undefined; return i === undefined ? esc(p[0]) : palLink(i); });
+    $("rPals").innerHTML = sug.length ? '<b>Pals de combat conseillés :</b> ' + sug.join(", ") : "";
     state.type = k; save();
   }
 
@@ -1070,7 +1342,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     var hits = [];
     document.querySelectorAll(".tab .pan").forEach(function(pan){
       var tab = pan.closest(".tab").id.slice(2);
-      if(tab === "pals" && pan.dataset.p === "Paldeck") return;
+      if(tab === "pals" && pan.dataset.p !== "Types" && pan.dataset.p !== "Montures") return;
       pan.querySelectorAll(".card, .boss").forEach(function(card){
         var t = card.textContent.replace(/\s+/g, " ").trim();
         if(norm(t).indexOf(q) !== -1){
@@ -1079,9 +1351,14 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         }
       });
     });
-    PALS.forEach(function(p){
-      if(palText(p).indexOf(q) !== -1) hits.push({tab:"pals", sub:"Paldeck", pal:p[0], title:p[0], text:p[4] + " · " + p[5]});
-    });
+    if(D){
+      D.pals.forEach(function(p){
+        if(norm(p.f + " " + p.n + " #" + p.no).indexOf(q) !== -1) hits.push({tab:"pals", sub:"Paldex", pi:p.i, title:"🐾 " + p.f, text:"#" + p.no + " · " + obtain(p)});
+      });
+      D.pas.forEach(function(p){
+        if(norm(p.f + " " + p.n).indexOf(q) !== -1) hits.push({tab:"pals", sub:"Passifs", pas:p.f, title:"✨ " + p.f, text:p.d.replace(/\n/g, " · ")});
+      });
+    }
     mapPoints().forEach(function(p){
       if(norm(p.n + " " + p.d).indexOf(q) !== -1) hits.push({tab:"carte", sub:"Carte", mp:p.id, title:"🗺️ " + p.n, text:p.d + " · " + p.x + ", " + p.y});
     });
@@ -1092,7 +1369,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       b.innerHTML = '<div class="w">' + TABS[h.tab] + ' › ' + esc(h.sub) + '</div><div><b>' + esc(h.title) + '</b></div><div class="x">' + snippet(h.text, q) + '</div>';
       b.addEventListener("click", function(){
         closeSearch();
-        if(h.pal){ go("pals", "Paldeck"); $("palQ").value = h.pal; renderPals(); return; }
+        if(h.pi != null){ openPal(h.pi); return; }
+        if(h.pas){ go("pals", "Passifs"); pasFilter = "all"; $("pasQ").value = h.pas; renderPas(); return; }
         if(h.mp){ focusPoint(h.mp); return; }
         go(h.tab, h.sub, true);
         setTimeout(function(){
@@ -1263,10 +1541,12 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     if(!bs) REGIONS.forEach(function(r){
       gr.appendChild(el("text", {x:r[1], y:-r[2], "text-anchor":"middle", "font-size":13*k, "font-weight":700, fill:"var(--reg)", "letter-spacing":1*k}, r[0].toUpperCase()));
     });
-    var showLabel = vb.w < 1100;
+    drawHabitat(gr, k);
+    var habOn = state.hab != null && !!D && !!D.pals[state.hab] && !!D.pals[state.hab].sp;
+    var showLabel = vb.w < 1100 && !habOn;
     mapPoints().forEach(function(p){
       if(!state.mapF[p.cat]) return;
-      var dim = p.lv && p.lv > state.lvl + 5;
+      var dim = (p.lv && p.lv > state.lvl + 5) || (habOn && selId !== p.id);
       var done = p.boss && state.boss[p.boss.id];
       var g = el("g", {"class":"mk" + (dim ? " dim" : "") + (selId === p.id ? " sel" : ""), "data-id":p.id, transform:"translate(" + p.x + "," + (-p.y) + ")"});
       g.appendChild(el("circle", {r:13*k, fill:"transparent"}));
@@ -1290,16 +1570,16 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         '<label class="chk" style="border:none;padding-bottom:0"><input type="checkbox" id="mBoss"' + (state.boss[b.id] ? " checked" : "") + '><div><b>Vaincu</b></div></label>';
     }
     var palName = p.cat === "legend" ? p.n.split(" & ")[0] : p.n;
-    var inDex = PALS.some(function(x){ return x[0] === palName; });
+    var inDex = !!D && BYN[norm(palName)] !== undefined;
     var acts = '';
-    if((p.cat === "alpha" || p.cat === "legend") && inDex) acts += '<button class="btn ghost" id="mDex">Voir dans le Paldeck</button> ';
+    if((p.cat === "alpha" || p.cat === "legend") && inDex) acts += '<button class="btn ghost" id="mDex">Voir sa fiche</button> ';
     if(p.cat === "pin") acts += '<button class="btn ghost" id="mDel">Supprimer</button>';
     if(acts) h += '<div class="sp row2">' + acts + '</div>';
     $("mapInfo").innerHTML = h;
     var mb = $("mBoss");
     if(mb) mb.addEventListener("change", function(e){ state.boss[p.boss.id] = e.target.checked; save(); renderAll(); drawMarkers(); });
     var md = $("mDex");
-    if(md) md.addEventListener("click", function(){ go("pals", "Paldeck"); $("palQ").value = palName; renderPals(); });
+    if(md) md.addEventListener("click", function(){ openPal(palName); });
     var mx = $("mDel");
     if(mx) mx.addEventListener("click", function(){ delete state.pins[p.pk]; save(); selId = null; drawMarkers(); renderPins(); resetInfo(); toast("Point supprimé"); });
   }
@@ -1536,10 +1816,40 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       state.bg = null; calib = null; save(); renderCalbar(); renderBgCard(); drawBg(); drawMarkers(); fit(); toast(EMB ? "Carte intégrée rétablie" : "Image supprimée");
     });
   }
+  /* Habitat d'un Pal */
+  function drawHabitat(g, k){
+    var bar = $("habBar");
+    if(state.hab == null || !D || !D.pals[state.hab] || !D.pals[state.hab].sp){ bar.classList.remove("on"); return; }
+    var p = D.pals[state.hab], C = D.cell, r = C * 0.5;
+    bar.innerHTML = '🐾 Habitat : <b>' + esc(p.f) + '</b>' + (p.sp.d.length ? '<span class="dot" style="background:#ffcf5a"></span>jour' : '') + (p.sp.n.length ? '<span class="dot" style="background:#8fb4ff"></span>nuit' : '') + '<span class="x" id="habX">✕</span>';
+    bar.classList.add("on");
+    $("habX").onclick = function(){ state.hab = null; save(); drawMarkers(); };
+    [["n","#8fb4ff"],["d","#ffcf5a"]].forEach(function(t){
+      var a = p.sp[t[0]];
+      for(var m = 0; m < a.length; m += 2){
+        g.appendChild(el("circle", {cx:a[m] * C, cy:-a[m + 1] * C, r:r, fill:t[1], "fill-opacity":.42, stroke:t[1], "stroke-opacity":.9, "stroke-width":1, "vector-effect":"non-scaling-stroke"}));
+      }
+    });
+  }
+  function showHabitat(i){
+    state.hab = i; save();
+    if(sheetStack.length){ history.go(-sheetStack.length); }
+    closeSheetUI();
+    go("carte");
+    var p = D.pals[i], C = D.cell, xs = [], ys = [];
+    ["d","n"].forEach(function(t){ var a = p.sp[t]; for(var m = 0; m < a.length; m += 2){ xs.push(a[m] * C); ys.push(a[m + 1] * C); } });
+    if(xs.length){
+      var pad = 260;
+      fitBox({x0:Math.min.apply(null, xs) - pad, x1:Math.max.apply(null, xs) + pad, y0:Math.min.apply(null, ys) - pad, y1:Math.max.apply(null, ys) + pad});
+    }
+    drawMarkers();
+    $("mapbox").scrollIntoView({block:"start"});
+  }
   window.__mapShow = function(){
     if(!mapReady){ drawGrid(); renderPins(); renderBgCard(); loadStoredBg(); mapReady = true; }
     if(!vb) fit(); else applyVB(true);
     drawBg();
+    if(state.hab != null && !D) loadData().then(function(){ drawMarkers(); }).catch(function(){});
   };
 
   /* ---------- Bouton haut de page ---------- */
@@ -1554,7 +1864,6 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     renderNext();
   }
   renderAll();
-  renderPals();
   pick(state.type && EL[state.type] ? state.type : "fire");
   if(state.tab && !TABS[state.tab]) state.tab = "accueil";
   go(state.tab || "accueil");
