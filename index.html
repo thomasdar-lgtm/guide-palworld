@@ -729,7 +729,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v7 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v8 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><span class="ic">🏠</span>Accueil</button>
@@ -754,7 +754,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "7";
+  var APP_VERSION = "8";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", guide:"Guide", boss:"Boss", pals:"Pals", carte:"Carte", fin:"Fin"};
 
@@ -1221,7 +1221,10 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     }
   }
   var EMB = null;
-  var PRESET = {W:2106, H:2160, cal:{ax:0.74, bx:1348, ay:-0.74, by:642}};
+  var PRESETS = [
+    {W:1290, H:1209, cal:{ax:0.43582, bx:822.63, ay:-0.43582, by:327.61}},
+    {W:2106, H:2160, cal:{ax:0.74, bx:1348, ay:-0.74, by:642}}
+  ];
   if(!state.emb || typeof state.emb !== "object") state.emb = {on:1, op:1};
   function curBg(){
     if(state.bg) return imgURL ? {B:state.bg, url:imgURL, user:true} : null;
@@ -1445,8 +1448,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       c.toBlob(function(blob){
         if(!blob){ toast("Image illisible"); return; }
         state.bg = {W:c.width, H:c.height, op:1, on:1};
-        var known = c.width === PRESET.W && c.height === PRESET.H;
-        if(known) state.bg.cal = PRESET.cal;
+        var known = PRESETS.filter(function(pr){ return pr.W === c.width && pr.H === c.height; })[0];
+        if(known) state.bg.cal = known.cal;
         save();
         useBlob(blob);
         idbDo("readwrite", function(st){ return st.put(blob, "mapimg"); }).catch(function(){ toast("Image non mémorisée sur cet appareil"); });
