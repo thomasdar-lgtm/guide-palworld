@@ -1,6 +1,6 @@
-const CACHE_VERSION = "11";
+const CACHE_VERSION = "12";
 const CACHE = "guide-palworld-v" + CACHE_VERSION;
-const FILES = ["./", "./index.html", "./data.json", "./manifest.json", "./icon-192.png", "./icon-512.png"];
+const FILES = ["./", "./index.html", "./data.json", "./carte-palworld.jpg", "./manifest.json", "./logo-192.png", "./logo-512.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES.map(f => new Request(f, {cache: "reload"})))).then(() => self.skipWaiting()));

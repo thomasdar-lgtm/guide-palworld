@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f1720">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="logo-192.png">
+<link rel="apple-touch-icon" href="logo-192.png">
 <title>Guide Palworld 1.0</title>
 <style>
 :root{
@@ -669,7 +669,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     </div>
     <div class="card tip">
       <h3>À propos de cette carte</h3>
-      <p>Sans image importée, la carte est <b>schématique</b> : repères placés d'après les coordonnées du jeu (X vers l'est, Y vers le nord). Positions des Alphas approximatives.</p>
+      <p>Fond : carte de <b>Palpedia</b> (palpedia.net), calée sur les coordonnées du jeu (X vers l'est, Y vers le nord). Positions des Alphas approximatives. Visuels du jeu © Pocketpair, usage non commercial.</p>
       <p class="sp"><a class="btn ghost" style="display:inline-block;text-decoration:none" href="https://palworld.th.gl/" target="_blank" rel="noopener">Ouvrir une carte complète du jeu ↗</a></p>
     </div>
   </div>
@@ -736,7 +736,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v11 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v12 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><span class="ic">🏠</span>Accueil</button>
@@ -777,7 +777,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "11";
+  var APP_VERSION = "12";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", guide:"Guide", boss:"Boss", pals:"Pals", carte:"Carte", fin:"Fin"};
 
@@ -1526,7 +1526,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       g.appendChild(el("line", {x1:-2000, y1:v, x2:2000, y2:v, stroke:ax ? "var(--axis)" : "var(--grid)", "stroke-width":1, "vector-effect":"non-scaling-stroke"}));
     }
   }
-  var EMB = null;
+  var EMB = {W:1290, H:1209, cal:{ax:0.43582, bx:822.63, ay:-0.43582, by:327.61}, src:"carte-palworld.jpg"};
   var PRESETS = [
     {W:1290, H:1209, cal:{ax:0.43582, bx:822.63, ay:-0.43582, by:327.61}},
     {W:2106, H:2160, cal:{ax:0.74, bx:1348, ay:-0.74, by:642}}
@@ -1823,14 +1823,14 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       return;
     }
     var B = cb.B;
-    b.innerHTML = '<p>' + (cb.user ? '🖼️ <b>Ta capture</b>' : '🗺️ <b>Carte intégrée</b> <span class="mut">· capture palworld.th.gl</span>') + (B.cal ? '' : ' · ⚠️ non calée') + '</p>' +
+    b.innerHTML = '<p>' + (cb.user ? '🖼️ <b>Ta capture</b>' : '🗺️ <b>Carte intégrée</b> <span class="mut">· Palpedia</span>') + (B.cal ? '' : ' · ⚠️ non calée') + '</p>' +
       '<label class="sw"><input type="checkbox" id="bgOn"' + (B.on ? " checked" : "") + '> Afficher la carte</label>' +
       '<div class="sw"><span class="mut">Opacité</span><input type="range" id="bgOp" min="20" max="100" value="' + Math.round(B.op * 100) + '"></div>' +
       '<div class="row2 sp"><button class="btn ghost" id="bgCal">Recaler</button>' +
       ((!cb.user && state.emb.cal) ? '<button class="btn ghost" id="bgReset">Calage d\'origine</button>' : '') +
       '<button class="btn ghost" id="bgImp">' + (cb.user ? 'Remplacer' : 'Importer ma capture') + '</button>' +
       (cb.user ? '<button class="btn ghost" id="bgDel">' + (EMB ? 'Revenir à la carte intégrée' : 'Supprimer l\'image') + '</button>' : '') + '</div>' +
-      (cb.user ? '' : '<p class="mut sp">Image en définition moyenne : floue en zoom très fort. L\'Arbre-Monde n\'y figure pas (ses repères restent en dehors, en haut à gauche).</p>');
+      (cb.user ? '' : '<p class="mut sp">Carte toujours présente, même hors ligne ou après réinstallation. L\'Arbre-Monde n\'y figure pas (ses repères restent en dehors, en haut à gauche).</p>');
     $("bgOn").addEventListener("change", function(){ setBg("on", this.checked ? 1 : 0); drawBg(); drawMarkers(); });
     $("bgOp").addEventListener("input", function(){ setBg("op", this.value / 100); drawBg(); });
     $("bgCal").addEventListener("click", startCal);
