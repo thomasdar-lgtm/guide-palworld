@@ -163,6 +163,9 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 .habbar .x{margin-left:auto;cursor:pointer;font-weight:700;padding:0 6px}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:middle;margin:0 3px 0 6px}
 #pk{z-index:45}
+.backb{width:auto!important;padding:0 16px 0 12px;font-weight:700;font-size:15px;gap:6px;display:flex!important;align-items:center;height:42px!important}
+.mini{width:100%;height:210px;border-radius:12px;display:block;cursor:pointer;background:#0b161d;margin-top:8px}
+.habpick{margin-bottom:8px}
 /* Carte */
 .mapbox{position:relative;height:60vh;min-height:320px;max-height:640px;border-radius:var(--r);border:1px solid var(--line);overflow:hidden;background:var(--mapbg)}
 :root{--mapbg:#0b2233;--grid:rgba(255,255,255,.07);--axis:rgba(255,255,255,.16);--reg:rgba(255,255,255,.28)}
@@ -733,7 +736,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v9 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v10 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><span class="ic">🏠</span>Accueil</button>
@@ -754,7 +757,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
 <div class="ov" id="sheet">
   <div class="hd">
-    <button class="ib" id="shBack" aria-label="Retour">←</button>
+    <button class="ib backb" id="shBack" aria-label="Retour"><span style="font-size:20px">‹</span> Retour</button>
     <div id="shTitle" style="flex:1;font-weight:700;align-self:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
   </div>
   <div class="bd" id="shBody"></div>
@@ -774,7 +777,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "9";
+  var APP_VERSION = "10";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", guide:"Guide", boss:"Boss", pals:"Pals", carte:"Carte", fin:"Fin"};
 
@@ -805,7 +808,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   function toast(msg){ var t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(function(){ t.classList.remove("on"); }, 1600); }
 
   /* ---------- Navigation ---------- */
-  var cur = "accueil";
+  var cur = "accueil", navDepth = 0, navLock = true, curPal = null, curOv = null, afterPop = null;
   function panels(tab){ return Array.prototype.slice.call(document.querySelectorAll("#t-" + tab + " .pan")); }
   function go(tab, sub, keepScroll){
     if(!TABS[tab]) tab = "accueil";
@@ -832,7 +835,32 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     if(tab === "carte" && window.__mapShow) window.__mapShow();
     if(tab === "pals") renderPalsTab();
     if(tab === "guide" && sub === "Élevage") renderUseful();
+    pushNav();
   }
+  /* Historique : le bouton/geste retour du téléphone revient à l'écran précédent */
+  function navState(){ return {tab:cur, sub:state.sub[cur], pal:curPal, ov:curOv, d:navDepth}; }
+  function pushNav(){
+    if(navLock) return;
+    var s = history.state;
+    if(s && s.tab === cur && s.sub === state.sub[cur] && s.pal === curPal && s.ov === curOv) return;
+    navDepth++;
+    try { history.pushState(navState(), ""); } catch(e){}
+  }
+  function replaceNav(){ try { history.replaceState(navState(), ""); } catch(e){} }
+  function navBack(fn){ if(navDepth > 0){ afterPop = fn || null; history.back(); } else { if(fn) fn(); } }
+  window.addEventListener("popstate", function(e){
+    var s = e.state;
+    if(!s || !s.tab) return;
+    navLock = true; navDepth = s.d || 0;
+    $("ov").classList.remove("on"); $("pk").classList.remove("on"); curOv = null;
+    if(cur !== s.tab || state.sub[cur] !== s.sub) go(s.tab, s.sub);
+    if(s.pal != null){
+      curPal = s.pal;
+      loadData().then(function(){ renderSheet(s.pal); $("sheet").classList.add("on"); });
+    } else { curPal = null; $("sheet").classList.remove("on"); }
+    navLock = false;
+    if(afterPop){ var f = afterPop; afterPop = null; setTimeout(f, 0); }
+  });
   document.querySelectorAll("#bnav button").forEach(function(b){
     b.addEventListener("click", function(){ go(b.dataset.t); });
   });
@@ -1045,21 +1073,15 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   function palLink(i){ var p = D.pals[i]; return '<a data-pi="' + i + '">' + esc(p.f) + '</a>'; }
 
   /* Fiche d'un Pal */
-  var sheetStack = [];
-  function openPal(i, noPush){
-    if(typeof i === "string"){ var k = BYN[norm(i)]; if(k === undefined) return; i = k; }
+  function openPal(i){
     loadData().then(function(){
-      if(!noPush){ sheetStack.push(i); try { history.pushState({sheet:sheetStack.length}, ""); } catch(e){} }
-      renderSheet(i); $("sheet").classList.add("on"); $("shBody").scrollTop = 0;
+      if(typeof i === "string"){ var k = BYN[norm(i)]; if(k === undefined) return; i = k; }
+      curPal = i; renderSheet(i); $("sheet").classList.add("on"); $("shBody").scrollTop = 0;
+      pushNav();
     });
   }
-  function closeSheetUI(){ $("sheet").classList.remove("on"); sheetStack = []; }
-  window.addEventListener("popstate", function(){
-    if(!$("sheet").classList.contains("on")) return;
-    sheetStack.pop();
-    if(sheetStack.length) renderSheet(sheetStack[sheetStack.length - 1]); else closeSheetUI();
-  });
-  $("shBack").addEventListener("click", function(){ if(sheetStack.length) history.back(); else closeSheetUI(); });
+  function hideSheet(){ curPal = null; $("sheet").classList.remove("on"); }
+  $("shBack").addEventListener("click", function(){ if(navDepth > 0) history.back(); else { hideSheet(); replaceNav(); } });
   var pairShow = 30;
   function renderSheet(i){
     var p = D.pals[i]; pairShow = 30;
@@ -1073,10 +1095,13 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       h += '<p>' + esc(p.z.join(", ")) + '</p>';
       if(p.slv) h += '<p class="mut">Niveau sauvage : ' + p.slv[0] + (p.slv[1] !== p.slv[0] ? ' à ' + p.slv[1] : '') + '</p>';
       var dn = (p.sp.d.length ? "jour" : "") + (p.sp.d.length && p.sp.n.length ? " et " : "") + (p.sp.n.length ? "nuit" : "");
-      h += '<p class="mut">Apparaît : ' + dn + '</p><div class="sp"><button class="btn" id="shMap">🗺️ Voir son habitat sur la carte</button></div>';
+      h += '<p class="mut">Apparaît : ' + dn + '</p>';
     }
     if(p.note) h += '<p' + (p.z ? ' class="sp"' : '') + '>' + esc(p.note) + '</p>';
-    if(!p.z && !p.note) h += '<p class="mut">Pas d\'apparition sauvage documentée : à obtenir par élevage (voir plus bas) ou dans un lieu spécial.</p>';
+    if(habPts(p)) h += miniMap(p) + '<div class="sp"><button class="btn" id="shMap">🗺️ Ouvrir sur la grande carte</button></div>';
+    else if(p.note && p.note.indexOf("Arbre-Monde") !== -1) h += '<p class="mut sp">🌳 L\'Arbre-Monde est une région à part : il n\'apparaît pas sur la carte principale du jeu.</p>';
+    else if(p.note && p.note.indexOf("raid") !== -1) h += '<p class="mut sp">⚔️ Boss de raid : pas d\'emplacement fixe, il s\'invoque sur ton autel.</p>';
+    else if(!p.z && !p.note) h += '<p class="mut">Pas d\'apparition sauvage documentée : à obtenir par élevage (voir plus bas) ou dans un lieu spécial.</p>';
     h += '</div>';
     var ws = WORK.filter(function(w){ return p.w[w[0]]; });
     h += '<div class="card"><h3>🔨 Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div>' + w[1] + ' ' + w[2] + ' <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude de travail.</p>') +
@@ -1097,7 +1122,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     renderPairs(i, pairs);
     var pq = $("shPq"); if(pq) pq.addEventListener("input", function(){ pairShow = 30; renderPairs(i, pairs); });
     var sm = $("shMap"); if(sm) sm.addEventListener("click", function(){ showHabitat(i); });
-    $("shWith").addEventListener("click", function(){ state.br = state.br || {}; state.br.m = "with"; state.br.w = i; save(); history.go(-sheetStack.length); closeSheetUI(); go("pals", "Reproduction"); renderBr(); });
+    $("shWith").addEventListener("click", function(){ state.br = state.br || {}; state.br.m = "with"; state.br.w = i; save(); hideSheet(); go("pals", "Reproduction"); renderBr(); });
+    var mm = $("shMini"); if(mm) mm.addEventListener("click", function(){ showHabitat(i); });
   }
   function pairHTML(pr){
     var a = D.pals[pr[0]], b = D.pals[pr[1]];
@@ -1166,7 +1192,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   /* Sélecteur de Pal */
   var pkCb = null;
   function pickPal(cb){
-    loadData().then(function(){ pkCb = cb; $("pk").classList.add("on"); $("pkQ").value = ""; renderPk(); setTimeout(function(){ $("pkQ").focus(); }, 50); });
+    loadData().then(function(){ pkCb = cb; curOv = "pk"; $("pk").classList.add("on"); $("pkQ").value = ""; renderPk(); pushNav(); setTimeout(function(){ $("pkQ").focus(); }, 50); });
   }
   function renderPk(){
     var q = norm($("pkQ").value.trim());
@@ -1174,10 +1200,12 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     $("pkList").innerHTML = list.map(function(p){ return '<button class="dx" data-pk="' + p.i + '">' + pimg(p) + '<div class="tx"><div class="nm"><span class="no">#' + p.no + '</span>' + esc(p.f) + '</div><div>' + p.e.map(tag).join("") + '</div></div></button>'; }).join("") || '<p class="mut">Aucun résultat.</p>';
   }
   $("pkQ").addEventListener("input", renderPk);
-  $("pkClose").addEventListener("click", function(){ $("pk").classList.remove("on"); });
+  function closePk(fn){ if(curOv === "pk") navBack(fn); else { $("pk").classList.remove("on"); if(fn) fn(); } }
+  $("pkClose").addEventListener("click", function(){ closePk(); });
   $("pkList").addEventListener("click", function(e){
     var b = e.target.closest("[data-pk]"); if(!b) return;
-    $("pk").classList.remove("on"); if(pkCb) pkCb(+b.getAttribute("data-pk"));
+    var i = +b.getAttribute("data-pk"), cb = pkCb;
+    closePk(function(){ $("pk").classList.remove("on"); if(cb) cb(i); });
   });
 
   /* Reproduction */
@@ -1323,11 +1351,11 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   }
 
   /* ---------- Recherche globale ---------- */
-  function openSearch(){ $("ov").classList.add("on"); $("q").value = ""; $("qRes").innerHTML = '<p class="mut">Ex. : Anubis, charbon, gâteau, Feybreak, selle…</p>'; setTimeout(function(){ $("q").focus(); }, 50); }
-  function closeSearch(){ $("ov").classList.remove("on"); }
+  function openSearch(){ curOv = "q"; $("ov").classList.add("on"); pushNav(); $("q").value = ""; $("qRes").innerHTML = '<p class="mut">Ex. : Anubis, charbon, gâteau, Feybreak, selle…</p>'; setTimeout(function(){ $("q").focus(); }, 50); }
+  function closeSearch(fn){ if(curOv === "q") navBack(fn); else { $("ov").classList.remove("on"); if(fn) fn(); } }
   $("btnSearch").addEventListener("click", openSearch);
-  $("qClose").addEventListener("click", closeSearch);
-  document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeSearch(); });
+  $("qClose").addEventListener("click", function(){ closeSearch(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && $("ov").classList.contains("on")) closeSearch(); });
 
   function snippet(text, q){
     var n = norm(text), i = n.indexOf(q);
@@ -1367,8 +1395,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       var b = document.createElement("button");
       b.className = "hit";
       b.innerHTML = '<div class="w">' + TABS[h.tab] + ' › ' + esc(h.sub) + '</div><div><b>' + esc(h.title) + '</b></div><div class="x">' + snippet(h.text, q) + '</div>';
-      b.addEventListener("click", function(){
-        closeSearch();
+      b.addEventListener("click", function(){ closeSearch(function(){
+        $("ov").classList.remove("on");
         if(h.pi != null){ openPal(h.pi); return; }
         if(h.pas){ go("pals", "Passifs"); pasFilter = "all"; $("pasQ").value = h.pas; renderPas(); return; }
         if(h.mp){ focusPoint(h.mp); return; }
@@ -1378,7 +1406,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
           h.el.classList.add("flash");
           setTimeout(function(){ h.el.classList.remove("flash"); }, 1500);
         }, 30);
-      });
+      }); });
       out.appendChild(b);
     });
   });
@@ -1542,7 +1570,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       gr.appendChild(el("text", {x:r[1], y:-r[2], "text-anchor":"middle", "font-size":13*k, "font-weight":700, fill:"var(--reg)", "letter-spacing":1*k}, r[0].toUpperCase()));
     });
     drawHabitat(gr, k);
-    var habOn = state.hab != null && !!D && !!D.pals[state.hab] && !!D.pals[state.hab].sp;
+    var habOn = state.hab != null && !!D && !!D.pals[state.hab] && !!habPts(D.pals[state.hab]);
     var showLabel = vb.w < 1100 && !habOn;
     mapPoints().forEach(function(p){
       if(!state.mapF[p.cat]) return;
@@ -1711,7 +1739,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   function loadStoredBg(){
     if(!state.bg) return;
     idbDo("readonly", function(st){ return st.get("mapimg"); }).then(function(blob){
-      if(blob){ useBlob(blob); drawBg(); drawMarkers(); renderBgCard(); fit(); }
+      if(blob){ useBlob(blob); if(mapReady){ drawBg(); drawMarkers(); renderBgCard(); fit(); } }
       else { state.bg = null; save(); renderBgCard(); }
     }).catch(function(){ toast("Fond de carte indisponible"); });
   }
@@ -1816,40 +1844,69 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       state.bg = null; calib = null; save(); renderCalbar(); renderBgCard(); drawBg(); drawMarkers(); fit(); toast(EMB ? "Carte intégrée rétablie" : "Image supprimée");
     });
   }
-  /* Habitat d'un Pal */
+  /* Habitat d'un Pal : zones d'apparition + emplacements notés (Alphas, légendaires) */
+  function habPts(p){
+    var C = D.cell, out = {d:[], n:[], pts:[]}, any = false;
+    if(p.sp){ ["d","n"].forEach(function(t){ var a = p.sp[t]; for(var m = 0; m < a.length; m += 2){ out[t].push([a[m] * C, a[m + 1] * C]); any = true; } }); }
+    if(p.note){ var re = /vers (-?\d+), (-?\d+)/g, mt; while((mt = re.exec(p.note))){ out.pts.push([+mt[1], +mt[2]]); any = true; } }
+    return any ? out : null;
+  }
+  function habBounds(H, pad){
+    var xs = [], ys = [];
+    H.d.concat(H.n, H.pts).forEach(function(q){ xs.push(q[0]); ys.push(q[1]); });
+    return {x0:Math.min.apply(null, xs) - pad, x1:Math.max.apply(null, xs) + pad, y0:Math.min.apply(null, ys) - pad, y1:Math.max.apply(null, ys) + pad};
+  }
+  function miniMap(p){
+    var H = habPts(p); if(!H) return "";
+    var B = habBounds(H, 220), w = B.x1 - B.x0, hh = B.y1 - B.y0, asp = 1.7;
+    if(w / hh < asp){ var nw = hh * asp; B.x0 -= (nw - w) / 2; w = nw; } else { var nh = w / asp; B.y0 -= (nh - hh) / 2; hh = nh; }
+    var C = D.cell, cb = curBg(), s = '';
+    if(cb && cb.B.cal){
+      var c = cb.B.cal;
+      s += '<image href="' + cb.url + '" width="' + cb.B.W + '" height="' + cb.B.H + '" preserveAspectRatio="none" transform="matrix(' + (1/c.ax) + ',0,0,' + (-1/c.ay) + ',' + (-c.bx/c.ax) + ',' + (c.by/c.ay) + ')"/>';
+    }
+    [["n","#8fb4ff"],["d","#ffcf5a"]].forEach(function(t){ H[t[0]].forEach(function(q){ s += '<circle cx="' + q[0] + '" cy="' + (-q[1]) + '" r="' + (C * 0.5) + '" fill="' + t[1] + '" fill-opacity=".45" stroke="' + t[1] + '" stroke-width="' + (w / 300) + '"/>'; }); });
+    H.pts.forEach(function(q){ s += '<circle cx="' + q[0] + '" cy="' + (-q[1]) + '" r="' + (w * 0.03) + '" fill="#ff8a65" stroke="#fff" stroke-width="' + (w / 200) + '"/>'; });
+    return '<svg class="mini" id="shMini" viewBox="' + B.x0 + ' ' + (-B.y1 + (B.y1 - B.y0 - hh)) + ' ' + w + ' ' + hh + '" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"><rect x="-5000" y="-5000" width="10000" height="10000" fill="#0b161d"/>' + s + '</svg>' +
+      (cb && cb.B.cal ? '' : '<p class="mut" style="font-size:12px;margin-top:4px">Importe la carte (onglet Carte) pour voir le fond.</p>');
+  }
   function drawHabitat(g, k){
-    var bar = $("habBar");
-    if(state.hab == null || !D || !D.pals[state.hab] || !D.pals[state.hab].sp){ bar.classList.remove("on"); return; }
-    var p = D.pals[state.hab], C = D.cell, r = C * 0.5;
-    bar.innerHTML = '🐾 Habitat : <b>' + esc(p.f) + '</b>' + (p.sp.d.length ? '<span class="dot" style="background:#ffcf5a"></span>jour' : '') + (p.sp.n.length ? '<span class="dot" style="background:#8fb4ff"></span>nuit' : '') + '<span class="x" id="habX">✕</span>';
+    var bar = $("habBar"), p = (state.hab != null && D) ? D.pals[state.hab] : null, H = p ? habPts(p) : null;
+    if(!H){
+      bar.innerHTML = '<button class="btn ghost" id="habPick" style="padding:6px 12px">🐾 Afficher où trouver un Pal…</button>';
+      bar.classList.add("on");
+      $("habPick").onclick = function(){ pickPal(function(i){ loadData().then(function(){ if(habPts(D.pals[i])) showHabitat(i); else { openPal(i); toast("Pas d'emplacement sur la carte pour ce Pal"); } }); }); };
+      return;
+    }
+    var C = D.cell, r = C * 0.5;
+    bar.innerHTML = '🐾 <b class="lk" id="habOpen">' + esc(p.f) + '</b>' + (H.d.length ? '<span class="dot" style="background:#ffcf5a"></span>jour' : '') + (H.n.length ? '<span class="dot" style="background:#8fb4ff"></span>nuit' : '') + (H.pts.length ? '<span class="dot" style="background:#ff8a65"></span>Alpha' : '') + '<span class="x" id="habX">✕</span>';
     bar.classList.add("on");
+    $("habOpen").onclick = function(){ openPal(p.i); };
     $("habX").onclick = function(){ state.hab = null; save(); drawMarkers(); };
     [["n","#8fb4ff"],["d","#ffcf5a"]].forEach(function(t){
-      var a = p.sp[t[0]];
-      for(var m = 0; m < a.length; m += 2){
-        g.appendChild(el("circle", {cx:a[m] * C, cy:-a[m + 1] * C, r:r, fill:t[1], "fill-opacity":.42, stroke:t[1], "stroke-opacity":.9, "stroke-width":1, "vector-effect":"non-scaling-stroke"}));
-      }
+      H[t[0]].forEach(function(q){
+        g.appendChild(el("circle", {cx:q[0], cy:-q[1], r:r, fill:t[1], "fill-opacity":.42, stroke:t[1], "stroke-opacity":.9, "stroke-width":1, "vector-effect":"non-scaling-stroke"}));
+      });
+    });
+    H.pts.forEach(function(q){
+      g.appendChild(el("circle", {cx:q[0], cy:-q[1], r:12 * k, fill:"#ff8a65", stroke:"#fff", "stroke-width":2.5 * k}));
+      g.appendChild(el("text", {x:q[0], y:-q[1] + 4 * k, "text-anchor":"middle", "font-size":11 * k}, "👑"));
     });
   }
   function showHabitat(i){
     state.hab = i; save();
-    if(sheetStack.length){ history.go(-sheetStack.length); }
-    closeSheetUI();
+    hideSheet();
     go("carte");
-    var p = D.pals[i], C = D.cell, xs = [], ys = [];
-    ["d","n"].forEach(function(t){ var a = p.sp[t]; for(var m = 0; m < a.length; m += 2){ xs.push(a[m] * C); ys.push(a[m + 1] * C); } });
-    if(xs.length){
-      var pad = 260;
-      fitBox({x0:Math.min.apply(null, xs) - pad, x1:Math.max.apply(null, xs) + pad, y0:Math.min.apply(null, ys) - pad, y1:Math.max.apply(null, ys) + pad});
-    }
+    var H = habPts(D.pals[i]);
+    if(H) fitBox(habBounds(H, 260));
     drawMarkers();
     $("mapbox").scrollIntoView({block:"start"});
   }
   window.__mapShow = function(){
-    if(!mapReady){ drawGrid(); renderPins(); renderBgCard(); loadStoredBg(); mapReady = true; }
+    if(!mapReady){ drawGrid(); renderPins(); renderBgCard(); mapReady = true; }
     if(!vb) fit(); else applyVB(true);
     drawBg();
-    if(state.hab != null && !D) loadData().then(function(){ drawMarkers(); }).catch(function(){});
+    if(!D) loadData().then(function(){ drawMarkers(); }).catch(function(){});
   };
 
   /* ---------- Bouton haut de page ---------- */
@@ -1866,7 +1923,9 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   renderAll();
   pick(state.type && EL[state.type] ? state.type : "fire");
   if(state.tab && !TABS[state.tab]) state.tab = "accueil";
+  loadStoredBg();
   go(state.tab || "accueil");
+  navLock = false; replaceNav();
   document.documentElement.setAttribute("data-version", APP_VERSION);
   /* Mise à jour automatique */
   if(state.ver && state.ver !== APP_VERSION) setTimeout(function(){ toast("✅ Mis à jour en v" + APP_VERSION); }, 400);

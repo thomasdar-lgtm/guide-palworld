@@ -1,4 +1,4 @@
-const CACHE_VERSION = "9";
+const CACHE_VERSION = "10";
 const CACHE = "guide-palworld-v" + CACHE_VERSION;
 const FILES = ["./", "./index.html", "./data.json", "./manifest.json", "./icon-192.png", "./icon-512.png"];
 
