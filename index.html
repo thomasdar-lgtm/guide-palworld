@@ -428,7 +428,7 @@ details.more>summary::-webkit-details-marker{display:none}
 <section class="topic" data-k="base" data-t="Base et ouvriers" data-ic="🏠" data-s="Où construire, meilleurs Pals par métier" data-g="Ta base">
     <div class="card">
       <h3>Où construire</h3>
-      <p class="mut">Touche une coordonnée pour la copier.</p>
+      <p class="mut">Touche une coordonnée pour la copier. Emplacements conseillés par les guides communautaires : coordonnées approximatives, vérifie le terrain sur place.</p>
       <div class="scroll"><table class="tbl sp">
         <tr><th>Usage</th><th>Coord.</th><th>Pourquoi</th></tr>
         <tr><td><b>1ʳᵉ base</b></td><td><span class="copy">90, -436</span></td><td>Plaine près de la tour 1</td></tr>
@@ -454,25 +454,13 @@ details.more>summary::-webkit-details-marker{display:none}
     </div>
     <div class="card">
       <h3>Meilleurs ouvriers par métier</h3>
-      <div class="scroll"><table class="tbl">
-        <tr><th>Métier</th><th>Début</th><th>Milieu</th><th>Fin</th></tr>
-        <tr><td><b>Artisanat</b></td><td>Lamball, Cattiva</td><td>Anubis</td><td>Solenne</td></tr>
-        <tr><td><b>Minage</b></td><td>Depresso, Tombat</td><td>Digtoise, Anubis</td><td>Knocklem, Aegidron</td></tr>
-        <tr><td><b>Allumage</b></td><td>Foxparks</td><td>Arsox, Incineram</td><td>Jormuntide Ignis, Renjishi</td></tr>
-        <tr><td><b>Arrosage</b></td><td>Pengullet</td><td>Penking, Azurobe</td><td>Jormuntide, Shaolong</td></tr>
-        <tr><td><b>Bûcheronnage</b></td><td>Tanzee</td><td>Eikthyrdeer</td><td>Celesdir Noct</td></tr>
-        <tr><td><b>Plantation</b></td><td>Lifmunk, Tanzee</td><td>Broncherry</td><td>Lyleen, Dandilord</td></tr>
-        <tr><td><b>Récolte</b></td><td>Chikipi</td><td>Lyleen</td><td>Jetragon</td></tr>
-        <tr><td><b>Électricité</b></td><td>Sparkit</td><td>Grizzbolt</td><td>Orserk</td></tr>
-        <tr><td><b>Transport</b></td><td>Lamball</td><td>Anubis, Wumpo</td><td>Knocklem, Helzephyr Lux</td></tr>
-        <tr><td><b>Refroid.</b></td><td>Pengullet</td><td>Chillet</td><td>Bastigor</td></tr>
-        <tr><td><b>Médecine</b></td><td>Lifmunk</td><td>Lyleen</td><td>Silvance</td></tr>
-      </table></div>
+      <div class="scroll" id="bestWork"><p class="mut">Chargement…</p></div>
+      <p class="mut sp">Calculé depuis les données du jeu : meilleur niveau d'aptitude parmi les Pals capturables à l'étape (sauvages ou Alphas). Début = niv. ≤ 15, Milieu = ≤ 40, Fin = tous, y compris par élevage. Touche un nom pour sa fiche.</p>
       <p class="mut sp">Le niveau d'aptitude compte plus que les passifs de vitesse. Les livres d'aptitude (fin de partie) ajoutent +1 jusqu'au niveau 10.</p>
     </div>
     <div class="card hi">
       <h3>Anubis, l'objectif du milieu de partie</h3>
-      <p>Artisanat 6, Minage 6, Transport 4, très rapide. <span class="lk" data-pal="Anubis">Voir sa fiche et ses combinaisons 1.0 →</span></p>
+      <p>Artisanat 6, Minage 6, Transport 4, très rapide. Alpha niv. 55, mais accessible bien plus tôt par élevage. <span class="lk" data-pal="Anubis">Voir sa fiche et ses combinaisons 1.0 →</span></p>
     </div>
 </section>
 <section class="topic" data-k="ressources" data-t="Ressources" data-ic="⛏️" data-s="Ranch et matériaux rares" data-g="Ta base">
@@ -556,7 +544,7 @@ details.more>summary::-webkit-details-marker{display:none}
       <p><b>5 minutes</b> par combat : un test de dégâts. Tours 1 à 7 dans l'ordre que tu veux ; Auri demande Feybreak terminé, le boss final les 8 tours + une quête.</p>
     </div>
     <div id="bossList"></div>
-    <p class="mut">Niveaux issus des guides communautaires 1.0 ; « ≈ » = sources divergentes.</p>
+    <p class="mut">Niveaux recoupés sur le wiki (table des tours) et KeenGamer, version 1.0.</p>
     <div class="card">
       <h3>Avant chaque tour</h3>
       <div class="step"><div class="num">1</div><div>Être <b>quelques niveaux au-dessus</b> du boss.</div></div>
@@ -621,39 +609,39 @@ details.more>summary::-webkit-details-marker{display:none}
     </div>
 </section>
 <section class="topic" data-k="montures" data-t="Montures" data-ic="🐎" data-s="Volantes, terrestres, aquatiques" data-g="Combat">
-    <p class="mut" style="margin-bottom:10px">Capturer le Pal débloque sa selle dans l'arbre technologique ; elle se fabrique à l'établi d'équipement Pal.</p>
+    <p class="mut" style="margin-bottom:10px">Capturer le Pal débloque sa selle dans l'arbre technologique ; elle se fabrique à l'établi d'équipement Pal. Selle = niveau technologique requis (données du jeu 1.0.5).</p>
     <div class="card">
       <h3>✈️ Volantes</h3>
       <table class="tbl">
         <tr><th>Pal</th><th>Selle</th><th>Note</th></tr>
         <tr><td><b>Nitewing</b></td><td>15</td><td>Premier vol</td></tr>
         <tr><td><b>Vanwyrm</b></td><td>21</td><td>Plus rapide</td></tr>
-        <tr><td><b>Helzephyr</b></td><td>26</td><td>—</td></tr>
-        <tr><td><b>Beakon</b></td><td>34</td><td>—</td></tr>
-        <tr><td><b>Faleris</b></td><td>38</td><td>Meilleure avant la fin</td></tr>
+        <tr><td><b>Helzephyr</b></td><td>25</td><td>—</td></tr>
+        <tr><td><b>Beakon</b></td><td>29</td><td>Rapide, Électrique</td></tr>
+        <tr><td><b>Faleris</b></td><td>60</td><td>Capturable sur l'Arbre-Monde</td></tr>
         <tr><td><b>Shadowbeak</b></td><td>47</td><td>—</td></tr>
-        <tr><td><b>Frostallion</b></td><td>48</td><td>Légendaire</td></tr>
-        <tr><td><b>Jetragon</b></td><td>50</td><td>La plus rapide (Alpha de Sunreach)</td></tr>
-        <tr><td><b>Xenolord</b></td><td>60</td><td>Endurance ×3 (raid)</td></tr>
+        <tr><td><b>Frostallion</b></td><td>62</td><td>Légendaire</td></tr>
+        <tr><td><b>Jetragon</b></td><td>70</td><td>La plus rapide (Alpha de Sunreach)</td></tr>
+        <tr><td><b>Xenolord</b></td><td>66</td><td>Endurance ×3 (raid)</td></tr>
       </table>
     </div>
     <div class="card">
       <h3>🐾 Terrestres</h3>
       <table class="tbl">
         <tr><td><b>Direhowl</b></td><td>9</td><td>Première selle du jeu</td></tr>
-        <tr><td><b>Fenglope</b></td><td>—</td><td>Gros saut, idéal falaises</td></tr>
-        <tr><td><b>Necromus / Paladius</b></td><td>≈ 49</td><td>Rapides, combat monté</td></tr>
-        <tr><td><b>Hartalis</b></td><td>65</td><td>La plus rapide au sol (raid)</td></tr>
+        <tr><td><b>Fenglope</b></td><td>26</td><td>Gros saut, idéal falaises</td></tr>
+        <tr><td><b>Necromus / Paladius</b></td><td>61</td><td>Rapides, combat monté</td></tr>
+        <tr><td><b>Hartalis</b></td><td>70</td><td>La plus rapide au sol (raid)</td></tr>
         <tr><td><b>Starryon Primo</b></td><td>77</td><td>Plus rapide avec des Pals Neutres</td></tr>
       </table>
     </div>
     <div class="card">
       <h3>🌊 Aquatiques</h3>
       <table class="tbl">
-        <tr><td><b>Surfent</b></td><td>10</td><td>Première traversée</td></tr>
+        <tr><td><b>Surfent</b></td><td>16</td><td>Première traversée</td></tr>
         <tr><td><b>Azurobe</b></td><td>24</td><td>Ajoute des dégâts Eau</td></tr>
-        <tr><td><b>Jormuntide</b></td><td>39</td><td>Fiable jusqu'à la fin</td></tr>
-        <tr><td><b>Neptilius</b></td><td>—</td><td>La plus rapide sur l'eau</td></tr>
+        <tr><td><b>Jormuntide</b></td><td>40</td><td>Fiable jusqu'à la fin</td></tr>
+        <tr><td><b>Neptilius</b></td><td>64</td><td>La plus rapide sur l'eau</td></tr>
       </table>
     </div>
     <div class="card tip">
@@ -766,7 +754,7 @@ details.more>summary::-webkit-details-marker{display:none}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v17 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v18 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
@@ -813,7 +801,7 @@ details.more>summary::-webkit-details-marker{display:none}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "17";
+  var APP_VERSION = "18";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", pals:"Pals", carte:"Carte", guide:"Guide"};
 
@@ -882,6 +870,7 @@ details.more>summary::-webkit-details-marker{display:none}
     $("tpBody").appendChild(t); $("tpTitle").textContent = t.dataset.t;
     $("tp").classList.add("on"); $("tpBody").scrollTop = 0; curTopic = k;
     if(k === "elevage") renderUseful();
+    if(k === "base") renderBestWork();
   }
   function hideTopicUI(){
     var t = $("tpBody").querySelector(".topic");
@@ -949,8 +938,8 @@ details.more>summary::-webkit-details-marker{display:none}
     {id:"b3", n:"Axel & Orserk", lv:"30", where:"Mont Obsidienne (volcan)", el:["elec","dragon"], weak:["ice","ground"], pals:"Pals Glace + Terre", tip:"Armure anti-chaleur obligatoire pour la montée."},
     {id:"b4", n:"Marcus & Faleris", lv:"40", where:"Tour du PIDF · Désert desséché", el:["fire"], weak:["water"], pals:"Jormuntide, Azurobe, Penking", tip:"Chaleur le jour, froid la nuit : prévois les deux armures."},
     {id:"b5", n:"Victor & Shadowbeak", lv:"50", where:"Monts astraux (neige)", el:["dark"], weak:["dragon"], pals:"Jetragon, Astegon, Jormuntide", tip:"Armure anti-froid. Slalome entre les piliers contre les lasers."},
-    {id:"b6", n:"Saya & Selyne", lv:"≈ 55", where:"Tour Moonflower · Sakurajima", el:["dark"], weak:["dragon"], pals:"Même équipe Dragon que Victor", tip:"À enchaîner juste après Victor."},
-    {id:"b7", n:"Bjorn & Bastigor", lv:"≈ 60", where:"Tour de Feybreak", el:["ice"], weak:["fire"], pals:"Tes meilleurs Pals Feu", tip:"La difficulté grimpe. Ouvre la route vers Sunreach."},
+    {id:"b6", n:"Saya & Selyne", lv:"55", where:"Tour Moonflower · Sakurajima", el:["dark"], weak:["dragon"], pals:"Même équipe Dragon que Victor", tip:"À enchaîner juste après Victor."},
+    {id:"b7", n:"Bjorn & Bastigor", lv:"60", where:"Tour de Feybreak", el:["ice"], weak:["fire"], pals:"Tes meilleurs Pals Feu", tip:"La difficulté grimpe. Ouvre la route vers Sunreach."},
     {id:"b8", n:"Auri & Shaolong", lv:"68", where:"Tour du Pacte Azur · Sunreach", el:["water","dragon"], weak:["elec","ice"], pals:"Pals Électrique + Glace", tip:"Désactive d'abord les 6 modules de défense de Sunreach."},
     {id:"b9", n:"Zenara & Astralym", lv:"80", where:"Sanctuaire scellé · Arbre-Monde", el:[], weak:[], pals:"Pals éveillés, meilleur équipement", tip:"Sans élément : pur test de niveau et de dégâts."}
   ];
@@ -969,75 +958,75 @@ details.more>summary::-webkit-details-marker{display:none}
     ["s3", "Lits + Mangeoire + coffres", "Sans nourriture, les Pals arrêtent de travailler."],
     ["s4", "Capturer 5 de chaque espèce", "La meilleure source d'XP du jeu."],
     ["s5", "Scierie + Carrière + Ranch", "Bois et pierre automatiques. Chikipi au ranch (œufs)."],
-    ["s6", "Première monture", "Direhowl (selle 9), Surfent (10), Nitewing (15)."],
+    ["s6", "Première monture", "Direhowl (selle 9), Nitewing (15), Surfent (16)."],
     ["s7", "Fourneau → lingots", "Un Pal Feu (Foxparks) dessus. Les lingots débloquent les vraies armes."],
     ["s8", "Effigies Relaxaurus + Lifmunk", "À offrir à la Statue de pouvoir : XP et capture."],
-    ["s9", "Tour 1 : Zoe & Grizzbolt", "Pals Terre (Gumoss, Rushoar). Fin du tutoriel."]
+    ["s9", "Tour 1 : Zoe & Grizzbolt", "Pals Terre (Rushoar, Fuddler). Fin du tutoriel."]
   ];
 
   /* r: c=combat b=base m=monture r=ranch · s: 1 début 2 milieu 3 fin */
   var PALS = [
-    ["Lamball",["neutral"],"br",1,"Artisanat, transport ; laine au ranch","Partout au départ"],
-    ["Cattiva",["neutral"],"b",1,"Artisanat, minage, transport, récolte","Zone de départ"],
-    ["Chikipi",["neutral"],"br",1,"Récolte ; œufs au ranch","Zone de départ"],
-    ["Foxparks",["fire"],"cb",1,"Allumage ; lance-flammes tenu en main","Zone de départ"],
-    ["Pengullet",["water","ice"],"b",1,"Arrosage, refroidissement, artisanat, transport","Zone de départ"],
-    ["Tanzee",["grass"],"b",1,"Plantation, bûcheronnage, artisanat, récolte","Zone de départ"],
-    ["Lifmunk",["grass"],"b",1,"Plantation, médecine, artisanat, bûcheronnage","Zone de départ"],
-    ["Sparkit",["elec"],"b",1,"Électricité, artisanat, transport","Zone de départ"],
-    ["Depresso",["dark"],"b",1,"Minage, artisanat, transport","Grottes, nuit"],
-    ["Tombat",["dark"],"b",1,"Minage","Grottes, nuit"],
-    ["Gumoss",["grass","ground"],"cb",1,"Plantation ; bon contre Zoe","Zone de départ"],
-    ["Rushoar",["ground"],"cb",1,"Minage ; bon contre Zoe","Zone de départ"],
-    ["Fuddler",["ground"],"cb",1,"Minage, artisanat ; bon contre Zoe","Zone de départ"],
-    ["Vixy",["neutral"],"r",1,"Ranch : sphères, flèches, pièces","Zone de départ"],
-    ["Direhowl",["neutral"],"cm",1,"Monture au sol (selle 9)","Zone de départ ; parent d'Arsox"],
-    ["Surfent",["water"],"mr",1,"Monture aquatique (selle 10) ; cuir au ranch","Rivières, côtes"],
-    ["Nitewing",["neutral"],"m",1,"Première monture volante (selle 15)","Collines, début de partie"],
-    ["Nox",["dark"],"c",1,"Détecte les effigies proches","Nuit"],
-    ["Mozzarina",["neutral"],"r",2,"Lait au ranch","Plaines"],
-    ["Beegarde",["grass"],"br",2,"Plantation ; miel au ranch","Élevage : Melpaca + Tanzee"],
-    ["Penking",["water","ice"],"cb",2,"Arrosage, refroidissement, minage, artisanat","Parent d'Anubis et d'Arsox"],
-    ["Bushi",["fire"],"cb",2,"Allumage, bûcheronnage","Parent d'Anubis"],
-    ["Anubis",["ground"],"cb",2,"Artisanat 6, minage 6, transport 4","Élevage : Penking + Bushi"],
-    ["Arsox",["fire"],"cb",2,"Allumage ; bon contre Lily","Élevage : Penking + Direhowl"],
-    ["Incineram",["fire","dark"],"cb",2,"Allumage, minage","Monde ouvert"],
-    ["Digtoise",["ground"],"b",2,"Minage","Monde ouvert"],
-    ["Eikthyrdeer",["neutral"],"bm",2,"Bûcheronnage ; monture","Forêts"],
-    ["Broncherry",["grass"],"b",2,"Plantation (spécialiste)","Élevage : Gumoss + Cinnamoth"],
-    ["Mossanda",["grass"],"cb",2,"Plantation, artisanat, transport","Parent de nombreuses combinaisons"],
-    ["Grizzbolt",["elec"],"cb",2,"Électricité, artisanat, transport","Élevage : Mossanda + Rayhound"],
-    ["Chillet",["ice","dragon"],"b",2,"Refroidissement, récolte","Élevage : Penking + Gobfin"],
-    ["Vanwyrm",["fire","dark"],"cm",2,"Monture volante (selle 21)","Monde ouvert"],
-    ["Azurobe",["water","dragon"],"cbm",2,"Arrosage ; monture eau (selle 24)","Élevage : Mossanda + Surfent"],
-    ["Wumpo",["ice"],"b",2,"Transport 6 + bonus transport à toute la base","Monde ouvert"],
-    ["Verdash",["grass"],"b",2,"Ferme polyvalente","Monde ouvert"],
-    ["Fenglope",["neutral"],"m",2,"Monture au sol, gros saut","Monde ouvert"],
-    ["Faleris",["fire"],"cbm",2,"Allumage ; monture volante (selle 38)","Désert"],
-    ["Jormuntide",["water","dragon"],"cbm",2,"Arrosage 7 ; monture eau (selle 39)","Monde ouvert"],
-    ["Jormuntide Ignis",["fire","dragon"],"cb",2,"Allumage 7","Élevage : Blazehowl + Jormuntide"],
-    ["Astegon",["dragon","dark"],"cbm",3,"Minage ; contre Victor et Saya","Élevage : Cryolinx + Grizzbolt"],
-    ["Shadowbeak",["dark"],"cm",3,"Combat ; monture volante (selle 47)","Élevage : Kitsun + Astegon"],
-    ["Frostallion",["ice"],"cm",3,"Légendaire ; monture volante (selle 48)","Légendaire"],
-    ["Frostallion Noct",["dark"],"cbm",3,"Récolte 7, travaille la nuit","Élevage : Frostallion + Helzephyr"],
-    ["Jetragon",["dragon"],"cbm",3,"Récolte 8 ; la monture la plus rapide","Alpha légendaire de Sunreach"],
-    ["Orserk",["elec","dragon"],"cb",3,"Électricité 8","Élevage : Relaxaurus + Grizzbolt"],
-    ["Blazamut",["fire"],"cb",3,"Minage 7, allumage 6","Légendaire"],
-    ["Lyleen",["grass"],"cb",3,"Plantation 7, récolte 6, artisanat 5, médecine 5","Monde ouvert"],
-    ["Necromus",["dark"],"cm",3,"Monture au sol + combat","Légendaire"],
-    ["Paladius",["neutral"],"cm",3,"Monture au sol + combat, aucune faiblesse","Légendaire"],
-    ["Neptilius",["water"],"cm",3,"Monture aquatique la plus rapide","Mer"],
-    ["Knocklem Ignis",["fire"],"b",3,"Minage 7, transport 7","Fin de partie"],
-    ["Solenne",["dark","neutral"],"b",3,"Artisanat 8, travaille la nuit","Arbre-Monde (niv. 76-78)"],
-    ["Renjishi",["fire"],"cb",3,"Allumage 8, artisanat 6","Alpha de l'Arbre-Monde"],
-    ["Shaolong",["water","dragon"],"b",3,"Arrosage 8","Arbre-Monde (niv. 76-78)"],
-    ["Dandilord",["grass","dark"],"b",3,"Plantation 8, artisanat 6, médecine 6","Fin de partie"],
-    ["Aegidron",["dragon","ground"],"cb",3,"Minage 8","Alpha de l'Arbre-Monde (niv. 79)"],
-    ["Silvance",["grass"],"b",3,"Médecine 8, plantation 6","Fin de partie"],
-    ["Celesdir Noct",["dark"],"b",3,"Bûcheronnage 8, travaille la nuit","Fin de partie"],
-    ["Bastigor",["ice"],"b",3,"Refroidissement 8","Élevage : Frostallion + Anubis"],
-    ["Selyne",["dark"],"cb",3,"Artisanat 7, médecine 6 (établi ancien)","Sakurajima"],
-    ["Panthalus",["water"],"cbm",3,"Clé de l'Arbre-Monde","Quête de l'îlot désert"]
+    ["Lamball",["neutral"],"br",1,"Artisanat, transport ; laine au ranch"],
+    ["Cattiva",["neutral"],"b",1,"Artisanat, minage, transport, récolte"],
+    ["Chikipi",["neutral"],"br",1,"Récolte ; œufs au ranch"],
+    ["Foxparks",["fire"],"cb",1,"Allumage ; lance-flammes tenu en main"],
+    ["Pengullet",["water","ice"],"b",1,"Arrosage, refroidissement, artisanat, transport"],
+    ["Tanzee",["grass"],"b",1,"Plantation, bûcheronnage, artisanat, récolte"],
+    ["Lifmunk",["grass"],"b",1,"Plantation, médecine, artisanat, bûcheronnage"],
+    ["Sparkit",["elec"],"b",1,"Électricité, artisanat, transport"],
+    ["Depresso",["dark"],"b",1,"Minage, artisanat, transport"],
+    ["Tombat",["dark"],"b",1,"Minage"],
+    ["Gumoss",["grass"],"b",1,"Plantation"],
+    ["Rushoar",["ground"],"cb",1,"Minage ; bon contre Zoe"],
+    ["Fuddler",["ground"],"cb",1,"Minage, artisanat ; bon contre Zoe"],
+    ["Vixy",["neutral"],"r",1,"Ranch : sphères, flèches, pièces"],
+    ["Direhowl",["neutral"],"cm",1,"Monture au sol (selle 9)"],
+    ["Surfent",["water"],"mr",1,"Monture aquatique (selle 16) ; cuir au ranch"],
+    ["Nitewing",["neutral"],"m",1,"Première monture volante (selle 15)"],
+    ["Nox",["dark"],"c",1,"Détecte les effigies proches"],
+    ["Mozzarina",["neutral"],"r",2,"Lait au ranch"],
+    ["Beegarde",["grass"],"br",2,"Plantation ; miel au ranch"],
+    ["Penking",["water","ice"],"cb",2,"Arrosage, refroidissement, minage, artisanat"],
+    ["Bushi",["fire"],"cb",2,"Allumage, bûcheronnage"],
+    ["Anubis",["ground"],"cb",2,"Artisanat 6, minage 6, transport 4"],
+    ["Arsox",["fire"],"cb",2,"Allumage ; bon contre Lily"],
+    ["Incineram",["fire","dark"],"cb",2,"Allumage, minage"],
+    ["Digtoise",["ground"],"b",2,"Minage"],
+    ["Eikthyrdeer",["neutral"],"bm",2,"Bûcheronnage ; monture"],
+    ["Broncherry",["grass"],"b",2,"Plantation (spécialiste)"],
+    ["Mossanda",["grass"],"cb",2,"Plantation, artisanat, transport"],
+    ["Grizzbolt",["elec"],"cb",2,"Électricité, artisanat, transport"],
+    ["Chillet",["ice","dragon"],"b",2,"Refroidissement, récolte"],
+    ["Vanwyrm",["fire","dark"],"cm",2,"Monture volante (selle 21)"],
+    ["Azurobe",["water","dragon"],"cbm",2,"Arrosage ; monture eau (selle 24)"],
+    ["Wumpo",["ice"],"b",2,"Transport 6 + bonus transport à toute la base"],
+    ["Verdash",["grass"],"b",2,"Ferme polyvalente"],
+    ["Fenglope",["neutral"],"m",2,"Monture au sol, gros saut"],
+    ["Faleris",["fire"],"cbm",2,"Monture volante (selle 60), Arbre-Monde"],
+    ["Jormuntide",["dragon","water"],"cbm",2,"Arrosage 7 ; monture eau (selle 40)"],
+    ["Jormuntide Ignis",["dragon","fire"],"cb",2,"Allumage 7"],
+    ["Astegon",["dragon","dark"],"cbm",3,"Minage ; contre Victor et Saya"],
+    ["Shadowbeak",["dark"],"cm",3,"Combat ; monture volante (selle 47)"],
+    ["Frostallion",["ice"],"cm",3,"Légendaire ; monture volante (selle 62)"],
+    ["Frostallion Noct",["dark"],"cbm",3,"Récolte 7, travaille la nuit"],
+    ["Jetragon",["dragon"],"cbm",3,"Récolte 8 ; la monture la plus rapide"],
+    ["Orserk",["dragon","elec"],"cb",3,"Électricité 8"],
+    ["Blazamut",["fire"],"cb",3,"Minage 7, allumage 6"],
+    ["Lyleen",["grass"],"cb",3,"Plantation 7, récolte 6, artisanat 5, médecine 5"],
+    ["Necromus",["dark"],"cm",3,"Monture au sol, double saut"],
+    ["Paladius",["neutral"],"cm",3,"Monture au sol, triple saut"],
+    ["Neptilius",["water"],"cm",3,"Monture aquatique la plus rapide"],
+    ["Knocklem Ignis",["fire"],"b",3,"Minage 7, transport 7"],
+    ["Solenne",["dark","neutral"],"b",3,"Artisanat 8, travaille la nuit"],
+    ["Renjishi",["fire"],"cb",3,"Allumage 8, artisanat 6"],
+    ["Shaolong",["dragon","water"],"b",3,"Arrosage 8"],
+    ["Dandilord",["grass","dark"],"b",3,"Plantation 8, artisanat 6, médecine 6"],
+    ["Aegidron",["dragon","ground"],"cb",3,"Minage 8"],
+    ["Silvance",["grass"],"b",3,"Médecine 8, plantation 6"],
+    ["Celesdir Noct",["dark"],"b",3,"Bûcheronnage 8, travaille la nuit"],
+    ["Bastigor",["ice"],"b",3,"Refroidissement 8"],
+    ["Selyne",["dark","neutral"],"cbm",3,"Artisanat 7, médecine 6 ; monture volante"],
+    ["Panthalus",["water"],"cbm",3,"Clé de l'Arbre-Monde"]
   ];
   var ROLE_IC = {c:"⚔️", b:"🔨", m:"🐎", r:"🐄"};
   var STAGE = {1:"Début", 2:"Milieu", 3:"Fin"};
@@ -1133,7 +1122,7 @@ details.more>summary::-webkit-details-marker{display:none}
     D.brs.forEach(function(s){ REV[s[4]].push([s[0], s[2], s[1], s[3]]); });
     return REV;
   }
-  function cost(i){ var p = D.pals[i]; return p.slv ? p.slv[0] : (p.note ? 60 : 90); }
+  function cost(i){ var p = D.pals[i]; var m = p.slv ? p.slv[0] : 999; if(p.al) p.al.forEach(function(x){ m = Math.min(m, x[0]); }); return m < 999 ? m : (p.note ? 60 : 90); }
   function easy(pairs){ return pairs.slice().sort(function(a, b){ return (Math.max(cost(a[0]), cost(a[1])) - Math.max(cost(b[0]), cost(b[1]))) || (cost(a[0]) + cost(a[1]) - cost(b[0]) - cost(b[1])); }); }
   function pimg(p, cls){
     var src = "https://palworld.wiki.gg/images/" + encodeURIComponent(p.n.replace(/ /g, "_")) + "_icon.png";
@@ -1152,7 +1141,26 @@ details.more>summary::-webkit-details-marker{display:none}
   function obtain(p){
     if(p.z && p.z.length) return p.z.join(", ") + (p.slv ? " · niv. " + p.slv[0] + (p.slv[1] !== p.slv[0] ? "–" + p.slv[1] : "") : "");
     if(p.note) return p.note;
+    if(p.al) return "Alpha niv. " + p.al[0][0];
     return "Élevage ou lieu non documenté ici";
+  }
+  function renderBestWork(){
+    loadData().then(function(){
+      var el = $("bestWork"); if(!el) return;
+      var h = '<table class="tbl"><tr><th>Métier</th><th>Début</th><th>Milieu</th><th>Fin</th></tr>';
+      WORK.forEach(function(w){
+        if(w[0] === "Farming") return;
+        h += '<tr><td style="white-space:nowrap">' + wkIcon(w) + ' <b>' + ({Refroidissement:"Refroid.", "Bûcheronnage":"Bûcheron.", "Électricité":"Électr."}[w[2]] || w[2]) + '</b></td>';
+        [15, 40, 999].forEach(function(cap){
+          var c = [];
+          D.pals.forEach(function(p, i){ if(p.w[w[0]] && cost(i) <= cap) c.push(i); });
+          c.sort(function(a, b){ return (D.pals[b].w[w[0]] - D.pals[a].w[w[0]]) || (cost(a) - cost(b)); });
+          h += '<td>' + c.slice(0, 2).map(function(i){ return '<span style="white-space:nowrap">' + palLink(i) + ' <span class="mut">' + D.pals[i].w[w[0]] + '</span></span>'; }).join("<br>") + '</td>';
+        });
+        h += '</tr>';
+      });
+      el.innerHTML = h + '</table>';
+    });
   }
   function palLink(i){ var p = D.pals[i]; return '<a data-pi="' + i + '">' + esc(p.f) + '</a>'; }
 
@@ -1182,9 +1190,10 @@ details.more>summary::-webkit-details-marker{display:none}
     a += '<div class="card"><h3>📍 Où le trouver</h3>';
     if(p.z && p.z.length) a += '<p>' + esc(p.z.join(", ")) + (p.slv ? ' <span class="mut">· niv. ' + p.slv[0] + (p.slv[1] !== p.slv[0] ? '–' + p.slv[1] : '') + '</span>' : '') + '</p>';
     if(p.note) a += '<p>' + esc(p.note) + '</p>';
+    if(p.al) a += '<p>👑 ' + p.al.map(function(x){ return (x[3] ? 'Boss de donjon' : 'Alpha') + ' niv. ' + x[0]; }).join(", ") + '</p>';
     if(habPts(p)) a += miniMap(p);
     else if(p.note && p.note.indexOf("Arbre-Monde") !== -1) a += '<p class="mut">Région à part, absente de la carte principale.</p>';
-    else if(!p.z && !p.note) a += '<p class="mut">Pas d\'apparition sauvage connue : voir Élevage.</p>';
+    else if(!p.z && !p.note && !p.al) a += '<p class="mut">Pas d\'apparition sauvage connue : voir Élevage.</p>';
     a += '<div class="kv sp"><span>🥚 Œuf</span><b>' + eg.fr + '</b></div></div>';
     var ws = WORK.filter(function(w){ return p.w[w[0]]; });
     a += '<div class="card"><h3>🔨 Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div><span>' + wkIcon(w) + ' ' + w[2] + '</span> <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude.</p>') + '</div>';
@@ -1248,7 +1257,7 @@ details.more>summary::-webkit-details-marker{display:none}
       if(dexFilter === "sad" && !p.sad) return false;
       if(dexFilter === "noc" && !p.noc) return false;
       if(dexFilter === "tree" && !(p.note && p.note.indexOf("Arbre-Monde") !== -1)) return false;
-      if(dexFilter === "breed" && (p.z || p.note)) return false;
+      if(dexFilter === "breed" && (p.z || p.note || p.al)) return false;
       if(dexFilter === "huge" && egg(p).sz !== 2) return false;
       if(dexFilter === "large" && egg(p).sz !== 1) return false;
       if(dexFilter.indexOf("el:") === 0 && p.e.indexOf(dexFilter.slice(3)) === -1) return false;
@@ -1528,18 +1537,8 @@ details.more>summary::-webkit-details-marker{display:none}
     ["Élevage / ferme",-198,-702,"Très grand terrain plat"],["Base pétrole",-646,270,"2 puits + charbon + soufre"],
     ["Base Sunreach",-540,-1361,"Bassin de cristal, Soralite"],["Base sur l'eau",137,-597,"Construction aquatique"]
   ];
-  var ALPHAS = [
-    ["Gumoss",11,-113,-628],["Chillet",11,172,-419],["Penking",15,113,-353],["Nitewing",18,-275,-70],
-    ["Kingpaca",23,49,-460],["Broncherry",23,-222,-669],["Bushi",25,-203,-346],["Fenglope",25,-257,-458],
-    ["Blazehowl",30,-256,-131],["Elphidran",30,44,-282],["Mossanda Lux",31,450,-180],["Verdash",35,258,10],
-    ["Lunaris",35,130,-50],["Mammorest",38,190,-478],["Elizabee",39,164,-84],["Azurobe",40,-176,-266],
-    ["Suzaku",45,326,483],["Blazamut",52,-737,-332],["Jormuntide",55,350,-85],["Anubis",55,-134,-94],
-    ["Whalaska",55,-179,842],["Celesdir",65,-965,-1172],["Splatterina",65,-1079,-1455],["Starryon",63,-893,-1293]
-  ];
-  var LEGENDS = [
-    ["Paladius & Necromus",60,440,679],["Frostallion",60,-357,509],["Neptilius",60,139,651],
-    ["Frostallion Noct",65,689,648],["Jetragon",70,-553,-1332]
-  ];
+  var ALPHAS = [["Chillet",11,172,-418],["Gumoss",11,-113,-628],["Sweepa",11,-227,-593],["Dumud",14,-309,4],["Penking",15,114,-351,1],["Foxcicle",15,242,-332,1],["Arsox",15,-116,-491,1],["Foxparks Cryst",15,-410,-55,1],["Grintale",17,356,-246],["Nitewing",18,-276,-70],["Kingpaca",23,50,-461],["Broncherry",23,-221,-669],["Caprity Noct",23,-147,-660,1],["Fenglope",25,-258,-458],["Bushi",25,-202,-346,1],["Vaelet",27,-19,-265,1],["Wixen",28,162,-224,1],["Elphidran",30,44,-284],["Grizzbolt",30,56,-697],["Blazehowl",30,-255,-130,1],["Univolt",31,-117,-543],["Mossanda Lux",31,449,-181],["Tarantriss",35,-343,-252],["Verdash",35,286,10,1],["Lunaris",35,130,-50,1],["Beakon",37,95,23],["Mammorest",38,189,-478],["Wumpo Botan",38,449,-51],["Elizabee",39,164,-84],["Needoll",40,434,-711],["Azurobe",40,-176,-267],["Sibelyx",40,253,69,1],["Menasting",44,350,537],["Suzaku",45,326,482],["Kingpaca Cryst",46,-385,355],["Dinossom Lux",47,315,170],["Pierdon",50,820,467],["Reptyro",50,-547,-433],["Blazamut",52,-736,-331],["Tetroise",55,435,380],["Dualith",55,911,-99],["Whalaska",55,-179,842],["Menasting Terra",55,-581,318],["Anubis",55,-134,-95],["Jormuntide",55,350,-85],["Knocklem",55,-584,-250],["Astegon",55,-689,-110],["Lyleen",58,-632,302],["Lyleen Noct",58,-629,305],["Omascul",60,-708,-929],["Dazzi Noct",60,-1201,-854],["Nyafia",60,-920,-917],["Fenglope Lux",60,-857,-1146],["Nitemary",60,-924,-1014,1],["Smokie",60,-879,-1467,1],["Tetroise Primo",60,-1081,-1320,1],["Cryolinx Terra",62,-1285,-1302],["Silvegis",62,-984,-1023],["Gildane",63,-940,-1412],["Starryon",63,-893,-1293],["Prunelia",63,-1355,-968,1],["Warsect Terra",64,-1019,-1236],["Splatterina",65,-1078,-1456],["Kitsun Noct",65,-847,-1307],["Celesdir",65,-965,-1172],["Snock",65,-368,-1414],["Faleris Aqua",66,-1306,-1620],["Azurmane",66,-1131,-1668],["Loupmoon Cryst",66,-1146,-1414],["Slowatt",66,-367,-1357],["Wistella",66,-231,-1416,1],["Dynamoff",67,-308,-1523],["Flaracle",68,-244,-1520],["Eidrolon",69,-489,-1521],["Ophydia",69,-589,-1478],["Moldron",70,-1125,-1981],["Prixter Lux",70,-1314,-612],["Dualith Noct",70,-1694,-948]];
+  var LEGENDS = [["Paladius & Necromus",60,440,679],["Frostallion",60,-357,510],["Jetragon",70,-553,-1332],["Frostallion Noct",65,690,648],["Neptilius",60,138,651]];
   var TREE = [
     ["Ravin poussiéreux",-1560,1510,"Zone de farm des gemmes radieuses (Arbre-Monde)"],
     ["Source Teafant d'Alluvion",-1638,1340,"Soins + eau bénite de l'Arbre-Monde"]
@@ -1559,7 +1558,7 @@ details.more>summary::-webkit-details-marker{display:none}
     var fb = BOSS[8];
     out.push({id:"t-b9", cat:"tower", n:fb.n, lv:80, x:-1600, y:1420, d:"Sanctuaire scellé, au cœur de l'Arbre-Monde (position approximative)", boss:fb});
     BASES.forEach(function(b, i){ out.push({id:"b-"+i, cat:"base", n:b[0], x:b[1], y:b[2], d:b[3]}); });
-    ALPHAS.forEach(function(a, i){ out.push({id:"a-"+i, cat:"alpha", n:a[0], lv:a[1], x:a[2], y:a[3], d:"Pal Alpha (boss de zone), réapparaît"}); });
+    ALPHAS.forEach(function(a, i){ out.push({id:"a-"+i, cat:"alpha", n:a[0], lv:a[1], x:a[2], y:a[3], d:a[4] ? "Boss Alpha de donjon (entrée à proximité)" : "Pal Alpha (boss de zone), réapparaît"}); });
     LEGENDS.forEach(function(a, i){ out.push({id:"l-"+i, cat:"legend", n:a[0], lv:a[1], x:a[2], y:a[3], d:"Pal légendaire Alpha"}); });
     TREE.forEach(function(a, i){ out.push({id:"w-"+i, cat:"tree", n:a[0], x:a[1], y:a[2], d:a[3]}); });
     Object.keys(state.pins).forEach(function(k){ var p = state.pins[k]; out.push({id:"p-"+k, pk:k, cat:"pin", n:p.n, x:p.x, y:p.y, d:"Point personnel"}); });
@@ -1966,7 +1965,7 @@ details.more>summary::-webkit-details-marker{display:none}
   function habPts(p){
     var C = D.cell, out = {d:[], n:[], pts:[]}, any = false;
     if(p.sp){ ["d","n"].forEach(function(t){ var a = p.sp[t]; for(var m = 0; m < a.length; m += 2){ out[t].push([a[m] * C, a[m + 1] * C]); any = true; } }); }
-    if(p.note){ var re = /vers (-?\d+), (-?\d+)/g, mt; while((mt = re.exec(p.note))){ out.pts.push([+mt[1], +mt[2]]); any = true; } }
+    if(p.al){ p.al.forEach(function(a){ out.pts.push([a[1], a[2]]); any = true; }); }
     return any ? out : null;
   }
   function habBounds(H, pad){
