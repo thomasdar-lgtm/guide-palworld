@@ -57,10 +57,8 @@ main{max-width:760px;margin:0 auto;padding:14px 16px}
 .tab.on,.pan.on{display:block}
 h2{font-size:18px;margin:4px 0 10px}
 h3{font-size:16px;margin:0 0 6px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px;transition:box-shadow .3s}
-.card.hi{border-color:var(--acc)}
-.card.tip{border-left:4px solid var(--acc2)}
-.card.warn{border-left:4px solid var(--warn)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;margin-bottom:10px;transition:box-shadow .3s}
+.card.hi,.card.tip,.card.warn{border-color:var(--line)}
 .card.flash{box-shadow:0 0 0 3px var(--acc)}
 .mut{color:var(--mut);font-size:13px}
 .sp{margin-top:8px}
@@ -163,6 +161,42 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 .habbar .x{margin-left:auto;cursor:pointer;font-weight:700;padding:0 6px}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:middle;margin:0 3px 0 6px}
 #pk{z-index:45}
+#sheet{z-index:42}
+#tp{z-index:41}
+.tabseg:empty{display:none}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.quick button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;cursor:pointer;text-align:left}
+.quick img{width:36px;height:36px;object-fit:contain;margin-bottom:4px}
+.quick span{font-size:12px;color:var(--mut)}
+.progline{display:flex;align-items:center;gap:10px;font-size:14px;margin-bottom:4px}
+.progline span{width:58px;color:var(--mut)}
+.progline .prog{flex:1;margin:0}
+.progline b{min-width:34px;text-align:right}
+.gm{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--mut);margin:16px 4px 6px}
+.gm:first-child{margin-top:4px}
+.gl{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.gi{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;border-bottom:1px solid var(--line);padding:12px 14px;cursor:pointer;text-align:left}
+.gi:last-child{border-bottom:none}
+.gi .e{font-size:22px;width:28px;text-align:center}
+.gi .t{flex:1;min-width:0}
+.gi .t b{display:block;font-size:15px}
+.gi .t span{font-size:12px;color:var(--mut)}
+.gi .c{color:var(--mut);font-size:20px}
+.maptools{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.maptools .habbar{flex:1;margin:0}
+.habbar.empty{border:none;padding:0;background:none}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-weight:650;font-size:13px;cursor:pointer;white-space:nowrap}
+details.more{margin-top:6px}
+details.more>summary{cursor:pointer;font-weight:650;padding:12px 4px;color:var(--mut);list-style:none}
+details.more>summary::-webkit-details-marker{display:none}
+.dx .wk2{font-size:13px;color:var(--mut);white-space:nowrap;text-align:right}
+.dxl{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.dxl .dx{border:none;border-bottom:1px solid var(--line);border-radius:0;margin:0}
+.dxl .dx:last-child{border-bottom:none}
+.shseg{position:sticky;top:-10px;z-index:2;background:var(--bg);padding:6px 0 8px;margin-bottom:6px}
+.kv{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv span{color:var(--mut)}
 .backb{width:auto!important;padding:0 16px 0 12px;font-weight:700;font-size:15px;gap:6px;display:flex!important;align-items:center;height:42px!important}
 .mini{width:100%;height:210px;border-radius:12px;display:block;cursor:pointer;background:#0b161d;margin-top:8px}
 .habpick{margin-bottom:8px}
@@ -202,81 +236,113 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     <button class="ib" id="btnSearch" aria-label="Rechercher">🔍</button>
     <button class="ib" id="btnTheme" aria-label="Thème">🌓</button>
   </div>
-  <div class="sub" id="sub"></div>
 </div>
 
 <main>
 
 <!-- ================= ACCUEIL ================= -->
 <div class="tab" id="t-accueil">
-  <div class="pan" data-p="Résumé">
-    <div class="stats">
-      <div class="stat"><div class="mut">Boss vaincus</div><div class="v" id="sBoss">0<small>/9</small></div><div class="prog"><i id="pBoss"></i></div></div>
-      <div class="stat"><div class="mut">Étapes</div><div class="v" id="sRoad">0<small>/5</small></div><div class="prog"><i id="pRoad"></i></div></div>
-    </div>
+  <div class="pan" data-p="Accueil">
     <div class="card next" id="nextCard"></div>
-
-    <h2>Feuille de route</h2>
-    <div class="card"><div id="road"></div></div>
-
-    <div class="card hi">
-      <h3>La règle d'or</h3>
-      <p>Les <b>tours de boss</b> rythment la partie. Va de tour en tour par niveau croissant, <b>quelques niveaux au-dessus</b> du boss, avec le <b>bon élément</b>.</p>
+    <div class="quick">
+      <button data-go="pals|Paldex"><img src="nav-pals.png" alt=""><b>Paldex</b><span>299 Pals</span></button>
+      <button data-go="pals|Reproduction"><img src="nav-guide.png" alt=""><b>Reproduction</b><span>Toutes les combinaisons</span></button>
+      <button data-topic="boss"><img src="nav-boss.png" alt=""><b>Boss</b><span id="qBoss">0 / 9</span></button>
+      <button data-go="carte|Carte"><img src="nav-carte.png" alt=""><b>Carte</b><span>Habitats et repères</span></button>
+    </div>
+    <h2>Ma progression</h2>
+    <div class="card">
+      <div class="progline"><span>Boss</span><div class="prog"><i id="pBoss"></i></div><b id="sBoss">0</b></div>
+      <div class="progline"><span>Étapes</span><div class="prog"><i id="pRoad"></i></div><b id="sRoad">0</b></div>
+      <div id="road" class="sp"></div>
     </div>
   </div>
+</div>
 
-  <div class="pan" data-p="Nouveautés 1.0">
+<!-- ================= PALS ================= -->
+<div class="tab" id="t-pals">
+  <div class="seg tabseg"></div>
+  <div class="pan" data-p="Paldex">
+    <input class="inp" id="dexQ" type="search" placeholder="Nom, n°, élément, zone, œuf…" autocomplete="off">
+    <div class="filters" id="dexF"></div>
+    <div id="dexMore" hidden>
+      <div class="filters" id="dexX" style="padding-top:0"></div>
+      <div class="filters" id="dexE" style="padding-top:0"></div>
+      <div class="filters" id="dexW" style="padding-top:0"></div>
+    </div>
+    <div class="cnt" id="dexN"></div>
+    <div id="dexList"><p class="mut">Chargement du Paldex…</p></div>
+    <p class="mut sp" style="font-size:12px">Données 1.0.5 : PalCalc (MIT), PalSphere. Images : palworld.wiki.gg. © Pocketpair.</p>
+  </div>
+  <div class="pan" data-p="Reproduction">
+    <div class="filters" id="brSeg" style="padding-top:0"><button data-m="ab">A + B</button><button data-m="get">Obtenir un Pal</button><button data-m="with">Avec un Pal</button></div>
+    <div id="brBody"><p class="mut">Chargement…</p></div>
+  </div>
+  <div class="pan" data-p="Passifs">
+    <input class="inp" id="pasQ" type="search" placeholder="Nom ou effet (ex. vitesse, travail)…" autocomplete="off">
+    <div class="filters" id="pasF"></div>
+    <div class="cnt" id="pasN"></div>
+    <div id="pasList"><p class="mut">Chargement…</p></div>
+  </div>
+</div>
+
+<!-- ================= CARTE ================= -->
+<div class="tab" id="t-carte">
+  <div class="pan" data-p="Carte">
+    <div class="maptools"><button class="chip" id="layersBtn">🗂️ Calques</button><div class="habbar" id="habBar"></div></div>
+    <div class="card" id="layersPanel" hidden>
+      <div class="filters" id="mapF" style="padding-top:0"></div>
+      <div class="lvl"><span class="mut">Mon niveau</span><input type="range" id="lvl" min="1" max="80"><b id="lvlV">1</b></div>
+      <p class="mut" style="font-size:12px">Les repères trop forts pour ton niveau (+5) sont grisés.</p>
+    </div>
+    <div class="mapbox" id="mapbox">
+      <svg id="map" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="gImg"></g><g id="gGrid"></g><g id="gReg"></g><g id="gMk"></g>
+      </svg>
+      <div class="mapctl">
+        <button id="zIn" aria-label="Zoomer">+</button>
+        <button id="zOut" aria-label="Dézoomer">−</button>
+        <button id="zFit" aria-label="Tout voir">⤢</button>
+      </div>
+      <div class="coord" id="mapCoord">Glisse pour déplacer · pince pour zoomer</div>
+      <div class="calbar" id="calbar"></div>
+    </div>
+    <div class="card" id="mapInfo"><p class="mut">Touche un repère pour voir le détail.</p></div>
+    <details class="more"><summary>⚙️ Fond de carte et mes points</summary>
+    <div class="card" id="bgCard">
+      <h3>🖼️ Fond de carte</h3>
+      <div id="bgBody"></div>
+      <input type="file" id="bgFile" accept="image/*" hidden>
+    </div>
     <div class="card">
-      <h3>Ce qui change avec la 1.0</h3>
-      <ul class="l">
-        <li>Niveau max <b>80</b> (au lieu de 65), arbre technologique prolongé.</li>
-        <li><b>72 nouveaux Pals</b> (47 inédits + 25 variantes), 287 au total.</li>
-        <li>2 régions : <b>Sunreach</b> (îles flottantes) et l'<b>Arbre-Monde</b> (fin du jeu).</li>
-        <li><b>9 boss de tour</b>, combats limités à <b>5 minutes</b>.</li>
-        <li>Bonus de capture complet en <b>5 captures</b> (au lieu de 12).</li>
-        <li>Condensation max : <b>48 copies</b> (au lieu de 116).</li>
-        <li><b>Mutation</b> (élevage) et <b>Éveil</b> (Arbre-Monde).</li>
-        <li>Aptitudes de travail jusqu'au <b>niveau 10</b>.</li>
-        <li>Donjons, bases ennemies et missions donnent de vraies récompenses d'XP.</li>
-        <li><b>13 nouvelles armes</b>, 44 accessoires, raids de base par vagues.</li>
-      </ul>
+      <h3>📌 Mes points</h3>
+      <p class="mut">Note un Alpha, une grotte, un coffre… avec les coordonnées affichées en jeu.</p>
+      <div class="row2 sp"><input class="inp" id="pinN" placeholder="Nom" maxlength="40"></div>
+      <div class="row2 sp"><input class="inp" id="pinX" placeholder="X" inputmode="numeric"><input class="inp" id="pinY" placeholder="Y" inputmode="numeric"><button class="btn" id="pinAdd">Ajouter</button></div>
+      <div id="pinList" class="sp"></div>
     </div>
     <div class="card tip">
-      <h3>Ancienne sauvegarde ?</h3>
-      <p>Elle fonctionne : niveau conservé, tours déjà battues validées. Les missions ont été réinitialisées pour pouvoir toucher les nouvelles récompenses.</p>
+      <h3>À propos de cette carte</h3>
+      <p>Fond : carte de <b>Palpedia</b> (palpedia.net), calée sur les coordonnées du jeu (X vers l'est, Y vers le nord). Positions des Alphas approximatives. Visuels du jeu © Pocketpair, usage non commercial.</p>
+      <p class="sp"><a class="btn ghost" style="display:inline-block;text-decoration:none" href="https://palworld.th.gl/" target="_blank" rel="noopener">Ouvrir une carte complète du jeu ↗</a></p>
     </div>
-  </div>
-
-  <div class="pan" data-p="Lexique">
-    <div class="card">
-      <h3>Lexique FR ↔ EN</h3>
-      <p class="mut" style="margin-bottom:8px">Utile pour chercher sur les wikis et vidéos en anglais.</p>
-      <table class="tbl">
-        <tr><td>Artisanat</td><td class="mut">Handiwork</td></tr>
-        <tr><td>Allumage</td><td class="mut">Kindling</td></tr>
-        <tr><td>Arrosage</td><td class="mut">Watering</td></tr>
-        <tr><td>Plantation / Récolte</td><td class="mut">Planting / Gathering</td></tr>
-        <tr><td>Bûcheronnage / Minage</td><td class="mut">Lumbering / Mining</td></tr>
-        <tr><td>Électricité / Refroidissement</td><td class="mut">Generating Electricity / Cooling</td></tr>
-        <tr><td>Transport / Médecine</td><td class="mut">Transporting / Medicine Production</td></tr>
-        <tr><td>Ferme d'élevage</td><td class="mut">Breeding Farm</td></tr>
-        <tr><td>Condenseur d'essence</td><td class="mut">Pal Essence Condenser</td></tr>
-        <tr><td>Statue de pouvoir</td><td class="mut">Statue of Power</td></tr>
-        <tr><td>Poste de surveillance</td><td class="mut">Monitoring Stand</td></tr>
-        <tr><td>Arbre-Monde</td><td class="mut">World Tree</td></tr>
-        <tr><td>Pal Alpha</td><td class="mut">Alpha Pal (boss de zone)</td></tr>
-      </table>
-    </div>
-    <div class="card">
-      <h3>Légende des icônes</h3>
-      <p>⚔️ combat · 🔨 base · 🐎 monture · 🐄 ranch</p>
-    </div>
+    </details>
   </div>
 </div>
 
 <!-- ================= GUIDE ================= -->
 <div class="tab" id="t-guide">
-  <div class="pan" data-p="Débuter">
+  <div class="pan" data-p="Guide">
+    <div id="guideMenu"></div>
+  </div>
+</div>
+
+<div id="topics" hidden>
+<section class="topic" data-k="debut" data-t="Premiers pas" data-ic="🌱" data-s="Checklist des premières heures" data-g="Bien démarrer">
+    <div class="card">
+      <h3>🗼 La règle d'or</h3>
+      <p>Les <b>tours de boss</b> rythment la partie : va de tour en tour, quelques niveaux au-dessus du boss, avec le bon élément.</p>
+    </div>
     <div class="card">
       <h3>Les premières heures</h3>
       <p class="mut">Coche au fur et à mesure.</p>
@@ -296,9 +362,37 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       <h3>Réglages du monde</h3>
       <p>Le taux d'XP va jusqu'à <b>×20</b> et se change à tout moment. Un <b>×2 ou ×3</b> accélère sans casser la progression. Le bonus de capture n'est pas concerné.</p>
     </div>
-  </div>
-
-  <div class="pan" data-p="Monter de niveau">
+</section>
+<section class="topic" data-k="capture" data-t="Capturer" data-ic="🎯" data-s="Bonus de capture et effigies" data-g="Bien démarrer">
+    <div class="card">
+      <h3>Bien capturer</h3>
+      <ul class="l">
+        <li><b>Baisse les PV</b> au maximum sans tuer.</li>
+        <li>Applique un <b>état</b> (brûlure, gel…) : meilleures chances.</li>
+        <li><b>Frappe dans le dos</b> juste avant de lancer.</li>
+        <li>Utilise la <b>sphère adaptée</b> au niveau du Pal, et prévois-en beaucoup.</li>
+      </ul>
+    </div>
+    <div class="card hi">
+      <h3>Bonus de capture : 5 par espèce</h3>
+      <p>L'XP dépend de <b>ton</b> niveau, pas de celui du Pal. Capturer des Pals faibles reste rentable longtemps. En visant, le jeu affiche ton compteur ; le Paldeck a un filtre « bonus non terminé ».</p>
+    </div>
+    <div class="card">
+      <h3>Effigies → Statue de pouvoir</h3>
+      <table class="tbl">
+        <tr><td><b>Lifmunk</b></td><td>Puissance de capture</td></tr>
+        <tr><td><b>Relaxaurus</b></td><td>Gain d'XP — à prendre tôt</td></tr>
+        <tr><td><b>Mimog</b></td><td>Vitesse, offerte à la 5ᵉ capture d'une espèce</td></tr>
+        <tr><td><b>Lunaris</b></td><td>Sphères à tête chercheuse</td></tr>
+      </table>
+      <p class="mut sp">13 types d'effigies. Un <b>Nox</b> dans l'équipe les détecte ; elles brillent davantage la nuit.</p>
+    </div>
+    <div class="card tip">
+      <h3>Capturer plutôt que tuer</h3>
+      <p>Un Alpha capturé = XP du combat <b>+</b> bonus de capture. Les Alphas réapparaissent : on peut en faire une boucle.</p>
+    </div>
+</section>
+<section class="topic" data-k="niveau" data-t="Monter de niveau" data-ic="📈" data-s="Les meilleures sources d'XP" data-g="Bien démarrer">
     <div class="card">
       <h3>Par tranche de niveau</h3>
       <table class="tbl">
@@ -327,39 +421,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         <li>Manuels d'entraînement : coffres de donjons, sanctuaires, raids.</li>
       </ul>
     </div>
-  </div>
-
-  <div class="pan" data-p="Capture">
-    <div class="card">
-      <h3>Bien capturer</h3>
-      <ul class="l">
-        <li><b>Baisse les PV</b> au maximum sans tuer.</li>
-        <li>Applique un <b>état</b> (brûlure, gel…) : meilleures chances.</li>
-        <li><b>Frappe dans le dos</b> juste avant de lancer.</li>
-        <li>Utilise la <b>sphère adaptée</b> au niveau du Pal, et prévois-en beaucoup.</li>
-      </ul>
-    </div>
-    <div class="card hi">
-      <h3>Bonus de capture : 5 par espèce</h3>
-      <p>L'XP dépend de <b>ton</b> niveau, pas de celui du Pal. Capturer des Pals faibles reste rentable longtemps. En visant, le jeu affiche ton compteur ; le Paldeck a un filtre « bonus non terminé ».</p>
-    </div>
-    <div class="card">
-      <h3>Effigies → Statue de pouvoir</h3>
-      <table class="tbl">
-        <tr><td><b>Lifmunk</b></td><td>Puissance de capture</td></tr>
-        <tr><td><b>Relaxaurus</b></td><td>Gain d'XP — à prendre tôt</td></tr>
-        <tr><td><b>Mimog</b></td><td>Vitesse, offerte à la 5ᵉ capture d'une espèce</td></tr>
-        <tr><td><b>Lunaris</b></td><td>Sphères à tête chercheuse</td></tr>
-      </table>
-      <p class="mut sp">13 types d'effigies. Un <b>Nox</b> dans l'équipe les détecte ; elles brillent davantage la nuit.</p>
-    </div>
-    <div class="card tip">
-      <h3>Capturer plutôt que tuer</h3>
-      <p>Un Alpha capturé = XP du combat <b>+</b> bonus de capture. Les Alphas réapparaissent : on peut en faire une boucle.</p>
-    </div>
-  </div>
-
-  <div class="pan" data-p="Base">
+</section>
+<section class="topic" data-k="base" data-t="Base et ouvriers" data-ic="🏠" data-s="Où construire, meilleurs Pals par métier" data-g="Ta base">
     <div class="card">
       <h3>Où construire</h3>
       <p class="mut">Touche une coordonnée pour la copier.</p>
@@ -408,9 +471,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       <h3>Anubis, l'objectif du milieu de partie</h3>
       <p>Artisanat 6, Minage 6, Transport 4, très rapide. <span class="lk" data-pal="Anubis">Voir sa fiche et ses combinaisons 1.0 →</span></p>
     </div>
-  </div>
-
-  <div class="pan" data-p="Ressources">
+</section>
+<section class="topic" data-k="ressources" data-t="Ressources" data-ic="⛏️" data-s="Ranch et matériaux rares" data-g="Ta base">
     <div class="card">
       <h3>Ranch : qui produit quoi</h3>
       <table class="tbl">
@@ -440,9 +502,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         <tr><td><b>Cuir</b></td><td>Beaucoup de Pals communs, Surfent au ranch, marchand.</td></tr>
       </table></div>
     </div>
-  </div>
-
-  <div class="pan" data-p="Élevage">
+</section>
+<section class="topic" data-k="elevage" data-t="Élevage" data-ic="🥚" data-s="Gâteaux, mutation, combinaisons" data-g="Ta base">
     <div class="card">
       <h3>Élevage en 5 étapes</h3>
       <div class="step"><div class="num">1</div><div><b>Ferme d'élevage</b> — tech niv. 19<br><span class="mut">10 planches, 20 pierres, 50 fibres. Beaucoup d'espace plat devant.</span></div></div>
@@ -486,19 +547,13 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       <h3>Condensation & Âmes</h3>
       <p>Fusionner des doublons au <b>condenseur</b> renforce un Pal (max = 48 copies). Les <b>Âmes de Pal</b> à la Statue de pouvoir augmentent PV, attaque, défense, vitesse de travail.</p>
     </div>
-  </div>
-</div>
-
-<!-- ================= BOSS ================= -->
-<div class="tab" id="t-boss">
-  <div class="pan" data-p="Tours">
+</section>
+<section class="topic" data-k="boss" data-t="Les 9 boss de tour" data-ic="🗼" data-s="Ordre, niveaux, faiblesses" data-g="Combat">
     <div class="card warn">
       <p><b>5 minutes</b> par combat : un test de dégâts. Tours 1 à 7 dans l'ordre que tu veux ; Auri demande Feybreak terminé, le boss final les 8 tours + une quête.</p>
     </div>
     <div id="bossList"></div>
     <p class="mut">Niveaux issus des guides communautaires 1.0 ; « ≈ » = sources divergentes.</p>
-  </div>
-  <div class="pan" data-p="Préparer">
     <div class="card">
       <h3>Avant chaque tour</h3>
       <div class="step"><div class="num">1</div><div>Être <b>quelques niveaux au-dessus</b> du boss.</div></div>
@@ -517,8 +572,6 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         <li><b>Électrique / Glace</b> : Auri.</li>
       </ul>
     </div>
-  </div>
-  <div class="pan" data-p="Récompenses">
     <div class="card">
       <h3>Ce que rapporte une tour</h3>
       <ul class="l">
@@ -536,35 +589,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         <li><b>Boss de raid</b> : une tablette posée sur un autel d'invocation (ex. Hartalis, Bellanoir).</li>
       </ul>
     </div>
-  </div>
-</div>
-
-<!-- ================= PALS ================= -->
-<div class="tab" id="t-pals">
-  <div class="pan" data-p="Paldex">
-    <input class="inp" id="dexQ" type="search" placeholder="Nom, n°, élément, zone, œuf…" autocomplete="off">
-    <div class="filters" id="dexF"></div>
-    <div class="filters" id="dexW" style="padding-top:0"></div>
-    <div class="cnt" id="dexN"></div>
-    <div id="dexList"><p class="mut">Chargement du Paldex…</p></div>
-    <p class="mut sp">Données du jeu 1.0.5 : PalCalc (licence MIT), PalSphere (palsphere.app). Images : palworld.wiki.gg. Palworld et ses visuels © Pocketpair.</p>
-  </div>
-
-  <div class="pan" data-p="Reproduction">
-    <div class="seg" id="brSeg"><button data-m="ab">A + B</button><button data-m="get">Obtenir un Pal</button><button data-m="with">Avec un Pal</button></div>
-    <div id="brBody"><p class="mut">Chargement…</p></div>
-    <p class="mut sp">Table complète de la 1.0 : 44 850 combinaisons, calcul exact du jeu (puissance de reproduction + combinaisons spéciales).</p>
-  </div>
-
-  <div class="pan" data-p="Passifs">
-    <input class="inp" id="pasQ" type="search" placeholder="Nom ou effet (ex. vitesse, travail)…" autocomplete="off">
-    <div class="filters" id="pasF"></div>
-    <div class="cnt" id="pasN"></div>
-    <div id="pasList"><p class="mut">Chargement…</p></div>
-    <p class="mut sp">Noms et descriptions officiels du jeu en français. Rang : de −3 (malus) à 5 (meilleur).</p>
-  </div>
-
-  <div class="pan" data-p="Types">
+</section>
+<section class="topic" data-k="types" data-t="Faiblesses des types" data-ic="⚔️" data-s="Quel élément contre quoi" data-g="Combat">
     <div class="card">
       <h3>Contre quel élément ?</h3>
       <p class="mut">Touche l'élément de l'ennemi :</p>
@@ -590,9 +616,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         <tr><td><span class="tag el neutral">Neutre</span></td><td class="mut">Aucun</td></tr>
       </table>
     </div>
-  </div>
-
-  <div class="pan" data-p="Montures">
+</section>
+<section class="topic" data-k="montures" data-t="Montures" data-ic="🐎" data-s="Volantes, terrestres, aquatiques" data-g="Combat">
     <p class="mut" style="margin-bottom:10px">Capturer le Pal débloque sa selle dans l'arbre technologique ; elle se fabrique à l'établi d'équipement Pal.</p>
     <div class="card">
       <h3>✈️ Volantes</h3>
@@ -632,52 +657,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       <h3>Planeurs & Wing Pack</h3>
       <p><b>Galeclaw</b> : plané le plus rapide, tir en vol. <b>Hangyu</b> : propulse vers le haut. <b>Wing Pack</b> (tech 80) : vol sans monture.</p>
     </div>
-  </div>
-
-</div>
-
-<!-- ================= CARTE ================= -->
-<div class="tab" id="t-carte">
-  <div class="pan" data-p="Carte">
-    <div class="filters" id="mapF" style="padding-top:0"></div>
-    <div class="habbar" id="habBar"></div>
-    <div class="mapbox" id="mapbox">
-      <svg id="map" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <g id="gImg"></g><g id="gGrid"></g><g id="gReg"></g><g id="gMk"></g>
-      </svg>
-      <div class="mapctl">
-        <button id="zIn" aria-label="Zoomer">+</button>
-        <button id="zOut" aria-label="Dézoomer">−</button>
-        <button id="zFit" aria-label="Tout voir">⤢</button>
-      </div>
-      <div class="coord" id="mapCoord">Glisse pour déplacer · pince pour zoomer</div>
-      <div class="calbar" id="calbar"></div>
-    </div>
-    <div class="lvl"><span class="mut">Mon niveau</span><input type="range" id="lvl" min="1" max="80"><b id="lvlV">1</b></div>
-    <div class="card" id="mapInfo"><p class="mut">Touche un repère pour voir le détail. Les Alphas et tours trop forts pour ton niveau (+5) sont grisés.</p></div>
-    <div class="card" id="bgCard">
-      <h3>🖼️ Fond de carte</h3>
-      <div id="bgBody"></div>
-      <input type="file" id="bgFile" accept="image/*" hidden>
-    </div>
-    <div class="card">
-      <h3>📌 Mes points</h3>
-      <p class="mut">Note un Alpha, une grotte, un coffre… avec les coordonnées affichées en jeu.</p>
-      <div class="row2 sp"><input class="inp" id="pinN" placeholder="Nom" maxlength="40"></div>
-      <div class="row2 sp"><input class="inp" id="pinX" placeholder="X" inputmode="numeric"><input class="inp" id="pinY" placeholder="Y" inputmode="numeric"><button class="btn" id="pinAdd">Ajouter</button></div>
-      <div id="pinList" class="sp"></div>
-    </div>
-    <div class="card tip">
-      <h3>À propos de cette carte</h3>
-      <p>Fond : carte de <b>Palpedia</b> (palpedia.net), calée sur les coordonnées du jeu (X vers l'est, Y vers le nord). Positions des Alphas approximatives. Visuels du jeu © Pocketpair, usage non commercial.</p>
-      <p class="sp"><a class="btn ghost" style="display:inline-block;text-decoration:none" href="https://palworld.th.gl/" target="_blank" rel="noopener">Ouvrir une carte complète du jeu ↗</a></p>
-    </div>
-  </div>
-</div>
-
-<!-- ================= FIN ================= -->
-<div class="tab" id="t-fin">
-  <div class="pan" data-p="Sunreach">
+</section>
+<section class="topic" data-k="sunreach" data-t="Sunreach" data-ic="☁️" data-s="Les îles flottantes" data-g="Fin de partie">
     <div class="card">
       <h3>Sunreach</h3>
       <ul class="l">
@@ -688,8 +669,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         <li>Base conseillée : <span class="copy">-540, -1361</span></li>
       </ul>
     </div>
-  </div>
-  <div class="pan" data-p="Arbre-Monde">
+</section>
+<section class="topic" data-k="arbre" data-t="Arbre-Monde et boss final" data-ic="🌳" data-s="Accès et dernier combat" data-g="Fin de partie">
     <div class="card">
       <h3>Y accéder</h3>
       <div class="step"><div class="num">1</div><div>Battre <b>les 8 boss de tour</b>.</div></div>
@@ -704,8 +685,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       <h3>Boss final</h3>
       <p><b>Zenara & Astralym</b>, niv. 80, sans élément. Accès : 8 tours + quête « The Sealed Calamity ». Arrive niveau 80, meilleur équipement, Pals éveillés. Astralym ne se capture pas.</p>
     </div>
-  </div>
-  <div class="pan" data-p="Éveil">
+</section>
+<section class="topic" data-k="eveil" data-t="Éveil" data-ic="✨" data-s="Renforcer un Pal au maximum" data-g="Fin de partie">
     <div class="card">
       <h3>Éveiller un Pal</h3>
       <ul class="l">
@@ -720,8 +701,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       <h3>Conseil</h3>
       <p>Choisis le Pal <b>avant</b> de farmer (les gemmes sont liées à son élément) et éveille un Pal de combat déjà terminé : élevage, condensation, âmes.</p>
     </div>
-  </div>
-  <div class="pan" data-p="Après la fin">
+</section>
+<section class="topic" data-k="apres" data-t="Après la fin" data-ic="🏆" data-s="Ce qu'il reste à faire" data-g="Fin de partie">
     <div class="card">
       <ul class="l">
         <li>Expédition de l'Arbre-Monde : ressources passives, dont des gemmes.</li>
@@ -731,20 +712,64 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         <li>Compléter le Paldeck : 287 Pals.</li>
       </ul>
     </div>
-  </div>
+</section>
+<section class="topic" data-k="nouveautes" data-t="Nouveautés 1.0" data-ic="🆕" data-s="Ce qui a changé" data-g="Infos">
+    <div class="card">
+      <h3>Ce qui change avec la 1.0</h3>
+      <ul class="l">
+        <li>Niveau max <b>80</b> (au lieu de 65), arbre technologique prolongé.</li>
+        <li><b>72 nouveaux Pals</b> (47 inédits + 25 variantes), 287 au total.</li>
+        <li>2 régions : <b>Sunreach</b> (îles flottantes) et l'<b>Arbre-Monde</b> (fin du jeu).</li>
+        <li><b>9 boss de tour</b>, combats limités à <b>5 minutes</b>.</li>
+        <li>Bonus de capture complet en <b>5 captures</b> (au lieu de 12).</li>
+        <li>Condensation max : <b>48 copies</b> (au lieu de 116).</li>
+        <li><b>Mutation</b> (élevage) et <b>Éveil</b> (Arbre-Monde).</li>
+        <li>Aptitudes de travail jusqu'au <b>niveau 10</b>.</li>
+        <li>Donjons, bases ennemies et missions donnent de vraies récompenses d'XP.</li>
+        <li><b>13 nouvelles armes</b>, 44 accessoires, raids de base par vagues.</li>
+      </ul>
+    </div>
+    <div class="card tip">
+      <h3>Ancienne sauvegarde ?</h3>
+      <p>Elle fonctionne : niveau conservé, tours déjà battues validées. Les missions ont été réinitialisées pour pouvoir toucher les nouvelles récompenses.</p>
+    </div>
+</section>
+<section class="topic" data-k="lexique" data-t="Lexique FR ↔ EN" data-ic="📖" data-s="Pour les wikis en anglais" data-g="Infos">
+    <div class="card">
+      <h3>Lexique FR ↔ EN</h3>
+      <p class="mut" style="margin-bottom:8px">Utile pour chercher sur les wikis et vidéos en anglais.</p>
+      <table class="tbl">
+        <tr><td>Artisanat</td><td class="mut">Handiwork</td></tr>
+        <tr><td>Allumage</td><td class="mut">Kindling</td></tr>
+        <tr><td>Arrosage</td><td class="mut">Watering</td></tr>
+        <tr><td>Plantation / Récolte</td><td class="mut">Planting / Gathering</td></tr>
+        <tr><td>Bûcheronnage / Minage</td><td class="mut">Lumbering / Mining</td></tr>
+        <tr><td>Électricité / Refroidissement</td><td class="mut">Generating Electricity / Cooling</td></tr>
+        <tr><td>Transport / Médecine</td><td class="mut">Transporting / Medicine Production</td></tr>
+        <tr><td>Ferme d'élevage</td><td class="mut">Breeding Farm</td></tr>
+        <tr><td>Condenseur d'essence</td><td class="mut">Pal Essence Condenser</td></tr>
+        <tr><td>Statue de pouvoir</td><td class="mut">Statue of Power</td></tr>
+        <tr><td>Poste de surveillance</td><td class="mut">Monitoring Stand</td></tr>
+        <tr><td>Arbre-Monde</td><td class="mut">World Tree</td></tr>
+        <tr><td>Pal Alpha</td><td class="mut">Alpha Pal (boss de zone)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Légende des icônes</h3>
+      <p>⚔️ combat · 🔨 base · 🐎 monture · 🐄 ranch</p>
+    </div>
+</section>
 </div>
 
 </main>
 
-<footer>Guide Palworld 1.0 · v14 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v15 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
-  <button data-t="guide"><img class="ic" src="nav-guide.png" alt="">Guide</button>
-  <button data-t="boss"><img class="ic" src="nav-boss.png" alt="">Boss</button>
   <button data-t="pals"><img class="ic" src="nav-pals.png" alt="">Pals</button>
   <button data-t="carte"><img class="ic" src="nav-carte.png" alt="">Carte</button>
-  <button data-t="fin"><img class="ic" src="nav-fin.png" alt="">Fin</button>
+  <button data-t="guide"><img class="ic" src="nav-guide.png" alt="">Guide</button>
 </nav>
 
 <div class="ov" id="ov">
@@ -753,6 +778,14 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     <button class="ib" id="qClose" aria-label="Fermer">✕</button>
   </div>
   <div class="bd" id="qRes"></div>
+</div>
+
+<div class="ov" id="tp">
+  <div class="hd">
+    <button class="ib backb" id="tpBack" aria-label="Retour"><span style="font-size:20px">‹</span> Retour</button>
+    <div id="tpTitle" style="flex:1;font-weight:700;align-self:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+  </div>
+  <div class="bd" id="tpBody"></div>
 </div>
 
 <div class="ov" id="sheet">
@@ -777,9 +810,9 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "14";
+  var APP_VERSION = "15";
   var KEY = "pwguide_v1";
-  var TABS = {accueil:"Accueil", guide:"Guide", boss:"Boss", pals:"Pals", carte:"Carte", fin:"Fin"};
+  var TABS = {accueil:"Accueil", pals:"Pals", carte:"Carte", guide:"Guide"};
 
   function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
@@ -808,10 +841,12 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   function toast(msg){ var t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(function(){ t.classList.remove("on"); }, 1600); }
 
   /* ---------- Navigation ---------- */
-  var cur = "accueil", navDepth = 0, navLock = true, curPal = null, curOv = null, afterPop = null;
+  var cur = "accueil", navDepth = 0, navLock = true, curPal = null, curOv = null, afterPop = null, curTopic = null;
   function panels(tab){ return Array.prototype.slice.call(document.querySelectorAll("#t-" + tab + " .pan")); }
   function go(tab, sub, keepScroll){
+    if(tab === "boss" || tab === "fin") tab = "guide";
     if(!TABS[tab]) tab = "accueil";
+    if(!navLock){ hideTopicUI(); if(curPal != null) hideSheet(); }
     cur = tab;
     document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("on", t.id === "t-" + tab); });
     document.querySelectorAll("#bnav button").forEach(function(b){ b.classList.toggle("on", b.dataset.t === tab); });
@@ -820,29 +855,64 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     if(sub === undefined || names.indexOf(sub) === -1) sub = state.sub[tab];
     if(names.indexOf(sub) === -1) sub = names[0];
     ps.forEach(function(p){ p.classList.toggle("on", p.dataset.p === sub); });
-    var bar = $("sub"); bar.innerHTML = "";
-    if(ps.length > 1){
-      names.forEach(function(n){
+    var bar = document.querySelector("#t-" + tab + " .tabseg");
+    if(bar){
+      bar.innerHTML = "";
+      if(ps.length > 1) names.forEach(function(n){
         var b = document.createElement("button");
         b.textContent = n; b.className = n === sub ? "on" : "";
         b.addEventListener("click", function(){ go(tab, n); });
         bar.appendChild(b);
-        if(n === sub) setTimeout(function(){ b.scrollIntoView({inline:"center", block:"nearest"}); }, 0);
       });
     }
     state.tab = tab; state.sub[tab] = sub; save();
     if(!keepScroll) window.scrollTo(0, 0);
     if(tab === "carte" && window.__mapShow) window.__mapShow();
     if(tab === "pals") renderPalsTab();
-    if(tab === "guide" && sub === "Élevage") renderUseful();
     pushNav();
   }
+  /* Rubriques du Guide (plein écran) */
+  function topicEl(k){ return document.querySelector('.topic[data-k="' + k + '"]'); }
+  function showTopicUI(k){
+    var t = topicEl(k); if(!t) return;
+    hideTopicUI();
+    $("tpBody").appendChild(t); $("tpTitle").textContent = t.dataset.t;
+    $("tp").classList.add("on"); $("tpBody").scrollTop = 0; curTopic = k;
+    if(k === "elevage") renderUseful();
+  }
+  function hideTopicUI(){
+    var t = $("tpBody").querySelector(".topic");
+    if(t) $("topics").appendChild(t);
+    $("tp").classList.remove("on"); curTopic = null;
+  }
+  function openTopic(k){ if(curPal != null) hideSheet(); showTopicUI(k); pushNav(); }
+  $("tpBack").addEventListener("click", function(){ if(navDepth > 0) history.back(); else { hideTopicUI(); replaceNav(); } });
+  function buildGuideMenu(){
+    var groups = [], by = {};
+    document.querySelectorAll("#topics .topic").forEach(function(t){
+      var g = t.dataset.g; if(!by[g]){ by[g] = []; groups.push(g); } by[g].push(t);
+    });
+    $("guideMenu").innerHTML = groups.map(function(g){
+      return '<div class="gm">' + esc(g) + '</div><div class="gl">' + by[g].map(function(t){
+        return '<button class="gi" data-topic="' + t.dataset.k + '"><span class="e">' + t.dataset.ic + '</span><span class="t"><b>' + esc(t.dataset.t) + '</b><span>' + esc(t.dataset.s) + '</span></span><span class="c">›</span></button>';
+      }).join("") + '</div>';
+    }).join("");
+  }
+  buildGuideMenu();
+  document.addEventListener("click", function(e){
+    var t = e.target.closest ? e.target.closest("[data-topic],[data-go]") : null;
+    if(!t) return;
+    if(t.hasAttribute("data-topic")) openTopic(t.getAttribute("data-topic"));
+    else { var g = t.getAttribute("data-go").split("|"); go(g[0], g[1]); }
+  });
+  $("layersBtn").addEventListener("click", function(){ var lp = $("layersPanel"); lp.hidden = !lp.hidden; this.classList.toggle("on", !lp.hidden); });
+
   /* Historique : le bouton/geste retour du téléphone revient à l'écran précédent */
-  function navState(){ return {tab:cur, sub:state.sub[cur], pal:curPal, ov:curOv, d:navDepth}; }
+  function navState(){ return {tab:cur, sub:state.sub[cur], pal:curPal, ov:curOv, top:curTopic, d:navDepth}; }
   function pushNav(){
     if(navLock) return;
     var s = history.state;
-    if(s && s.tab === cur && s.sub === state.sub[cur] && s.pal === curPal && s.ov === curOv) return;
+    if(s && s.tab === cur && s.sub === state.sub[cur] && s.pal === curPal && s.ov === curOv && (s.top || null) === curTopic) return;
     navDepth++;
     try { history.pushState(navState(), ""); } catch(e){}
   }
@@ -854,6 +924,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     navLock = true; navDepth = s.d || 0;
     $("ov").classList.remove("on"); $("pk").classList.remove("on"); curOv = null;
     if(cur !== s.tab || state.sub[cur] !== s.sub) go(s.tab, s.sub);
+    if(s.top){ if(curTopic !== s.top) showTopicUI(s.top); } else hideTopicUI();
     if(s.pal != null){
       curPal = s.pal;
       loadData().then(function(){ renderSheet(s.pal); $("sheet").classList.add("on"); });
@@ -984,6 +1055,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
   function renderNext(){
     var nb = count(BOSS, "boss");
+    if($("qBoss")) $("qBoss").textContent = nb + " / " + BOSS.length + " vaincus";
     $("sBoss").innerHTML = nb + "<small>/" + BOSS.length + "</small>";
     $("pBoss").style.width = (nb / BOSS.length * 100) + "%";
     var nr = count(ROAD, "road");
@@ -997,7 +1069,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       '<div class="mut">' + nx.where + '</div><div class="sp">Contre : ' + wk + '</div>' +
       '<div class="sp"><span class="k">Équipe :</span> ' + nx.pals + '</div>';
     c.style.cursor = "pointer";
-    c.onclick = function(){ go("boss", "Tours"); var e = $("boss-" + nx.id); if(e){ e.scrollIntoView({block:"center"}); } };
+    c.onclick = function(){ openTopic("boss"); setTimeout(function(){ var e = $("boss-" + nx.id); if(e){ e.scrollIntoView({block:"center"}); } }, 50); };
   }
 
   /* ---------- Boss ---------- */
@@ -1088,47 +1160,46 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   function hideSheet(){ curPal = null; $("sheet").classList.remove("on"); }
   $("shBack").addEventListener("click", function(){ if(navDepth > 0) history.back(); else { hideSheet(); replaceNav(); } });
   var pairShow = 30;
+  var shPart = "info";
   function renderSheet(i){
     var p = D.pals[i]; pairShow = 30;
     $("shTitle").textContent = "#" + p.no + " " + p.f;
-    var h = '<div class="big">' + pimg(p) + '<div><h2>' + esc(p.f) + '</h2>' +
+    var eg = egg(p), pairs = easy(rev()[i]);
+    var head = '<div class="big">' + pimg(p) + '<div><h2>' + esc(p.f) + '</h2>' +
       (p.f !== p.n ? '<div class="mut">' + esc(p.n) + '</div>' : '') +
-      '<div class="sp">' + p.e.map(tag).join("") + (p.noc ? '<span class="tag">🌙 Nocturne</span>' : '') + (p.sad ? '<span class="tag">🐎 Monture</span>' : '') + '</div></div></div>';
-    if(TIPS[p.n]) h += '<div class="card tip"><b>💡 Conseil</b><div>' + esc(TIPS[p.n]) + '</div></div>';
-    var eg = egg(p);
-    h += '<div class="card"><h3>📍 Où le trouver</h3>';
-    h += '<p>🥚 Éclot d\'un <b>' + eg.fr + '</b> <span class="mut">(' + eg.en + ')</span></p><p class="mut" style="font-size:12px;margin-bottom:8px">Les œufs apparaissent sur des emplacements fixes de la carte ; leur taille et leur type sont tirés au hasard selon la région.</p>';
-    if(p.z && p.z.length){
-      h += '<p>' + esc(p.z.join(", ")) + '</p>';
-      if(p.slv) h += '<p class="mut">Niveau sauvage : ' + p.slv[0] + (p.slv[1] !== p.slv[0] ? ' à ' + p.slv[1] : '') + '</p>';
-      var dn = (p.sp.d.length ? "jour" : "") + (p.sp.d.length && p.sp.n.length ? " et " : "") + (p.sp.n.length ? "nuit" : "");
-      h += '<p class="mut">Apparaît : ' + dn + '</p>';
-    }
-    if(p.note) h += '<p' + (p.z ? ' class="sp"' : '') + '>' + esc(p.note) + '</p>';
-    if(habPts(p)) h += miniMap(p) + '<div class="sp"><button class="btn" id="shMap">🗺️ Ouvrir sur la grande carte</button></div>';
-    else if(p.note && p.note.indexOf("Arbre-Monde") !== -1) h += '<p class="mut sp">🌳 L\'Arbre-Monde est une région à part : il n\'apparaît pas sur la carte principale du jeu.</p>';
-    else if(p.note && p.note.indexOf("raid") !== -1) h += '<p class="mut sp">⚔️ Boss de raid : pas d\'emplacement fixe, il s\'invoque sur ton autel.</p>';
-    else if(!p.z && !p.note) h += '<p class="mut">Pas d\'apparition sauvage documentée : à obtenir par élevage (voir plus bas) ou dans un lieu spécial.</p>';
-    h += '</div>';
+      '<div class="sp">' + p.e.map(tag).join("") + (p.noc ? '<span class="tag">🌙 Nuit</span>' : '') + (p.sad ? '<span class="tag">🐎 Monture</span>' : '') + '</div></div></div>' +
+      '<div class="seg shseg" id="shSeg"><button data-s="info">Infos</button><button data-s="breed">Élevage</button><button data-s="fight">Combat</button></div>';
+    /* Infos */
+    var a = '';
+    if(TIPS[p.n]) a += '<p class="sp" style="margin-bottom:10px">💡 ' + esc(TIPS[p.n]) + '</p>';
+    a += '<div class="card"><h3>📍 Où le trouver</h3>';
+    if(p.z && p.z.length) a += '<p>' + esc(p.z.join(", ")) + (p.slv ? ' <span class="mut">· niv. ' + p.slv[0] + (p.slv[1] !== p.slv[0] ? '–' + p.slv[1] : '') + '</span>' : '') + '</p>';
+    if(p.note) a += '<p>' + esc(p.note) + '</p>';
+    if(habPts(p)) a += miniMap(p);
+    else if(p.note && p.note.indexOf("Arbre-Monde") !== -1) a += '<p class="mut">Région à part, absente de la carte principale.</p>';
+    else if(!p.z && !p.note) a += '<p class="mut">Pas d\'apparition sauvage connue : voir Élevage.</p>';
+    a += '<div class="kv sp"><span>🥚 Œuf</span><b>' + eg.fr + '</b></div></div>';
     var ws = WORK.filter(function(w){ return p.w[w[0]]; });
-    h += '<div class="card"><h3>🔨 Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div>' + w[1] + ' ' + w[2] + ' <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude de travail.</p>') +
-      '<p class="mut sp">PV ' + p.s[0] + ' · Attaque ' + p.s[1] + ' · Défense ' + p.s[2] + ' · Appétit ' + p.food + '/10 · Rareté ' + p.r + '</p></div>';
-    if(p.pt) h += '<div class="card"><h3>🤝 Compétence de partenaire</h3><p><b>' + esc(p.pt) + '</b></p><p class="mut">' + esc(p.pd) + '</p><p class="mut sp">Texte en anglais (non traduit dans les données).</p></div>';
-    if(p.ip && p.ip.length){
-      var ips = p.ip.map(function(id){ var x = D.pas.filter(function(q){ return q.id === id; })[0]; return x ? '<b>' + esc(x.f) + '</b> <span class="mut">' + esc(x.d.replace(/\n/g, " · ")) + '</span>' : esc(id); });
-      h += '<div class="card"><h3>✨ Passifs innés</h3><p>' + ips.join("<br>") + '</p></div>';
-    }
-    if(p.sk.length) h += '<div class="card"><h3>⚔️ Attaques</h3><table class="tbl">' + p.sk.map(function(s){ return '<tr><td>' + tag(s[1]) + '</td><td><b>' + esc(s[0]) + '</b></td><td class="mut">niv. ' + s[2] + '</td><td class="mut">' + (s[3] ? 'puiss. ' + s[3] : '') + '</td></tr>'; }).join("") + '</table></div>';
-    var pairs = easy(rev()[i]);
-    h += '<div class="card"><h3>🥚 Pour l\'obtenir par élevage</h3><p class="mut">' + pairs.length + ' combinaison' + (pairs.length > 1 ? 's' : '') + ', les plus faciles d\'abord.</p>' +
+    a += '<div class="card"><h3>🔨 Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div>' + w[1] + ' ' + w[2] + ' <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude.</p>') + '</div>';
+    /* Élevage */
+    var b = '<div class="card"><h3>🥚 Pour l\'obtenir</h3><p class="mut">' + pairs.length + ' combinaison' + (pairs.length > 1 ? 's' : '') + ', les plus faciles d\'abord.</p>' +
       (pairs.length > 8 ? '<input class="inp sp" id="shPq" type="search" placeholder="Filtrer par parent…" autocomplete="off">' : '') +
-      '<div id="shPairs" class="sp"></div></div>';
-    h += '<div class="row2"><button class="btn ghost" id="shWith">Ses enfants avec chaque Pal</button>' +
-      '<a class="btn ghost" style="text-decoration:none" target="_blank" rel="noopener" href="https://palworld.wiki.gg/wiki/' + encodeURIComponent(p.n.replace(/ /g, "_")) + '">Wiki ↗</a></div>';
-    $("shBody").innerHTML = h;
+      '<div id="shPairs" class="sp"></div></div>' +
+      '<button class="btn ghost" id="shWith" style="width:100%">Voir ses enfants avec chaque Pal</button>';
+    /* Combat */
+    var c = '<div class="card"><div class="kv"><span>PV</span><b>' + p.s[0] + '</b></div><div class="kv"><span>Attaque</span><b>' + p.s[1] + '</b></div><div class="kv"><span>Défense</span><b>' + p.s[2] + '</b></div><div class="kv"><span>Rareté</span><b>' + p.r + '</b></div></div>';
+    if(p.pt) c += '<div class="card"><h3>🤝 ' + esc(p.pt) + ' <span class="tag">EN</span></h3><p class="mut">' + esc(p.pd) + '</p></div>';
+    if(p.ip && p.ip.length){
+      c += '<div class="card"><h3>✨ Passifs innés</h3>' + p.ip.map(function(id){ var x = D.pas.filter(function(q){ return q.id === id; })[0]; return x ? '<p><b>' + esc(x.f) + '</b> <span class="mut">' + esc(x.d.replace(/\n/g, " · ")) + '</span></p>' : ''; }).join("") + '</div>';
+    }
+    if(p.sk.length) c += '<div class="card"><h3>⚔️ Attaques</h3><table class="tbl">' + p.sk.map(function(s){ return '<tr><td>' + tag(s[1]) + '</td><td><b>' + esc(s[0]) + '</b></td><td class="mut">niv. ' + s[2] + '</td></tr>'; }).join("") + '</table></div>';
+    c += '<a class="btn ghost" style="display:block;text-align:center;text-decoration:none" target="_blank" rel="noopener" href="https://palworld.wiki.gg/wiki/' + encodeURIComponent(p.n.replace(/ /g, "_")) + '">Fiche complète sur le wiki ↗</a>';
+    $("shBody").innerHTML = head + '<div id="shP-info">' + a + '</div><div id="shP-breed">' + b + '</div><div id="shP-fight">' + c + '</div>';
+    function part(s){ shPart = s; ["info","breed","fight"].forEach(function(k){ $("shP-" + k).hidden = k !== s; }); $("shSeg").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.s === s); }); }
+    $("shSeg").querySelectorAll("button").forEach(function(x){ x.addEventListener("click", function(){ part(x.dataset.s); }); });
+    part("info");
     renderPairs(i, pairs);
     var pq = $("shPq"); if(pq) pq.addEventListener("input", function(){ pairShow = 30; renderPairs(i, pairs); });
-    var sm = $("shMap"); if(sm) sm.addEventListener("click", function(){ showHabitat(i); });
     $("shWith").addEventListener("click", function(){ state.br = state.br || {}; state.br.m = "with"; state.br.w = i; save(); hideSheet(); go("pals", "Reproduction"); renderBr(); });
     var mm = $("shMini"); if(mm) mm.addEventListener("click", function(){ showHabitat(i); });
   }
@@ -1158,8 +1229,9 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
   /* Liste du Paldex */
   var dexFilter = "all", dexWork = null;
-  var DEXF = [["all","Tous"],["tip","⭐ Conseillés"],["sad","🐎 Montures"],["noc","🌙 Nocturnes"],["tree","🌳 Arbre-Monde"],["breed","🧬 Élevage seul"],["huge","🥚 Œufs énormes"],["large","🥚 Grands œufs"]]
-    .concat(Object.keys(EL).map(function(k){ return ["el:" + k, EL[k]]; }));
+  var DEXF = [["all","Tous"],["tip","⭐ Conseillés"],["sad","🐎 Montures"],["huge","🥚 Œufs énormes"]];
+  var DEXX = [["noc","🌙 Nocturnes"],["tree","🌳 Arbre-Monde"],["breed","🧬 Élevage seul"],["large","🥚 Grands œufs"]];
+  var DEXE = Object.keys(EL).map(function(k){ return ["el:" + k, EL[k]]; });
   function dexText(p){ var eg = egg(p); return norm("#" + p.no + " " + p.f + " " + p.n + " " + p.e.map(function(k){ return EL[k]; }).join(" ") + " " + (p.z || []).join(" ") + " " + (p.note || "") + " " + eg.fr + " " + eg.en); }
   function renderDex(){
     if(!D){ loadData().then(renderDex).catch(function(){ $("dexList").innerHTML = '<div class="card warn">Impossible de charger les données. Vérifie ta connexion puis rouvre l\'onglet.</div>'; }); return; }
@@ -1180,17 +1252,26 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     $("dexN").textContent = list.length + " Pal" + (list.length > 1 ? "s" : "") + (dexWork ? " · triés par " + WK[dexWork][2].toLowerCase() : "");
     var box = $("dexList"), html = [];
     list.forEach(function(p){
-      html.push('<button class="dx" data-pi="' + p.i + '">' + pimg(p) + '<div class="tx"><div class="nm"><span class="no">#' + p.no + '</span>' + esc(p.f) +
-        (p.noc ? ' 🌙' : '') + (p.sad ? ' 🐎' : '') + '</div><div>' + p.e.map(tag).join("") + '</div><div class="wk">' + (wkLine(p) || '—') + ' · ' + esc(obtain(p)) + '</div></div>' +
-        (dexWork ? '<div class="lvb">' + p.w[dexWork] + '</div>' : '') + '</button>');
+      var top = WORK.filter(function(w){ return p.w[w[0]]; }).sort(function(a, b){ return p.w[b[0]] - p.w[a[0]]; }).slice(0, 2).map(function(w){ return w[1] + p.w[w[0]]; }).join(" ");
+      html.push('<button class="dx" data-pi="' + p.i + '">' + pimg(p) + '<div class="tx"><div class="nm"><span class="no">#' + p.no + '</span>' + esc(p.f) + '</div><div>' + p.e.map(tag).join("") + '</div></div>' +
+        (dexWork ? '<div class="lvb">' + p.w[dexWork] + '</div>' : '<div class="wk2">' + top + '</div>') + '</button>');
     });
+    box.className = html.length ? "dxl" : "";
     box.innerHTML = html.length ? html.join("") : '<div class="card mut">Aucun résultat.</div>';
   }
-  DEXF.forEach(function(f){
-    var b = document.createElement("button"); b.textContent = f[1]; b.dataset.f = f[0]; if(f[0] === "all") b.className = "on";
-    b.addEventListener("click", function(){ dexFilter = f[0]; $("dexF").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.f === dexFilter); }); renderDex(); });
-    $("dexF").appendChild(b);
+  function setDexFilter(f){ dexFilter = f; document.querySelectorAll("#dexF button[data-f],#dexX button,#dexE button").forEach(function(x){ x.classList.toggle("on", x.dataset.f === dexFilter); }); renderDex(); }
+  [["dexF", DEXF], ["dexX", DEXX], ["dexE", DEXE]].forEach(function(grp){
+    grp[1].forEach(function(f){
+      var b = document.createElement("button"); b.textContent = f[1]; b.dataset.f = f[0]; if(f[0] === "all") b.className = "on";
+      b.addEventListener("click", function(){ setDexFilter(dexFilter === f[0] && f[0] !== "all" ? "all" : f[0]); });
+      $(grp[0]).appendChild(b);
+    });
   });
+  (function(){
+    var b = document.createElement("button"); b.textContent = "⚙️ Plus de filtres"; b.id = "dexMoreBtn";
+    b.addEventListener("click", function(){ var m = $("dexMore"); m.hidden = !m.hidden; b.classList.toggle("on", !m.hidden); });
+    $("dexF").appendChild(b);
+  })();
   WORK.forEach(function(w){
     var b = document.createElement("button"); b.textContent = w[1] + " " + w[2]; b.dataset.w = w[0];
     b.addEventListener("click", function(){ dexWork = dexWork === w[0] ? null : w[0]; $("dexW").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.w === dexWork); }); renderDex(); });
@@ -1377,14 +1458,12 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     var out = $("qRes"); out.innerHTML = "";
     if(q.length < 2){ out.innerHTML = '<p class="mut">Tape au moins 2 lettres.</p>'; return; }
     var hits = [];
-    document.querySelectorAll(".tab .pan").forEach(function(pan){
-      var tab = pan.closest(".tab").id.slice(2);
-      if(tab === "pals" && pan.dataset.p !== "Types" && pan.dataset.p !== "Montures") return;
-      pan.querySelectorAll(".card, .boss").forEach(function(card){
+    document.querySelectorAll(".topic").forEach(function(tp){
+      tp.querySelectorAll(".card, .boss").forEach(function(card){
         var t = card.textContent.replace(/\s+/g, " ").trim();
         if(norm(t).indexOf(q) !== -1){
           var h = card.querySelector("h3, b");
-          hits.push({tab:tab, sub:pan.dataset.p, el:card, title:h ? h.textContent : pan.dataset.p, text:t});
+          hits.push({tab:"guide", sub:tp.dataset.t, topic:tp.dataset.k, el:card, title:h ? h.textContent : tp.dataset.t, text:t});
         }
       });
     });
@@ -1409,6 +1488,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
         if(h.pi != null){ openPal(h.pi); return; }
         if(h.pas){ go("pals", "Passifs"); pasFilter = "all"; $("pasQ").value = h.pas; renderPas(); return; }
         if(h.mp){ focusPoint(h.mp); return; }
+        if(h.topic){ openTopic(h.topic); setTimeout(function(){ h.el.scrollIntoView({block:"center"}); h.el.classList.add("flash"); setTimeout(function(){ h.el.classList.remove("flash"); }, 1500); }, 60); return; }
         go(h.tab, h.sub, true);
         setTimeout(function(){
           h.el.scrollIntoView({block:"center"});
@@ -1877,19 +1957,19 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     [["n","#8fb4ff"],["d","#ffcf5a"]].forEach(function(t){ H[t[0]].forEach(function(q){ s += '<circle cx="' + q[0] + '" cy="' + (-q[1]) + '" r="' + (C * 0.5) + '" fill="' + t[1] + '" fill-opacity=".45" stroke="' + t[1] + '" stroke-width="' + (w / 300) + '"/>'; }); });
     H.pts.forEach(function(q){ s += '<circle cx="' + q[0] + '" cy="' + (-q[1]) + '" r="' + (w * 0.03) + '" fill="#ff8a65" stroke="#fff" stroke-width="' + (w / 200) + '"/>'; });
     return '<svg class="mini" id="shMini" viewBox="' + B.x0 + ' ' + (-B.y1 + (B.y1 - B.y0 - hh)) + ' ' + w + ' ' + hh + '" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"><rect x="-5000" y="-5000" width="10000" height="10000" fill="#0b161d"/>' + s + '</svg>' +
-      (cb && cb.B.cal ? '' : '<p class="mut" style="font-size:12px;margin-top:4px">Importe la carte (onglet Carte) pour voir le fond.</p>');
+      '<p class="mut" style="font-size:12px;margin-top:4px">Touche la carte pour l\'agrandir.</p>';
   }
   function drawHabitat(g, k){
     var bar = $("habBar"), p = (state.hab != null && D) ? D.pals[state.hab] : null, H = p ? habPts(p) : null;
     if(!H){
-      bar.innerHTML = '<button class="btn ghost" id="habPick" style="padding:6px 12px">🐾 Afficher où trouver un Pal…</button>';
-      bar.classList.add("on");
+      bar.innerHTML = '<button class="chip" id="habPick">🐾 Trouver un Pal…</button>';
+      bar.classList.add("on", "empty");
       $("habPick").onclick = function(){ pickPal(function(i){ loadData().then(function(){ if(habPts(D.pals[i])) showHabitat(i); else { openPal(i); toast("Pas d'emplacement sur la carte pour ce Pal"); } }); }); };
       return;
     }
     var C = D.cell, r = C * 0.5;
     bar.innerHTML = '🐾 <b class="lk" id="habOpen">' + esc(p.f) + '</b>' + (H.d.length ? '<span class="dot" style="background:#ffcf5a"></span>jour' : '') + (H.n.length ? '<span class="dot" style="background:#8fb4ff"></span>nuit' : '') + (H.pts.length ? '<span class="dot" style="background:#ff8a65"></span>Alpha' : '') + '<span class="x" id="habX">✕</span>';
-    bar.classList.add("on");
+    bar.classList.add("on"); bar.classList.remove("empty");
     $("habOpen").onclick = function(){ openPal(p.i); };
     $("habX").onclick = function(){ state.hab = null; save(); drawMarkers(); };
     [["n","#8fb4ff"],["d","#ffcf5a"]].forEach(function(t){
@@ -1931,6 +2011,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
   }
   renderAll();
   pick(state.type && EL[state.type] ? state.type : "fire");
+  if(state.tab === "boss" || state.tab === "fin") state.tab = "guide";
   if(state.tab && !TABS[state.tab]) state.tab = "accueil";
   loadStoredBg();
   go(state.tab || "accueil");
