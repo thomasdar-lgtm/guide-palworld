@@ -143,6 +143,9 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 .wl{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .wl div{background:var(--card2);border-radius:8px;padding:6px 8px;font-size:13px;display:flex;justify-content:space-between}
 .wl b{color:var(--acc2)}
+.wki{width:20px;height:20px;object-fit:contain;vertical-align:-5px}
+.filters .wki{width:17px;height:17px;vertical-align:-4px}
+.dx .wk2 .wki{margin-left:6px}
 .pair{display:flex;align-items:center;gap:6px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px;flex-wrap:wrap}
 .pair:last-child{border-bottom:none}
 .pair a,.lk{color:var(--acc);font-weight:650;cursor:pointer;text-decoration:none}
@@ -763,7 +766,7 @@ details.more>summary::-webkit-details-marker{display:none}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v15 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v16 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
@@ -810,7 +813,7 @@ details.more>summary::-webkit-details-marker{display:none}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "15";
+  var APP_VERSION = "16";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", pals:"Pals", carte:"Carte", guide:"Guide"};
 
@@ -1141,7 +1144,11 @@ details.more>summary::-webkit-details-marker{display:none}
     var e = EGG[p.e[0]] || EGG.neutral, sz = p.r <= 4 ? 0 : (p.r <= 7 ? 1 : 2);
     return {sz:sz, fr:["Œuf ", "Grand œuf ", "Œuf énorme "][sz] + e[0], en:["", "Large ", "Huge "][sz] + e[1] + " Egg"};
   }
-  function wkLine(p){ return WORK.filter(function(w){ return p.w[w[0]]; }).map(function(w){ return w[1] + p.w[w[0]]; }).join(" "); }
+  var WFILE = {GenerateElectricity:"Generating_Electricity", MedicineProduction:"Medicine_Production"};
+  function wkIcon(w){
+    return '<img class="wki" alt="" loading="lazy" referrerpolicy="no-referrer" src="https://palworld.wiki.gg/images/' + (WFILE[w[0]] || w[0]) + '_icon.png" onerror="this.outerHTML=\'' + w[1] + '\'">';
+  }
+  function wkLine(p){ return WORK.filter(function(w){ return p.w[w[0]]; }).map(function(w){ return wkIcon(w) + p.w[w[0]]; }).join(" "); }
   function obtain(p){
     if(p.z && p.z.length) return p.z.join(", ") + (p.slv ? " · niv. " + p.slv[0] + (p.slv[1] !== p.slv[0] ? "–" + p.slv[1] : "") : "");
     if(p.note) return p.note;
@@ -1180,7 +1187,7 @@ details.more>summary::-webkit-details-marker{display:none}
     else if(!p.z && !p.note) a += '<p class="mut">Pas d\'apparition sauvage connue : voir Élevage.</p>';
     a += '<div class="kv sp"><span>🥚 Œuf</span><b>' + eg.fr + '</b></div></div>';
     var ws = WORK.filter(function(w){ return p.w[w[0]]; });
-    a += '<div class="card"><h3>🔨 Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div>' + w[1] + ' ' + w[2] + ' <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude.</p>') + '</div>';
+    a += '<div class="card"><h3>🔨 Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div><span>' + wkIcon(w) + ' ' + w[2] + '</span> <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude.</p>') + '</div>';
     /* Élevage */
     var b = '<div class="card"><h3>🥚 Pour l\'obtenir</h3><p class="mut">' + pairs.length + ' combinaison' + (pairs.length > 1 ? 's' : '') + ', les plus faciles d\'abord.</p>' +
       (pairs.length > 8 ? '<input class="inp sp" id="shPq" type="search" placeholder="Filtrer par parent…" autocomplete="off">' : '') +
@@ -1252,7 +1259,7 @@ details.more>summary::-webkit-details-marker{display:none}
     $("dexN").textContent = list.length + " Pal" + (list.length > 1 ? "s" : "") + (dexWork ? " · triés par " + WK[dexWork][2].toLowerCase() : "");
     var box = $("dexList"), html = [];
     list.forEach(function(p){
-      var top = WORK.filter(function(w){ return p.w[w[0]]; }).sort(function(a, b){ return p.w[b[0]] - p.w[a[0]]; }).slice(0, 2).map(function(w){ return w[1] + p.w[w[0]]; }).join(" ");
+      var top = WORK.filter(function(w){ return p.w[w[0]]; }).sort(function(a, b){ return p.w[b[0]] - p.w[a[0]]; }).slice(0, 2).map(function(w){ return wkIcon(w) + p.w[w[0]]; }).join(" ");
       html.push('<button class="dx" data-pi="' + p.i + '">' + pimg(p) + '<div class="tx"><div class="nm"><span class="no">#' + p.no + '</span>' + esc(p.f) + '</div><div>' + p.e.map(tag).join("") + '</div></div>' +
         (dexWork ? '<div class="lvb">' + p.w[dexWork] + '</div>' : '<div class="wk2">' + top + '</div>') + '</button>');
     });
@@ -1273,7 +1280,7 @@ details.more>summary::-webkit-details-marker{display:none}
     $("dexF").appendChild(b);
   })();
   WORK.forEach(function(w){
-    var b = document.createElement("button"); b.textContent = w[1] + " " + w[2]; b.dataset.w = w[0];
+    var b = document.createElement("button"); b.innerHTML = wkIcon(w) + " " + w[2]; b.dataset.w = w[0];
     b.addEventListener("click", function(){ dexWork = dexWork === w[0] ? null : w[0]; $("dexW").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.w === dexWork); }); renderDex(); });
     $("dexW").appendChild(b);
   });
