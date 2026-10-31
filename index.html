@@ -542,7 +542,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 <!-- ================= PALS ================= -->
 <div class="tab" id="t-pals">
   <div class="pan" data-p="Paldex">
-    <input class="inp" id="dexQ" type="search" placeholder="Nom, n°, élément, zone…" autocomplete="off">
+    <input class="inp" id="dexQ" type="search" placeholder="Nom, n°, élément, zone, œuf…" autocomplete="off">
     <div class="filters" id="dexF"></div>
     <div class="filters" id="dexW" style="padding-top:0"></div>
     <div class="cnt" id="dexN"></div>
@@ -736,7 +736,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v13 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v14 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
@@ -777,7 +777,7 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "13";
+  var APP_VERSION = "14";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", guide:"Guide", boss:"Boss", pals:"Pals", carte:"Carte", fin:"Fin"};
 
@@ -1064,6 +1064,11 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
     var src = "https://palworld.wiki.gg/images/" + encodeURIComponent(p.n.replace(/ /g, "_")) + "_icon.png";
     return '<div class="' + (cls || "im") + '"><img loading="lazy" referrerpolicy="no-referrer" alt="" src="' + src + '" onerror="this.parentNode.textContent=\'' + esc(p.f.charAt(0)) + '\'"></div>';
   }
+  var EGG = {neutral:["commun","Common"], grass:["verdoyant","Verdant"], fire:["brûlant","Scorching"], water:["humide","Damp"], elec:["électrique","Electric"], ice:["gelé","Frozen"], ground:["rocheux","Rocky"], dark:["sombre","Dark"], dragon:["draconique","Dragon"]};
+  function egg(p){
+    var e = EGG[p.e[0]] || EGG.neutral, sz = p.r <= 4 ? 0 : (p.r <= 7 ? 1 : 2);
+    return {sz:sz, fr:["Œuf ", "Grand œuf ", "Œuf énorme "][sz] + e[0], en:["", "Large ", "Huge "][sz] + e[1] + " Egg"};
+  }
   function wkLine(p){ return WORK.filter(function(w){ return p.w[w[0]]; }).map(function(w){ return w[1] + p.w[w[0]]; }).join(" "); }
   function obtain(p){
     if(p.z && p.z.length) return p.z.join(", ") + (p.slv ? " · niv. " + p.slv[0] + (p.slv[1] !== p.slv[0] ? "–" + p.slv[1] : "") : "");
@@ -1090,7 +1095,9 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       (p.f !== p.n ? '<div class="mut">' + esc(p.n) + '</div>' : '') +
       '<div class="sp">' + p.e.map(tag).join("") + (p.noc ? '<span class="tag">🌙 Nocturne</span>' : '') + (p.sad ? '<span class="tag">🐎 Monture</span>' : '') + '</div></div></div>';
     if(TIPS[p.n]) h += '<div class="card tip"><b>💡 Conseil</b><div>' + esc(TIPS[p.n]) + '</div></div>';
+    var eg = egg(p);
     h += '<div class="card"><h3>📍 Où le trouver</h3>';
+    h += '<p>🥚 Éclot d\'un <b>' + eg.fr + '</b> <span class="mut">(' + eg.en + ')</span></p><p class="mut" style="font-size:12px;margin-bottom:8px">Les œufs apparaissent sur des emplacements fixes de la carte ; leur taille et leur type sont tirés au hasard selon la région.</p>';
     if(p.z && p.z.length){
       h += '<p>' + esc(p.z.join(", ")) + '</p>';
       if(p.slv) h += '<p class="mut">Niveau sauvage : ' + p.slv[0] + (p.slv[1] !== p.slv[0] ? ' à ' + p.slv[1] : '') + '</p>';
@@ -1151,9 +1158,9 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 
   /* Liste du Paldex */
   var dexFilter = "all", dexWork = null;
-  var DEXF = [["all","Tous"],["tip","⭐ Conseillés"],["sad","🐎 Montures"],["noc","🌙 Nocturnes"],["tree","🌳 Arbre-Monde"],["breed","🥚 Élevage seul"]]
+  var DEXF = [["all","Tous"],["tip","⭐ Conseillés"],["sad","🐎 Montures"],["noc","🌙 Nocturnes"],["tree","🌳 Arbre-Monde"],["breed","🧬 Élevage seul"],["huge","🥚 Œufs énormes"],["large","🥚 Grands œufs"]]
     .concat(Object.keys(EL).map(function(k){ return ["el:" + k, EL[k]]; }));
-  function dexText(p){ return norm("#" + p.no + " " + p.f + " " + p.n + " " + p.e.map(function(k){ return EL[k]; }).join(" ") + " " + (p.z || []).join(" ") + " " + (p.note || "")); }
+  function dexText(p){ var eg = egg(p); return norm("#" + p.no + " " + p.f + " " + p.n + " " + p.e.map(function(k){ return EL[k]; }).join(" ") + " " + (p.z || []).join(" ") + " " + (p.note || "") + " " + eg.fr + " " + eg.en); }
   function renderDex(){
     if(!D){ loadData().then(renderDex).catch(function(){ $("dexList").innerHTML = '<div class="card warn">Impossible de charger les données. Vérifie ta connexion puis rouvre l\'onglet.</div>'; }); return; }
     var q = norm($("dexQ").value.trim());
@@ -1163,6 +1170,8 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
       if(dexFilter === "noc" && !p.noc) return false;
       if(dexFilter === "tree" && !(p.note && p.note.indexOf("Arbre-Monde") !== -1)) return false;
       if(dexFilter === "breed" && (p.z || p.note)) return false;
+      if(dexFilter === "huge" && egg(p).sz !== 2) return false;
+      if(dexFilter === "large" && egg(p).sz !== 1) return false;
       if(dexFilter.indexOf("el:") === 0 && p.e.indexOf(dexFilter.slice(3)) === -1) return false;
       if(dexWork && !p.w[dexWork]) return false;
       return !q || dexText(p).indexOf(q) !== -1;
