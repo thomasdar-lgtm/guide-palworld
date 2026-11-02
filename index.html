@@ -156,9 +156,12 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 .pkb{display:flex;align-items:center;gap:10px;width:100%;background:var(--card2);border:1px dashed var(--line);border-radius:12px;padding:8px 10px;cursor:pointer;text-align:left;margin-bottom:8px;min-height:52px}
 .pkb .im{flex:0 0 36px;width:36px;height:36px;border-radius:9px;background:var(--card);display:grid;place-items:center;overflow:hidden;font-weight:800;color:var(--mut)}
 .pkb .im img{width:100%;height:100%;object-fit:contain}
-.rk{display:inline-block;min-width:44px;text-align:center;font-size:12px;font-weight:800;border-radius:999px;padding:1px 8px;margin-right:6px}
-.rk.p{background:rgba(255,207,90,.2);color:var(--acc2)}
-.rk.n{background:rgba(239,95,107,.18);color:#ef5f6b}
+.pv{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 10px 6px 12px;border:2px solid #9aa3aa;border-left-width:7px;border-radius:3px;background:#2b2f33;color:#f2f4f5;font-weight:700;font-size:15px;max-width:340px}
+.pv svg{flex:none;width:24px;height:22px}
+.pv.n{border-color:#e8453c;background:linear-gradient(90deg,#33465a,#3d607f)}
+.pv.g{border-color:#f0dc3c;background:linear-gradient(90deg,#8c7c10,#b9a419);color:#fff6bf}
+.pv.r{border-color:#4fe3d3;background:linear-gradient(90deg,#17a59c,#2e63d3 60%,#4a3fd8)}
+.pvsub{font-size:12px;margin-top:3px}
 .habbar{display:none;align-items:center;gap:8px;background:var(--card);border:1px solid var(--acc);border-radius:10px;padding:6px 10px;margin-bottom:8px;font-size:13px}
 .habbar.on{display:flex}
 .habbar .x{margin-left:auto;cursor:pointer;font-weight:700;padding:0 6px}
@@ -759,7 +762,7 @@ details.more>summary::-webkit-details-marker{display:none}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v19 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v20 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
@@ -806,7 +809,7 @@ details.more>summary::-webkit-details-marker{display:none}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "19";
+  var APP_VERSION = "20";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", pals:"Pals", carte:"Carte", guide:"Guide"};
 
@@ -936,6 +939,20 @@ details.more>summary::-webkit-details-marker{display:none}
   /* ---------- Données ---------- */
   var EL = {fire:"Feu", water:"Eau", grass:"Plante", elec:"Électrique", ice:"Glace", ground:"Terre", dark:"Ténèbres", dragon:"Dragon", neutral:"Neutre"};
   function gi(n){ var q = n.split("/"); return '<img class="gic' + (q[0] === "i" && (q[1] === "tower" || q[1] === "dungeon") ? ' dk' : '') + '" alt="" src="ic/' + n + '.webp">'; }
+  function chev(n, down, col, plus){
+    var h = 6 * (n - 1) + 11 + (plus ? 7 : 0), g = '';
+    for(var i = 0; i < n; i++){ var y = i * 6; g += '<polygon points="2,' + (y + 7) + ' 11,' + y + ' 20,' + (y + 7) + ' 20,' + (y + 11) + ' 11,' + (y + 4) + ' 2,' + (y + 11) + '"/>'; }
+    if(plus){ var py = 6 * (n - 1) + 13; g += '<rect x="9.5" y="' + py + '" width="3" height="7"/><rect x="7.5" y="' + (py + 2) + '" width="7" height="3"/>'; }
+    return '<svg viewBox="0 0 22 ' + h + '" fill="' + col + '"' + (down ? ' style="transform:scaleY(-1)"' : '') + '>' + g + '</svg>';
+  }
+  function pasPlate(x){
+    var r = x.r, cls, ic;
+    if(r < 0){ cls = "n"; ic = chev(Math.min(-r, 3), true, "#ff5a3c"); }
+    else if(r <= 1){ cls = ""; ic = chev(1, false, "#f2f4f5"); }
+    else if(r <= 3){ cls = "g"; ic = chev(r, false, "#ffe45a"); }
+    else { cls = "r"; ic = chev(3, false, "#f2f4f5", true); }
+    return '<div class="pv ' + cls + '"><span>' + esc(x.f) + '</span>' + ic + '</div>';
+  }
   function giText(t){ return esc(String(t)).replace(/\[\[([a-z]+\/[A-Za-z0-9_]+)\]\]/g, function(m, n){ return gi(n); }); }
   function tag(k){ return '<span class="tag el ' + k + '">' + gi("e/" + k) + EL[k] + '</span>'; }
 
@@ -1212,7 +1229,7 @@ details.more>summary::-webkit-details-marker{display:none}
     var c = '<div class="card"><div class="kv"><span>PV</span><b>' + p.s[0] + '</b></div><div class="kv"><span>Attaque</span><b>' + p.s[1] + '</b></div><div class="kv"><span>Défense</span><b>' + p.s[2] + '</b></div><div class="kv"><span>Rareté</span><b>' + p.r + '</b></div></div>';
     if(p.pt) c += '<div class="card"><h3>🤝 ' + esc(p.pt) + ' <span class="tag">EN</span></h3><p class="mut">' + esc(p.pd) + '</p></div>';
     if(p.ip && p.ip.length){
-      c += '<div class="card"><h3>✨ Passifs innés</h3>' + p.ip.map(function(id){ var x = D.pas.filter(function(q){ return q.id === id; })[0]; return x ? '<p><b>' + esc(x.f) + '</b> <span class="mut">' + esc(x.d.replace(/\n/g, " · ")) + '</span></p>' : ''; }).join("") + '</div>';
+      c += '<div class="card"><h3>✨ Passifs innés</h3>' + p.ip.map(function(id){ var x = D.pas.filter(function(q){ return q.id === id; })[0]; return x ? '<div class="sp">' + pasPlate(x) + '<div class="mut pvsub">' + esc(x.d.replace(/\n/g, " · ")) + '</div></div>' : ''; }).join("") + '</div>';
     }
     if(p.sk.length) c += '<div class="card"><h3>⚔️ Attaques</h3><table class="tbl">' + p.sk.map(function(s){ return '<tr><td>' + tag(s[1]) + '</td><td><b>' + esc(s[0]) + '</b></td><td class="mut">niv. ' + s[2] + '</td></tr>'; }).join("") + '</table></div>';
     c += '<a class="btn ghost" style="display:block;text-align:center;text-decoration:none" target="_blank" rel="noopener" href="https://palworld.wiki.gg/wiki/' + encodeURIComponent(p.n.replace(/ /g, "_")) + '">Fiche complète sur le wiki ↗</a>';
@@ -1410,9 +1427,8 @@ details.more>summary::-webkit-details-marker{display:none}
     });
     $("pasN").textContent = list.length + " passif" + (list.length > 1 ? "s" : "");
     $("pasList").innerHTML = list.map(function(p){
-      var rk = p.r > 0 ? '<span class="rk p">' + "▲".repeat(Math.min(p.r, 5)) + '</span>' : '<span class="rk n">' + "▼".repeat(Math.min(-p.r, 3)) + '</span>';
       var tags = (p.a.indexOf("mutation") !== -1 ? '<span class="tag">' + gi("egg/mut") + 'Mutation</span>' : '') + (p.a.indexOf("worldTree") !== -1 ? '<span class="tag">' + gi("i/holywater") + 'Arbre-Monde</span>' : '') + (p.su ? '<span class="tag">🩺 Chirurgie</span>' : '');
-      return '<div class="card" style="padding:12px 14px"><div>' + rk + '<b>' + esc(p.f) + '</b>' + (p.f !== p.n ? ' <span class="mut">· ' + esc(p.n) + '</span>' : '') + '</div>' +
+      return '<div class="card" style="padding:12px 14px">' + pasPlate(p) + (p.f !== p.n ? '<div class="mut pvsub">' + esc(p.n) + (p.r === 5 ? ' · rang Arbre-Monde' : '') + '</div>' : '') +
         '<div class="sp">' + esc(p.d).replace(/\n/g, "<br>") + '</div>' + (tags ? '<div class="sp">' + tags + '</div>' : '') +
         (p.p.length ? '<div class="mut sp">Inné chez : ' + p.p.map(function(n){ var i = BYN[norm(n)]; return i === undefined ? esc(n) : palLink(i); }).join(", ") + '</div>' : '') + '</div>';
     }).join("") || '<div class="card mut">Aucun résultat.</div>';
