@@ -181,6 +181,11 @@ footer{text-align:center;color:var(--mut);font-size:12px;padding:10px 16px 20px}
 .gi{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;border-bottom:1px solid var(--line);padding:12px 14px;cursor:pointer;text-align:left}
 .gi:last-child{border-bottom:none}
 .gi .e{font-size:22px;width:28px;text-align:center}
+.gi .e .gic{width:28px;height:28px;vertical-align:middle}
+.gic{width:1.3em;height:1.3em;object-fit:contain;vertical-align:-.3em}
+.gic.dk{background:#24323b;border-radius:5px;padding:1px}
+.tag .gic{width:15px;height:15px;margin-right:3px;vertical-align:-3px}
+h3 .gic{width:22px;height:22px;vertical-align:-5px}
 .gi .t{flex:1;min-width:0}
 .gi .t b{display:block;font-size:15px}
 .gi .t span{font-size:12px;color:var(--mut)}
@@ -275,7 +280,7 @@ details.more>summary::-webkit-details-marker{display:none}
     </div>
     <div class="cnt" id="dexN"></div>
     <div id="dexList"><p class="mut">Chargement du Paldex…</p></div>
-    <p class="mut sp" style="font-size:12px">Données 1.0.5 : PalCalc (MIT), PalSphere. Images : palworld.wiki.gg. © Pocketpair.</p>
+    <p class="mut sp" style="font-size:12px">Données 1.0.5 : PalCalc (MIT), PalSphere. Icônes : jeu Palworld. © Pocketpair.</p>
   </div>
   <div class="pan" data-p="Reproduction">
     <div class="filters" id="brSeg" style="padding-top:0"><button data-m="ab">A + B</button><button data-m="get">Obtenir un Pal</button><button data-m="with">Avec un Pal</button></div>
@@ -341,9 +346,9 @@ details.more>summary::-webkit-details-marker{display:none}
 </div>
 
 <div id="topics" hidden>
-<section class="topic" data-k="debut" data-t="Premiers pas" data-ic="🌱" data-s="Checklist des premières heures" data-g="Bien démarrer">
+<section class="topic" data-k="debut" data-t="Premiers pas" data-ic="i/bench" data-s="Checklist des premières heures" data-g="Bien démarrer">
     <div class="card">
-      <h3>🗼 La règle d'or</h3>
+      <h3><img class="gic dk" alt="" src="ic/i/tower.webp"> La règle d'or</h3>
       <p>Les <b>tours de boss</b> rythment la partie : va de tour en tour, quelques niveaux au-dessus du boss, avec le bon élément.</p>
     </div>
     <div class="card">
@@ -366,7 +371,7 @@ details.more>summary::-webkit-details-marker{display:none}
       <p>Le taux d'XP va jusqu'à <b>×20</b> et se change à tout moment. Un <b>×2 ou ×3</b> accélère sans casser la progression. Le bonus de capture n'est pas concerné.</p>
     </div>
 </section>
-<section class="topic" data-k="capture" data-t="Capturer" data-ic="🎯" data-s="Bonus de capture et effigies" data-g="Bien démarrer">
+<section class="topic" data-k="capture" data-t="Capturer" data-ic="i/sphere" data-s="Bonus de capture et effigies" data-g="Bien démarrer">
     <div class="card">
       <h3>Bien capturer</h3>
       <ul class="l">
@@ -383,10 +388,10 @@ details.more>summary::-webkit-details-marker{display:none}
     <div class="card">
       <h3>Effigies → Statue de pouvoir</h3>
       <table class="tbl">
-        <tr><td><b>Lifmunk</b></td><td>Puissance de capture</td></tr>
-        <tr><td><b>Relaxaurus</b></td><td>Gain d'XP — à prendre tôt</td></tr>
-        <tr><td><b>Mimog</b></td><td>Vitesse, offerte à la 5ᵉ capture d'une espèce</td></tr>
-        <tr><td><b>Lunaris</b></td><td>Sphères à tête chercheuse</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/Carbunclo.webp"> <b>Lifmunk</b></td><td>Puissance de capture</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/LazyDragon.webp"> <b>Relaxaurus</b></td><td>Gain d'XP — à prendre tôt</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/MimicDog.webp"> <b>Mimog</b></td><td>Vitesse, offerte à la 5ᵉ capture d'une espèce</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/Mutant.webp"> <b>Lunaris</b></td><td>Sphères à tête chercheuse</td></tr>
       </table>
       <p class="mut sp">13 types d'effigies. Un <b>Nox</b> dans l'équipe les détecte ; elles brillent davantage la nuit.</p>
     </div>
@@ -425,7 +430,7 @@ details.more>summary::-webkit-details-marker{display:none}
       </ul>
     </div>
 </section>
-<section class="topic" data-k="base" data-t="Base et ouvriers" data-ic="🏠" data-s="Où construire, meilleurs Pals par métier" data-g="Ta base">
+<section class="topic" data-k="base" data-t="Base et ouvriers" data-ic="i/palbox" data-s="Où construire, meilleurs Pals par métier" data-g="Ta base">
     <div class="card">
       <h3>Où construire</h3>
       <p class="mut">Touche une coordonnée pour la copier. Emplacements conseillés par les guides communautaires : coordonnées approximatives, vérifie le terrain sur place.</p>
@@ -463,16 +468,16 @@ details.more>summary::-webkit-details-marker{display:none}
       <p>Artisanat 6, Minage 6, Transport 4, très rapide. Alpha niv. 55, mais accessible bien plus tôt par élevage. <span class="lk" data-pal="Anubis">Voir sa fiche et ses combinaisons 1.0 →</span></p>
     </div>
 </section>
-<section class="topic" data-k="ressources" data-t="Ressources" data-ic="⛏️" data-s="Ranch et matériaux rares" data-g="Ta base">
+<section class="topic" data-k="ressources" data-t="Ressources" data-ic="i/ore" data-s="Ranch et matériaux rares" data-g="Ta base">
     <div class="card">
       <h3>Ranch : qui produit quoi</h3>
       <table class="tbl">
-        <tr><td><b>Chikipi</b></td><td>Œufs</td></tr>
-        <tr><td><b>Mozzarina</b></td><td>Lait</td></tr>
-        <tr><td><b>Beegarde</b></td><td>Miel</td></tr>
-        <tr><td><b>Lamball</b></td><td>Laine</td></tr>
-        <tr><td><b>Surfent</b></td><td>Cuir</td></tr>
-        <tr><td><b>Vixy</b></td><td>Sphères, flèches, pièces d'or</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/ChickenPal.webp"> <b>Chikipi</b></td><td>Œufs</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/CowPal.webp"> <b>Mozzarina</b></td><td>Lait</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/SoldierBee.webp"> <b>Beegarde</b></td><td>Miel</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/SheepBall.webp"> <b>Lamball</b></td><td>Laine</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/Serpent.webp"> <b>Surfent</b></td><td>Cuir</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/CuteFox.webp"> <b>Vixy</b></td><td>Sphères, flèches, pièces d'or</td></tr>
       </table>
       <p class="mut sp">Œufs + lait + miel = les gâteaux d'élevage. À installer tôt.</p>
     </div>
@@ -480,21 +485,21 @@ details.more>summary::-webkit-details-marker{display:none}
       <h3>Où trouver les matériaux</h3>
       <div class="scroll"><table class="tbl">
         <tr><th>Matériau</th><th>Où / comment</th></tr>
-        <tr><td><b>Charbon</b></td><td>Grottes. Il faut un Pal Minage niv. 3.</td></tr>
-        <tr><td><b>Soufre</b></td><td>Volcan (gros dépôts), un peu dans les premiers donjons. Puis mine de soufre.</td></tr>
-        <tr><td><b>Quartz pur</b></td><td>Régions enneigées (plus nombreux en 1.0).</td></tr>
-        <tr><td><b>Pétrole brut</b></td><td>Extracteur sur un champ pétrolier (base Sakurajima), plateformes pétrolières.</td></tr>
-        <tr><td><b>Chromite</b></td><td>Grottes et donjons de Feybreak. Détecteur de métaux ou Smokie dans l'équipe.</td></tr>
-        <tr><td><b>Quartz hexolite</b></td><td>Feybreak uniquement.</td></tr>
-        <tr><td><b>Soralite</b></td><td>Sunreach uniquement.</td></tr>
-        <tr><td><b>Paloxite</b></td><td>Arbre-Monde uniquement.</td></tr>
-        <tr><td><b>Pièces de civ. ancienne</b></td><td>Alphas et Pals chanceux, coffres rares, expéditions.</td></tr>
-        <tr><td><b>Noyau de civ. ancienne</b></td><td>Boss de raid, coffre des plateformes pétrolières, expéditions difficiles.</td></tr>
-        <tr><td><b>Cuir</b></td><td>Beaucoup de Pals communs, Surfent au ranch, marchand.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/coal.webp"> <b>Charbon</b></td><td>Grottes. Il faut un Pal Minage niv. 3.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/sulfur.webp"> <b>Soufre</b></td><td>Volcan (gros dépôts), un peu dans les premiers donjons. Puis mine de soufre.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/quartz.webp"> <b>Quartz pur</b></td><td>Régions enneigées (plus nombreux en 1.0).</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/oil.webp"> <b>Pétrole brut</b></td><td>Extracteur sur un champ pétrolier (base Sakurajima), plateformes pétrolières.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/chromite.webp"> <b>Chromite</b></td><td>Grottes et donjons de Feybreak. Détecteur de métaux ou Smokie dans l'équipe.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/hexolite.webp"> <b>Quartz hexolite</b></td><td>Feybreak uniquement.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/soralite.webp"> <b>Soralite</b></td><td>Sunreach uniquement.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/paloxite.webp"> <b>Paloxite</b></td><td>Arbre-Monde uniquement.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/parts.webp"> <b>Pièces de civ. ancienne</b></td><td>Alphas et Pals chanceux, coffres rares, expéditions.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/core.webp"> <b>Noyau de civ. ancienne</b></td><td>Boss de raid, coffre des plateformes pétrolières, expéditions difficiles.</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/leather.webp"> <b>Cuir</b></td><td>Beaucoup de Pals communs, Surfent au ranch, marchand.</td></tr>
       </table></div>
     </div>
 </section>
-<section class="topic" data-k="elevage" data-t="Élevage" data-ic="🥚" data-s="Gâteaux, mutation, combinaisons" data-g="Ta base">
+<section class="topic" data-k="elevage" data-t="Élevage" data-ic="i/breed" data-s="Gâteaux, mutation, combinaisons" data-g="Ta base">
     <div class="card">
       <h3>Élevage en 5 étapes</h3>
       <div class="step"><div class="num">1</div><div><b>Ferme d'élevage</b> — tech niv. 19<br><span class="mut">10 planches, 20 pierres, 50 fibres. Beaucoup d'espace plat devant.</span></div></div>
@@ -507,11 +512,11 @@ details.more>summary::-webkit-details-marker{display:none}
       <h3>Les gâteaux</h3>
       <div class="scroll"><table class="tbl">
         <tr><th>Gâteau</th><th>Niv.</th><th>Effet</th></tr>
-        <tr><td><b>Gâteau</b></td><td>—</td><td>1 œuf normal</td></tr>
-        <tr><td><b>Champignons</b></td><td>30</td><td>Meilleures stats</td></tr>
-        <tr><td><b>Légumes</b></td><td>47</td><td>2 œufs (idéal pour condenser)</td></tr>
-        <tr><td><b>Légumes extravagant</b></td><td>60</td><td>Stats + Mutation (3 %)</td></tr>
-        <tr><td><b>Spécial</b></td><td>74</td><td>Meilleur héritage des passifs</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/cake.webp"> <b>Gâteau</b></td><td>—</td><td>1 œuf normal</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/cake2.webp"> <b>Champignons</b></td><td>30</td><td>Meilleures stats</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/cake3.webp"> <b>Légumes</b></td><td>47</td><td>2 œufs (idéal pour condenser)</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/cake4.webp"> <b>Légumes extravagant</b></td><td>60</td><td>Stats + Mutation (3 %)</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/i/cake5.webp"> <b>Spécial</b></td><td>74</td><td>Meilleur héritage des passifs</td></tr>
       </table></div>
       <p class="mut sp">Gâteau de base : 5 farine, 8 baies rouges, 7 lait, 8 œufs, 2 miel.</p>
     </div>
@@ -539,7 +544,7 @@ details.more>summary::-webkit-details-marker{display:none}
       <p>Fusionner des doublons au <b>condenseur</b> renforce un Pal (max = 48 copies). Les <b>Âmes de Pal</b> à la Statue de pouvoir augmentent PV, attaque, défense, vitesse de travail.</p>
     </div>
 </section>
-<section class="topic" data-k="boss" data-t="Les 9 boss de tour" data-ic="🗼" data-s="Ordre, niveaux, faiblesses" data-g="Combat">
+<section class="topic" data-k="boss" data-t="Les 9 boss de tour" data-ic="i/tower" data-s="Ordre, niveaux, faiblesses" data-g="Combat">
     <div class="card warn">
       <p><b>5 minutes</b> par combat : un test de dégâts. Tours 1 à 7 dans l'ordre que tu veux ; Auri demande Feybreak terminé, le boss final les 8 tours + une quête.</p>
     </div>
@@ -608,40 +613,40 @@ details.more>summary::-webkit-details-marker{display:none}
       </table>
     </div>
 </section>
-<section class="topic" data-k="montures" data-t="Montures" data-ic="🐎" data-s="Volantes, terrestres, aquatiques" data-g="Combat">
+<section class="topic" data-k="montures" data-t="Montures" data-ic="i/saddle" data-s="Volantes, terrestres, aquatiques" data-g="Combat">
     <p class="mut" style="margin-bottom:10px">Capturer le Pal débloque sa selle dans l'arbre technologique ; elle se fabrique à l'établi d'équipement Pal. Selle = niveau technologique requis (données du jeu 1.0.5).</p>
     <div class="card">
       <h3>✈️ Volantes</h3>
       <table class="tbl">
         <tr><th>Pal</th><th>Selle</th><th>Note</th></tr>
-        <tr><td><b>Nitewing</b></td><td>15</td><td>Premier vol</td></tr>
-        <tr><td><b>Vanwyrm</b></td><td>21</td><td>Plus rapide</td></tr>
-        <tr><td><b>Helzephyr</b></td><td>25</td><td>—</td></tr>
-        <tr><td><b>Beakon</b></td><td>29</td><td>Rapide, Électrique</td></tr>
-        <tr><td><b>Faleris</b></td><td>60</td><td>Capturable sur l'Arbre-Monde</td></tr>
-        <tr><td><b>Shadowbeak</b></td><td>47</td><td>—</td></tr>
-        <tr><td><b>Frostallion</b></td><td>62</td><td>Légendaire</td></tr>
-        <tr><td><b>Jetragon</b></td><td>70</td><td>La plus rapide (Alpha de Sunreach)</td></tr>
-        <tr><td><b>Xenolord</b></td><td>66</td><td>Endurance ×3 (raid)</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/HawkBird.webp"> <b>Nitewing</b></td><td>15</td><td>Premier vol</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/BirdDragon.webp"> <b>Vanwyrm</b></td><td>21</td><td>Plus rapide</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/HadesBird.webp"> <b>Helzephyr</b></td><td>25</td><td>—</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/ThunderBird.webp"> <b>Beakon</b></td><td>29</td><td>Rapide, Électrique</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/Horus.webp"> <b>Faleris</b></td><td>60</td><td>Capturable sur l'Arbre-Monde</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/BlackGriffon.webp"> <b>Shadowbeak</b></td><td>47</td><td>—</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/IceHorse.webp"> <b>Frostallion</b></td><td>62</td><td>Légendaire</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/JetDragon.webp"> <b>Jetragon</b></td><td>70</td><td>La plus rapide (Alpha de Sunreach)</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/DarkMechaDragon.webp"> <b>Xenolord</b></td><td>66</td><td>Endurance ×3 (raid)</td></tr>
       </table>
     </div>
     <div class="card">
       <h3>🐾 Terrestres</h3>
       <table class="tbl">
-        <tr><td><b>Direhowl</b></td><td>9</td><td>Première selle du jeu</td></tr>
-        <tr><td><b>Fenglope</b></td><td>26</td><td>Gros saut, idéal falaises</td></tr>
-        <tr><td><b>Necromus / Paladius</b></td><td>61</td><td>Rapides, combat monté</td></tr>
-        <tr><td><b>Hartalis</b></td><td>70</td><td>La plus rapide au sol (raid)</td></tr>
-        <tr><td><b>Starryon Primo</b></td><td>77</td><td>Plus rapide avec des Pals Neutres</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/Garm.webp"> <b>Direhowl</b></td><td>9</td><td>Première selle du jeu</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/FengyunDeeper.webp"> <b>Fenglope</b></td><td>26</td><td>Gros saut, idéal falaises</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/BlackCentaur.webp"><img class="gic" alt="" src="ic/p/SaintCentaur.webp"> <b>Necromus / Paladius</b></td><td>61</td><td>Rapides, combat monté</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/LegendDeer.webp"> <b>Hartalis</b></td><td>70</td><td>La plus rapide au sol (raid)</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/NightBlueHorse_Neutral.webp"> <b>Starryon Primo</b></td><td>77</td><td>Plus rapide avec des Pals Neutres</td></tr>
       </table>
     </div>
     <div class="card">
       <h3>🌊 Aquatiques</h3>
       <table class="tbl">
-        <tr><td><b>Surfent</b></td><td>16</td><td>Première traversée</td></tr>
-        <tr><td><b>Azurobe</b></td><td>24</td><td>Ajoute des dégâts Eau</td></tr>
-        <tr><td><b>Jormuntide</b></td><td>40</td><td>Fiable jusqu'à la fin</td></tr>
-        <tr><td><b>Neptilius</b></td><td>64</td><td>La plus rapide sur l'eau</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/Serpent.webp"> <b>Surfent</b></td><td>16</td><td>Première traversée</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/BlueDragon.webp"> <b>Azurobe</b></td><td>24</td><td>Ajoute des dégâts Eau</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/Umihebi.webp"> <b>Jormuntide</b></td><td>40</td><td>Fiable jusqu'à la fin</td></tr>
+        <tr><td style="white-space:nowrap"><img class="gic" alt="" src="ic/p/PoseidonOrca.webp"> <b>Neptilius</b></td><td>64</td><td>La plus rapide sur l'eau</td></tr>
       </table>
     </div>
     <div class="card tip">
@@ -649,7 +654,7 @@ details.more>summary::-webkit-details-marker{display:none}
       <p><b>Galeclaw</b> : plané le plus rapide, tir en vol. <b>Hangyu</b> : propulse vers le haut. <b>Wing Pack</b> (tech 80) : vol sans monture.</p>
     </div>
 </section>
-<section class="topic" data-k="sunreach" data-t="Sunreach" data-ic="☁️" data-s="Les îles flottantes" data-g="Fin de partie">
+<section class="topic" data-k="sunreach" data-t="Sunreach" data-ic="i/soralite" data-s="Les îles flottantes" data-g="Fin de partie">
     <div class="card">
       <h3>Sunreach</h3>
       <ul class="l">
@@ -661,7 +666,7 @@ details.more>summary::-webkit-details-marker{display:none}
       </ul>
     </div>
 </section>
-<section class="topic" data-k="arbre" data-t="Arbre-Monde et boss final" data-ic="🌳" data-s="Accès et dernier combat" data-g="Fin de partie">
+<section class="topic" data-k="arbre" data-t="Arbre-Monde et boss final" data-ic="i/holywater" data-s="Accès et dernier combat" data-g="Fin de partie">
     <div class="card">
       <h3>Y accéder</h3>
       <div class="step"><div class="num">1</div><div>Battre <b>les 8 boss de tour</b>.</div></div>
@@ -747,14 +752,14 @@ details.more>summary::-webkit-details-marker{display:none}
     </div>
     <div class="card">
       <h3>Légende des icônes</h3>
-      <p>⚔️ combat · 🔨 base · 🐎 monture · 🐄 ranch</p>
+      <p>⚔️ combat · <img class="gic" alt="" src="ic/w/Handiwork.webp"> base · <img class="gic" alt="" src="ic/i/saddle.webp"> monture · <img class="gic" alt="" src="ic/w/Farming.webp"> ranch</p>
     </div>
 </section>
 </div>
 
 </main>
 
-<footer>Guide Palworld 1.0 · v18 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v19 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
@@ -801,7 +806,7 @@ details.more>summary::-webkit-details-marker{display:none}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "18";
+  var APP_VERSION = "19";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", pals:"Pals", carte:"Carte", guide:"Guide"};
 
@@ -886,7 +891,7 @@ details.more>summary::-webkit-details-marker{display:none}
     });
     $("guideMenu").innerHTML = groups.map(function(g){
       return '<div class="gm">' + esc(g) + '</div><div class="gl">' + by[g].map(function(t){
-        return '<button class="gi" data-topic="' + t.dataset.k + '"><span class="e">' + t.dataset.ic + '</span><span class="t"><b>' + esc(t.dataset.t) + '</b><span>' + esc(t.dataset.s) + '</span></span><span class="c">›</span></button>';
+        return '<button class="gi" data-topic="' + t.dataset.k + '"><span class="e">' + (t.dataset.ic.indexOf("/") > 0 ? gi(t.dataset.ic) : t.dataset.ic) + '</span><span class="t"><b>' + esc(t.dataset.t) + '</b><span>' + esc(t.dataset.s) + '</span></span><span class="c">›</span></button>';
       }).join("") + '</div>';
     }).join("");
   }
@@ -930,7 +935,9 @@ details.more>summary::-webkit-details-marker{display:none}
 
   /* ---------- Données ---------- */
   var EL = {fire:"Feu", water:"Eau", grass:"Plante", elec:"Électrique", ice:"Glace", ground:"Terre", dark:"Ténèbres", dragon:"Dragon", neutral:"Neutre"};
-  function tag(k){ return '<span class="tag el ' + k + '">' + EL[k] + '</span>'; }
+  function gi(n){ var q = n.split("/"); return '<img class="gic' + (q[0] === "i" && (q[1] === "tower" || q[1] === "dungeon") ? ' dk' : '') + '" alt="" src="ic/' + n + '.webp">'; }
+  function giText(t){ return esc(String(t)).replace(/\[\[([a-z]+\/[A-Za-z0-9_]+)\]\]/g, function(m, n){ return gi(n); }); }
+  function tag(k){ return '<span class="tag el ' + k + '">' + gi("e/" + k) + EL[k] + '</span>'; }
 
   var BOSS = [
     {id:"b1", n:"Zoe & Grizzbolt", lv:"10", where:"Tour du Syndicat Rayne · Collines venteuses", el:["elec"], weak:["ground"], pals:"Gumoss, Rushoar, Fuddler", tip:"Abrite-toi derrière les piliers pendant les rafales."},
@@ -1102,7 +1109,7 @@ details.more>summary::-webkit-details-marker{display:none}
     if(loadingD) return loadingD;
     loadingD = fetch("data.json").then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(d){
       D = d; NP = d.pals.length;
-      d.pals.forEach(function(p, i){ p.i = i; BYN[norm(p.n)] = i; BYN[norm(p.f)] = i; });
+      d.pals.forEach(function(p, i){ p.i = i; if(p.c === "PlantSlime_Flower") p.f += " (fleur)"; [p.n, p.f].forEach(function(x){ if(BYN[norm(x)] === undefined) BYN[norm(x)] = i; }); });
       return d;
     }).catch(function(e){ loadingD = null; throw e; });
     return loadingD;
@@ -1125,17 +1132,16 @@ details.more>summary::-webkit-details-marker{display:none}
   function cost(i){ var p = D.pals[i]; var m = p.slv ? p.slv[0] : 999; if(p.al) p.al.forEach(function(x){ m = Math.min(m, x[0]); }); return m < 999 ? m : (p.note ? 60 : 90); }
   function easy(pairs){ return pairs.slice().sort(function(a, b){ return (Math.max(cost(a[0]), cost(a[1])) - Math.max(cost(b[0]), cost(b[1]))) || (cost(a[0]) + cost(a[1]) - cost(b[0]) - cost(b[1])); }); }
   function pimg(p, cls){
-    var src = "https://palworld.wiki.gg/images/" + encodeURIComponent(p.n.replace(/ /g, "_")) + "_icon.png";
-    return '<div class="' + (cls || "im") + '"><img loading="lazy" referrerpolicy="no-referrer" alt="" src="' + src + '" onerror="this.parentNode.textContent=\'' + esc(p.f.charAt(0)) + '\'"></div>';
+    var src = "ic/p/" + p.c + ".webp";
+    return '<div class="' + (cls || "im") + '"><img loading="lazy" alt="" src="' + src + '" onerror="this.parentNode.textContent=\'' + esc(p.f.charAt(0)) + '\'"></div>';
   }
   var EGG = {neutral:["commun","Common"], grass:["verdoyant","Verdant"], fire:["brûlant","Scorching"], water:["humide","Damp"], elec:["électrique","Electric"], ice:["gelé","Frozen"], ground:["rocheux","Rocky"], dark:["sombre","Dark"], dragon:["draconique","Dragon"]};
   function egg(p){
     var e = EGG[p.e[0]] || EGG.neutral, sz = p.r <= 4 ? 0 : (p.r <= 7 ? 1 : 2);
-    return {sz:sz, fr:["Œuf ", "Grand œuf ", "Œuf énorme "][sz] + e[0], en:["", "Large ", "Huge "][sz] + e[1] + " Egg"};
+    return {k:EGG[p.e[0]] ? p.e[0] : "neutral", sz:sz, fr:["Œuf ", "Grand œuf ", "Œuf énorme "][sz] + e[0], en:["", "Large ", "Huge "][sz] + e[1] + " Egg"};
   }
-  var WFILE = {GenerateElectricity:"Generating_Electricity", MedicineProduction:"Medicine_Production"};
   function wkIcon(w){
-    return '<img class="wki" alt="" loading="lazy" referrerpolicy="no-referrer" src="https://palworld.wiki.gg/images/' + (WFILE[w[0]] || w[0]) + '_icon.png" onerror="this.outerHTML=\'' + w[1] + '\'">';
+    return '<img class="wki" alt="" loading="lazy" src="ic/w/' + w[0] + '.webp" onerror="this.outerHTML=\'' + w[1] + '\'">';
   }
   function wkLine(p){ return WORK.filter(function(w){ return p.w[w[0]]; }).map(function(w){ return wkIcon(w) + p.w[w[0]]; }).join(" "); }
   function obtain(p){
@@ -1182,7 +1188,7 @@ details.more>summary::-webkit-details-marker{display:none}
     var eg = egg(p), pairs = easy(rev()[i]);
     var head = '<div class="big">' + pimg(p) + '<div><h2>' + esc(p.f) + '</h2>' +
       (p.f !== p.n ? '<div class="mut">' + esc(p.n) + '</div>' : '') +
-      '<div class="sp">' + p.e.map(tag).join("") + (p.noc ? '<span class="tag">🌙 Nuit</span>' : '') + (p.sad ? '<span class="tag">🐎 Monture</span>' : '') + '</div></div></div>' +
+      '<div class="sp">' + p.e.map(tag).join("") + (p.noc ? '<span class="tag">🌙 Nuit</span>' : '') + (p.sad ? '<span class="tag">' + gi("i/saddle") + 'Monture</span>' : '') + '</div></div></div>' +
       '<div class="seg shseg" id="shSeg"><button data-s="info">Infos</button><button data-s="breed">Élevage</button><button data-s="fight">Combat</button></div>';
     /* Infos */
     var a = '';
@@ -1190,15 +1196,15 @@ details.more>summary::-webkit-details-marker{display:none}
     a += '<div class="card"><h3>📍 Où le trouver</h3>';
     if(p.z && p.z.length) a += '<p>' + esc(p.z.join(", ")) + (p.slv ? ' <span class="mut">· niv. ' + p.slv[0] + (p.slv[1] !== p.slv[0] ? '–' + p.slv[1] : '') + '</span>' : '') + '</p>';
     if(p.note) a += '<p>' + esc(p.note) + '</p>';
-    if(p.al) a += '<p>👑 ' + p.al.map(function(x){ return (x[3] ? 'Boss de donjon' : 'Alpha') + ' niv. ' + x[0]; }).join(", ") + '</p>';
+    if(p.al) a += '<p>' + gi("i/alpha") + ' ' + p.al.map(function(x){ return (x[3] ? 'Boss de donjon' : 'Alpha') + ' niv. ' + x[0]; }).join(", ") + '</p>';
     if(habPts(p)) a += miniMap(p);
     else if(p.note && p.note.indexOf("Arbre-Monde") !== -1) a += '<p class="mut">Région à part, absente de la carte principale.</p>';
     else if(!p.z && !p.note && !p.al) a += '<p class="mut">Pas d\'apparition sauvage connue : voir Élevage.</p>';
-    a += '<div class="kv sp"><span>🥚 Œuf</span><b>' + eg.fr + '</b></div></div>';
+    a += '<div class="kv sp"><span>' + gi("egg/" + eg.k) + ' Œuf</span><b>' + eg.fr + '</b></div></div>';
     var ws = WORK.filter(function(w){ return p.w[w[0]]; });
-    a += '<div class="card"><h3>🔨 Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div><span>' + wkIcon(w) + ' ' + w[2] + '</span> <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude.</p>') + '</div>';
+    a += '<div class="card"><h3>' + gi("w/Handiwork") + ' Travail</h3>' + (ws.length ? '<div class="wl">' + ws.map(function(w){ return '<div><span>' + wkIcon(w) + ' ' + w[2] + '</span> <b>' + p.w[w[0]] + '</b></div>'; }).join("") + '</div>' : '<p class="mut">Aucune aptitude.</p>') + '</div>';
     /* Élevage */
-    var b = '<div class="card"><h3>🥚 Pour l\'obtenir</h3><p class="mut">' + pairs.length + ' combinaison' + (pairs.length > 1 ? 's' : '') + ', les plus faciles d\'abord.</p>' +
+    var b = '<div class="card"><h3>' + gi("i/breed") + ' Pour l\'obtenir</h3><p class="mut">' + pairs.length + ' combinaison' + (pairs.length > 1 ? 's' : '') + ', les plus faciles d\'abord.</p>' +
       (pairs.length > 8 ? '<input class="inp sp" id="shPq" type="search" placeholder="Filtrer par parent…" autocomplete="off">' : '') +
       '<div id="shPairs" class="sp"></div></div>' +
       '<button class="btn ghost" id="shWith" style="width:100%">Voir ses enfants avec chaque Pal</button>';
@@ -1245,9 +1251,9 @@ details.more>summary::-webkit-details-marker{display:none}
 
   /* Liste du Paldex */
   var dexFilter = "all", dexWork = null;
-  var DEXF = [["all","Tous"],["tip","⭐ Conseillés"],["sad","🐎 Montures"],["huge","🥚 Œufs énormes"]];
-  var DEXX = [["noc","🌙 Nocturnes"],["tree","🌳 Arbre-Monde"],["breed","🧬 Élevage seul"],["large","🥚 Grands œufs"]];
-  var DEXE = Object.keys(EL).map(function(k){ return ["el:" + k, EL[k]]; });
+  var DEXF = [["all","Tous"],["tip","⭐ Conseillés"],["sad","[[i/saddle]] Montures"],["huge","[[egg/neutral]] Œufs énormes"]];
+  var DEXX = [["noc","🌙 Nocturnes"],["tree","[[i/holywater]] Arbre-Monde"],["breed","[[i/breed]] Élevage seul"],["large","[[egg/neutral]] Grands œufs"]];
+  var DEXE = Object.keys(EL).map(function(k){ return ["el:" + k, "[[e/" + k + "]] " + EL[k]]; });
   function dexText(p){ var eg = egg(p); return norm("#" + p.no + " " + p.f + " " + p.n + " " + p.e.map(function(k){ return EL[k]; }).join(" ") + " " + (p.z || []).join(" ") + " " + (p.note || "") + " " + eg.fr + " " + eg.en); }
   function renderDex(){
     if(!D){ loadData().then(renderDex).catch(function(){ $("dexList").innerHTML = '<div class="card warn">Impossible de charger les données. Vérifie ta connexion puis rouvre l\'onglet.</div>'; }); return; }
@@ -1278,7 +1284,7 @@ details.more>summary::-webkit-details-marker{display:none}
   function setDexFilter(f){ dexFilter = f; document.querySelectorAll("#dexF button[data-f],#dexX button,#dexE button").forEach(function(x){ x.classList.toggle("on", x.dataset.f === dexFilter); }); renderDex(); }
   [["dexF", DEXF], ["dexX", DEXX], ["dexE", DEXE]].forEach(function(grp){
     grp[1].forEach(function(f){
-      var b = document.createElement("button"); b.textContent = f[1]; b.dataset.f = f[0]; if(f[0] === "all") b.className = "on";
+      var b = document.createElement("button"); b.innerHTML = giText(f[1]); b.dataset.f = f[0]; if(f[0] === "all") b.className = "on";
       b.addEventListener("click", function(){ setDexFilter(dexFilter === f[0] && f[0] !== "all" ? "all" : f[0]); });
       $(grp[0]).appendChild(b);
     });
@@ -1385,7 +1391,7 @@ details.more>summary::-webkit-details-marker{display:none}
 
   /* Passifs */
   var pasFilter = "all";
-  var PASF = [["all","Tous"],["pos","▲ Bonus"],["neg","▼ Malus"],["combat","⚔️ Combat"],["work","🔨 Travail"],["res","🛡️ Résistances"],["mut","🧬 Mutation"],["tree","🌳 Arbre-Monde"],["surg","🩺 Chirurgie"]];
+  var PASF = [["all","Tous"],["pos","▲ Bonus"],["neg","▼ Malus"],["combat","⚔️ Combat"],["work","[[w/Handiwork]] Travail"],["res","🛡️ Résistances"],["mut","[[egg/mut]] Mutation"],["tree","[[i/holywater]] Arbre-Monde"],["surg","🩺 Chirurgie"]];
   function renderPas(){
     if(!D){ loadData().then(renderPas).catch(function(){ $("pasList").innerHTML = '<div class="card warn">Données indisponibles.</div>'; }); return; }
     $("pasF").querySelectorAll("button").forEach(function(x){ x.classList.toggle("on", x.dataset.f === pasFilter); });
@@ -1405,14 +1411,14 @@ details.more>summary::-webkit-details-marker{display:none}
     $("pasN").textContent = list.length + " passif" + (list.length > 1 ? "s" : "");
     $("pasList").innerHTML = list.map(function(p){
       var rk = p.r > 0 ? '<span class="rk p">' + "▲".repeat(Math.min(p.r, 5)) + '</span>' : '<span class="rk n">' + "▼".repeat(Math.min(-p.r, 3)) + '</span>';
-      var tags = (p.a.indexOf("mutation") !== -1 ? '<span class="tag">🧬 Mutation</span>' : '') + (p.a.indexOf("worldTree") !== -1 ? '<span class="tag">🌳 Arbre-Monde</span>' : '') + (p.su ? '<span class="tag">🩺 Chirurgie</span>' : '');
+      var tags = (p.a.indexOf("mutation") !== -1 ? '<span class="tag">' + gi("egg/mut") + 'Mutation</span>' : '') + (p.a.indexOf("worldTree") !== -1 ? '<span class="tag">' + gi("i/holywater") + 'Arbre-Monde</span>' : '') + (p.su ? '<span class="tag">🩺 Chirurgie</span>' : '');
       return '<div class="card" style="padding:12px 14px"><div>' + rk + '<b>' + esc(p.f) + '</b>' + (p.f !== p.n ? ' <span class="mut">· ' + esc(p.n) + '</span>' : '') + '</div>' +
         '<div class="sp">' + esc(p.d).replace(/\n/g, "<br>") + '</div>' + (tags ? '<div class="sp">' + tags + '</div>' : '') +
         (p.p.length ? '<div class="mut sp">Inné chez : ' + p.p.map(function(n){ var i = BYN[norm(n)]; return i === undefined ? esc(n) : palLink(i); }).join(", ") + '</div>' : '') + '</div>';
     }).join("") || '<div class="card mut">Aucun résultat.</div>';
   }
   PASF.forEach(function(f){
-    var b = document.createElement("button"); b.textContent = f[1]; b.dataset.f = f[0];
+    var b = document.createElement("button"); b.innerHTML = giText(f[1]); b.dataset.f = f[0];
     b.addEventListener("click", function(){ pasFilter = f[0]; renderPas(); });
     $("pasF").appendChild(b);
   });
@@ -1424,7 +1430,7 @@ details.more>summary::-webkit-details-marker{display:none}
   function weakTo(k){ return Object.keys(STRONG).filter(function(a){ return STRONG[a].indexOf(k) !== -1; }); }
   Object.keys(EL).forEach(function(k){
     var b = document.createElement("button");
-    b.className = "el " + k; b.textContent = EL[k]; b.dataset.k = k;
+    b.className = "el " + k; b.innerHTML = gi("e/" + k) + " " + EL[k]; b.dataset.k = k;
     b.addEventListener("click", function(){ pick(k); });
     $("picker").appendChild(b);
   });
@@ -1518,11 +1524,11 @@ details.more>summary::-webkit-details-marker{display:none}
 
   /* ---------- Carte ---------- */
   var CAT = {
-    tower:{n:"🗼 Tours", c:"#ffcf5a", ic:"🗼"},
-    base:{n:"🏠 Bases", c:"#4fd1a5", ic:"🏠"},
-    alpha:{n:"👑 Alphas", c:"#ff8a65", ic:"👑"},
+    tower:{n:"[[i/tower]] Tours", c:"#ffcf5a", ic:"🗼"},
+    base:{n:"[[i/palbox]] Bases", c:"#4fd1a5", ic:"🏠"},
+    alpha:{n:"[[i/alpha]] Alphas", c:"#ff8a65", ic:"👑"},
     legend:{n:"⭐ Légendaires", c:"#d56cff", ic:"⭐"},
-    tree:{n:"🌳 Arbre-Monde", c:"#6fd06f", ic:"🌳"},
+    tree:{n:"[[i/holywater]] Arbre-Monde", c:"#6fd06f", ic:"🌳"},
     pin:{n:"📌 Mes points", c:"#4ea8ff", ic:"📌"}
   };
   var TOWERS = [
@@ -1699,15 +1705,17 @@ details.more>summary::-webkit-details-marker{display:none}
     else if(p.cat === "tower" && p.boss && p.boss.el.length) name = p.boss.n.split(" & ")[1];
     else if(p.cat === "base") return {url:"nav-accueil.png"};
     else if(p.cat === "tree") return {url:"nav-fin.png"};
-    if(!name) return null;
-    var url = "https://palworld.wiki.gg/images/" + encodeURIComponent(name.replace(/ /g, "_")) + "_icon.png";
+    if(!name || !D) return null;
+    var k = BYN[norm(name)]; if(k === undefined) return null;
+    var url = "ic/p/" + D.pals[k].c + ".webp";
     return MKFAIL[url] ? null : {url:url};
   }
+
   function showInfo(id){
     var p = mapPoints().filter(function(x){ return x.id === id; })[0];
     if(!p) return;
     selId = id; drawMarkers();
-    var h = '<div class="mut">' + CAT[p.cat].n + '</div><h3>' + esc(p.n) + (p.lv ? ' <span class="mut">· niv. ' + p.lv + '</span>' : '') + '</h3>' +
+    var h = '<div class="mut">' + giText(CAT[p.cat].n) + '</div><h3>' + esc(p.n) + (p.lv ? ' <span class="mut">· niv. ' + p.lv + '</span>' : '') + '</h3>' +
       '<div class="mut">' + esc(p.d) + '</div><div class="sp">📍 <span class="copy">' + p.x + ', ' + p.y + '</span></div>';
     if(p.boss){
       var b = p.boss, wk = b.weak.length ? b.weak.map(tag).join("") : '<span class="tag">Aucune faiblesse</span>';
@@ -1790,7 +1798,7 @@ details.more>summary::-webkit-details-marker{display:none}
   /* Filtres + niveau */
   Object.keys(CAT).forEach(function(c){
     var b = document.createElement("button");
-    b.textContent = CAT[c].n; b.className = state.mapF[c] ? "on" : "";
+    b.innerHTML = giText(CAT[c].n); b.className = state.mapF[c] ? "on" : "";
     b.addEventListener("click", function(){ state.mapF[c] = state.mapF[c] ? 0 : 1; b.className = state.mapF[c] ? "on" : ""; save(); drawMarkers(); });
     $("mapF").appendChild(b);
   });
@@ -2007,7 +2015,7 @@ details.more>summary::-webkit-details-marker{display:none}
     });
     H.pts.forEach(function(q){
       g.appendChild(el("circle", {cx:q[0], cy:-q[1], r:12 * k, fill:"#ff8a65", stroke:"#fff", "stroke-width":2.5 * k}));
-      g.appendChild(el("text", {x:q[0], y:-q[1] + 4 * k, "text-anchor":"middle", "font-size":11 * k}, "👑"));
+      var ai = el("image", {x:q[0] - 8 * k, y:-q[1] - 8 * k, width:16 * k, height:16 * k}); ai.setAttribute("href", "ic/i/alpha.webp"); g.appendChild(ai);
     });
   }
   function showHabitat(i){
