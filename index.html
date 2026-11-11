@@ -766,7 +766,7 @@ details.more>summary::-webkit-details-marker{display:none}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v22 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v23 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
@@ -813,7 +813,7 @@ details.more>summary::-webkit-details-marker{display:none}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "22";
+  var APP_VERSION = "23";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", pals:"Pals", carte:"Carte", guide:"Guide"};
 
@@ -1657,12 +1657,13 @@ details.more>summary::-webkit-details-marker{display:none}
       g.appendChild(el("line", {x1:-2000, y1:v, x2:2000, y2:v, stroke:ax ? "var(--axis)" : "var(--grid)", "stroke-width":1, "vector-effect":"non-scaling-stroke"}));
     }
   }
-  var EMB = {W:1290, H:1209, cal:{ax:0.43582, bx:822.63, ay:-0.43582, by:327.61}, src:"carte-palworld.jpg"};
+  var EMB = {W:1290, H:1209, cal:{ax:0.406, bx:802, ay:-0.404, by:367}, src:"carte-palworld.jpg"};
   var PRESETS = [
-    {W:1290, H:1209, cal:{ax:0.43582, bx:822.63, ay:-0.43582, by:327.61}},
-    {W:2106, H:2160, cal:{ax:0.74, bx:1348, ay:-0.74, by:642}}
+    {W:1290, H:1209, cal:{ax:0.406, bx:802, ay:-0.404, by:367}},
+    {W:2106, H:2160, cal:{ax:0.6894, bx:1313.0, ay:-0.686, by:708.9}}
   ];
   if(!state.emb || typeof state.emb !== "object") state.emb = {on:1, op:1};
+  if(state.bg && state.bg.cal && (state.bg.cal.bx === 822.63 || state.bg.cal.bx === 1348)){ var kp = PRESETS.filter(function(pr){ return pr.W === state.bg.W && pr.H === state.bg.H; })[0]; if(kp) state.bg.cal = kp.cal; }
   function curBg(){
     if(state.bg) return imgURL ? {B:state.bg, url:imgURL, user:true} : null;
     if(!EMB) return null;
