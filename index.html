@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0f1720">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="logo-192.png">
@@ -198,6 +198,12 @@ h3 .gic{width:22px;height:22px;vertical-align:-5px}
 .habbar.empty{border:none;padding:0;background:none}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-weight:650;font-size:13px;cursor:pointer;white-space:nowrap}
 details.more{margin-top:6px}
+body.mapmode{overflow:hidden;padding-bottom:0;overscroll-behavior:none}
+body.mapmode main{padding-top:8px;padding-bottom:0}
+body.mapmode #t-carte .pan.on{display:flex;flex-direction:column;height:calc(100dvh - var(--toph,64px) - var(--nav) - env(safe-area-inset-bottom) - 8px);overflow:hidden}
+body.mapmode .mapbox{flex:1 1 auto;height:auto;min-height:0;max-height:none;touch-action:none}
+body.mapmode #mapInfo{flex:0 0 auto;max-height:26%;overflow:auto;margin:8px 0 6px}
+body.mapmode #layersPanel{flex:0 0 auto;max-height:45%;overflow:auto}
 details.more>summary{cursor:pointer;font-weight:650;padding:12px 4px;color:var(--mut);list-style:none}
 details.more>summary::-webkit-details-marker{display:none}
 .dx .wk2{font-size:13px;color:var(--mut);white-space:nowrap;text-align:right}
@@ -305,21 +311,7 @@ details.more>summary::-webkit-details-marker{display:none}
       <div class="filters" id="mapF" style="padding-top:0"></div>
       <div class="lvl"><span class="mut">Mon niveau</span><input type="range" id="lvl" min="1" max="80"><b id="lvlV">1</b></div>
       <p class="mut" style="font-size:12px">Les repères trop forts pour ton niveau (+5) sont grisés.</p>
-    </div>
-    <div class="mapbox" id="mapbox">
-      <svg id="map" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs><clipPath id="mkClip" clipPathUnits="objectBoundingBox"><circle cx=".5" cy=".5" r=".5"/></clipPath></defs><g id="gImg"></g><g id="gGrid"></g><g id="gReg"></g><g id="gMk"></g>
-      </svg>
-      <div class="mapctl">
-        <button id="zIn" aria-label="Zoomer">+</button>
-        <button id="zOut" aria-label="Dézoomer">−</button>
-        <button id="zFit" aria-label="Tout voir">⤢</button>
-      </div>
-      <div class="coord" id="mapCoord">Glisse pour déplacer · pince pour zoomer</div>
-      <div class="calbar" id="calbar"></div>
-    </div>
-    <div class="card" id="mapInfo"><p class="mut">Touche un repère pour voir le détail.</p></div>
-    <details class="more"><summary>⚙️ Fond de carte et mes points</summary>
+      <details class="more"><summary>⚙️ Fond de carte et mes points</summary>
     <div class="card" id="bgCard">
       <h3>🖼️ Fond de carte</h3>
       <div id="bgBody"></div>
@@ -338,6 +330,20 @@ details.more>summary::-webkit-details-marker{display:none}
       <p class="sp"><a class="btn ghost" style="display:inline-block;text-decoration:none" href="https://palworld.th.gl/" target="_blank" rel="noopener">Ouvrir une carte complète du jeu ↗</a></p>
     </div>
     </details>
+    </div>
+    <div class="mapbox" id="mapbox">
+      <svg id="map" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="mkClip" clipPathUnits="objectBoundingBox"><circle cx=".5" cy=".5" r=".5"/></clipPath></defs><g id="gImg"></g><g id="gGrid"></g><g id="gReg"></g><g id="gMk"></g>
+      </svg>
+      <div class="mapctl">
+        <button id="zIn" aria-label="Zoomer">+</button>
+        <button id="zOut" aria-label="Dézoomer">−</button>
+        <button id="zFit" aria-label="Tout voir">⤢</button>
+      </div>
+      <div class="coord" id="mapCoord">Glisse pour déplacer · pince pour zoomer</div>
+      <div class="calbar" id="calbar"></div>
+    </div>
+    <div class="card" id="mapInfo"><p class="mut">Touche un repère pour voir le détail.</p></div>
   </div>
 </div>
 
@@ -538,6 +544,7 @@ details.more>summary::-webkit-details-marker{display:none}
     </div>
     <div class="card">
       <h3>Prévenir plutôt que guérir</h3>
+      <p><b>Pals de la base :</b> construis une <b>étagère à médicaments</b> (« Medicine Rack », tech 23-24 : 20 lingots, 5 tissus, bois) et remplis-la des 3 médicaments. Les Pals malades viennent s'y soigner seuls.</p>
       <p>Les maladies viennent surtout d'une <b>santé mentale (SAN) basse</b> : surmenage, faim, pas de lit.</p>
       <ul>
         <li><img class="gic" alt="" src="ic/i/bed.webp"> <b>Un lit par Pal</b>, accessible.</li>
@@ -809,7 +816,7 @@ details.more>summary::-webkit-details-marker{display:none}
 
 </main>
 
-<footer>Guide Palworld 1.0 · v26 · données version 1.0.2</footer>
+<footer>Guide Palworld 1.0 · v27 · données version 1.0.2</footer>
 
 <nav class="bnav" id="bnav">
   <button data-t="accueil"><img class="ic" src="nav-accueil.png" alt="">Accueil</button>
@@ -856,7 +863,7 @@ details.more>summary::-webkit-details-marker{display:none}
 <script>
 (function(){
   "use strict";
-  var APP_VERSION = "26";
+  var APP_VERSION = "27";
   var KEY = "pwguide_v1";
   var TABS = {accueil:"Accueil", pals:"Pals", carte:"Carte", guide:"Guide"};
 
@@ -888,12 +895,16 @@ details.more>summary::-webkit-details-marker{display:none}
 
   /* ---------- Navigation ---------- */
   var cur = "accueil", navDepth = 0, navLock = true, curPal = null, curOv = null, afterPop = null, curTopic = null;
+  function setTopH(){ var t = document.querySelector(".top"); if(t) document.documentElement.style.setProperty("--toph", t.offsetHeight + "px"); }
+  window.addEventListener("resize", function(){ setTopH(); });
   function panels(tab){ return Array.prototype.slice.call(document.querySelectorAll("#t-" + tab + " .pan")); }
   function go(tab, sub, keepScroll){
     if(tab === "boss" || tab === "fin") tab = "guide";
     if(!TABS[tab]) tab = "accueil";
     if(!navLock){ hideTopicUI(); if(curPal != null) hideSheet(); }
     cur = tab;
+    document.body.classList.toggle("mapmode", tab === "carte");
+    setTopH();
     document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("on", t.id === "t-" + tab); });
     document.querySelectorAll("#bnav button").forEach(function(b){ b.classList.toggle("on", b.dataset.t === tab); });
     var ps = panels(tab);
@@ -1881,6 +1892,7 @@ details.more>summary::-webkit-details-marker{display:none}
   $("zOut").addEventListener("click", function(){ zBtn(1.5); });
   $("zFit").addEventListener("click", fit);
   window.addEventListener("resize", function(){ if(cur === "carte" && vb) applyVB(true); });
+  if(window.ResizeObserver) new ResizeObserver(function(){ if(cur === "carte" && vb) applyVB(true); }).observe($("mapbox"));
 
   /* Filtres + niveau */
   Object.keys(CAT).forEach(function(c){
